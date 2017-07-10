@@ -7,9 +7,9 @@ public class Student extends User {
     private long id;
     private String group;
     private int course;
-    private Lab lab;
-    private Elective elective;
-    private Practice practice;
+    private String lab;
+    private String elective;
+    private String practice;
     private Teacher teacher;
 
     public Student() {
@@ -31,13 +31,13 @@ public class Student extends User {
     }
 
     @Override
-    public long getId() {
+    public long getuId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
-        this.id = id;
+    public void setuId(long uId) {
+        this.id = uId;
     }
 
     public String getGroup() {
@@ -56,27 +56,27 @@ public class Student extends User {
         this.course = course;
     }
 
-    public Lab getLab() {
+    public String getLab() {
         return lab;
     }
 
-    public void setLab(Lab lab) {
+    public void setLab(String lab) {
         this.lab = lab;
     }
 
-    public Elective getElective() {
+    public String getElective() {
         return elective;
     }
 
-    public void setElective(Elective elective) {
+    public void setElective(String elective) {
         this.elective = elective;
     }
 
-    public Practice getPractice() {
+    public String getPractice() {
         return practice;
     }
 
-    public void setPractice(Practice practice) {
+    public void setPractice(String practice) {
         this.practice = practice;
     }
 
@@ -92,9 +92,9 @@ public class Student extends User {
         private long id;
         private String group;
         private int course;
-        private Lab lab;
-        private Elective elective;
-        private Practice practice;
+        private String lab;
+        private String elective;
+        private String practice;
         private Teacher teacher;
 
         public Builder id(long arg) {
@@ -112,17 +112,17 @@ public class Student extends User {
             return this;
         }
 
-        public Builder lab(Lab arg) {
+        public Builder lab(String arg) {
             lab = arg;
             return this;
         }
 
-        public Builder elective(Elective arg) {
+        public Builder elective(String arg) {
             elective = arg;
             return this;
         }
 
-        public Builder practice(Practice arg) {
+        public Builder practice(String arg) {
             practice = arg;
             return this;
         }

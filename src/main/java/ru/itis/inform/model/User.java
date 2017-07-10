@@ -4,7 +4,7 @@ package ru.itis.inform.model;
  * Created by Kamil Karimov on 06.07.2017.
  */
 public class User {
-    private long id;
+    private long uId;
     private String login;
     private String hashPassword;
     private String token;
@@ -14,11 +14,10 @@ public class User {
     private String role;
 
     public User() {
-
     }
 
     public User(Builder builder) {
-        this.id = builder.id;
+        this.uId = builder.uId;
         this.login = builder.login;
         this.hashPassword = builder.hashPassword;
         this.token = builder.token;
@@ -28,12 +27,12 @@ public class User {
         this.role = builder.role;
     }
 
-    public long getId() {
-        return id;
+    public long getuId() {
+        return uId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setuId(long uId) {
+        this.uId = uId;
     }
 
     public String getLogin() {
@@ -93,7 +92,7 @@ public class User {
     }
 
     public static class Builder {
-        private long id;
+        private long uId;
         private String login;
         private String hashPassword;
         private String token;
@@ -102,8 +101,8 @@ public class User {
         private String lastName;
         private String role;
 
-        public Builder id(long arg) {
-            this.id = arg;
+        public Builder uId(long arg) {
+            this.uId = arg;
             return this;
         }
 

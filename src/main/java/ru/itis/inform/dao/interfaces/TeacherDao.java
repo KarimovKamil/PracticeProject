@@ -11,11 +11,11 @@ public interface TeacherDao {
 
     List<Teacher> findAll();
 
-    Teacher findById(long id);
+    void findById(long id);
 
-    Teacher insert(Teacher Teacher);
+    void insert(Teacher teacher);
 
-    Teacher update(Teacher Teacher, long id);
+    void update(Teacher teacher, long id);
 
     void delete(long id);
 
