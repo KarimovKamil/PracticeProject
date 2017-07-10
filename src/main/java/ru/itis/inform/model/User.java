@@ -14,7 +14,6 @@ public class User {
     private String role;
 
     public User() {
-
     }
 
     public User(Builder builder) {
