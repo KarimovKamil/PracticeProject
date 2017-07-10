@@ -6,7 +6,7 @@ package ru.itis.inform.model;
 public class Lab {
     private long id;
     private String name;
-    private long leaderId;
+    private Teacher teacher;
     private int course;
 
     public Lab() {
@@ -15,7 +15,7 @@ public class Lab {
     public Lab(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
-        this.leaderId = builder.leaderId;
+        this.teacher = builder.teacher;
         this.course = builder.course;
     }
 
@@ -35,12 +35,12 @@ public class Lab {
         this.name = name;
     }
 
-    public long getLeaderId() {
-        return leaderId;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setLeaderId(long leaderId) {
-        this.leaderId = leaderId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public int getCourse() {
@@ -54,7 +54,7 @@ public class Lab {
     public static class Builder {
         private long id;
         private String name;
-        private long leaderId;
+        private Teacher teacher;
         private int course;
 
         public Builder id(long arg) {
@@ -67,8 +67,8 @@ public class Lab {
             return this;
         }
 
-        public Builder leaderId(long arg) {
-            this.leaderId = arg;
+        public Builder teacher(Teacher arg) {
+            this.teacher = arg;
             return this;
         }
 
