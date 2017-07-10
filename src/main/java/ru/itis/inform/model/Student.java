@@ -7,10 +7,10 @@ public class Student extends User {
     private long id;
     private String group;
     private int course;
-    private long labId;
-    private long electiveId;
-    private long practiceId;
-    private long leaderId;
+    private Lab lab;
+    private Elective elective;
+    private Practice practice;
+    private Teacher teacher;
 
     public Student() {
     }
@@ -24,16 +24,18 @@ public class Student extends User {
         this.id = builder.id;
         this.group = builder.group;
         this.course = builder.course;
-        this.labId = builder.labId;
-        this.electiveId = builder.electiveId;
-        this.practiceId = builder.practiceId;
-        this.leaderId = builder.leaderId;
+        this.lab = builder.lab;
+        this.elective = builder.elective;
+        this.practice = builder.practice;
+        this.teacher = builder.teacher;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -54,46 +56,46 @@ public class Student extends User {
         this.course = course;
     }
 
-    public long getLabId() {
-        return labId;
+    public Lab getLab() {
+        return lab;
     }
 
-    public void setLabId(long labId) {
-        this.labId = labId;
+    public void setLab(Lab lab) {
+        this.lab = lab;
     }
 
-    public long getElectiveId() {
-        return electiveId;
+    public Elective getElective() {
+        return elective;
     }
 
-    public void setElectiveId(long electiveId) {
-        this.electiveId = electiveId;
+    public void setElective(Elective elective) {
+        this.elective = elective;
     }
 
-    public long getPracticeId() {
-        return practiceId;
+    public Practice getPractice() {
+        return practice;
     }
 
-    public void setPracticeId(long practiceId) {
-        this.practiceId = practiceId;
+    public void setPractice(Practice practice) {
+        this.practice = practice;
     }
 
-    public long getLeaderId() {
-        return leaderId;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setLeaderId(long leaderId) {
-        this.leaderId = leaderId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public static class Builder extends User.Builder {
         private long id;
         private String group;
         private int course;
-        private long labId;
-        private long electiveId;
-        private long practiceId;
-        private long leaderId;
+        private Lab lab;
+        private Elective elective;
+        private Practice practice;
+        private Teacher teacher;
 
         public Builder id(long arg) {
             id = arg;
@@ -110,23 +112,23 @@ public class Student extends User {
             return this;
         }
 
-        public Builder labId(long arg) {
-            labId = arg;
+        public Builder lab(Lab arg) {
+            lab = arg;
             return this;
         }
 
-        public Builder electiveId(long arg) {
-            electiveId = arg;
+        public Builder elective(Elective arg) {
+            elective = arg;
             return this;
         }
 
-        public Builder practiceId(long arg) {
-            practiceId = arg;
+        public Builder practice(Practice arg) {
+            practice = arg;
             return this;
         }
 
-        public Builder leaderId(long arg) {
-            leaderId = arg;
+        public Builder teacher(Teacher arg) {
+            teacher = arg;
             return this;
         }
 
