@@ -15,7 +15,6 @@ public class Request {
     private String status;
 
     public Request() {
-
     }
 
     public Request(Builder builder) {

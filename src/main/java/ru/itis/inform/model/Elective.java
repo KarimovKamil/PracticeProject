@@ -10,7 +10,6 @@ public class Elective {
     private int course;
 
     public Elective() {
-
     }
 
     public Elective(Builder builder) {

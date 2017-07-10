@@ -10,7 +10,6 @@ public class Teacher {
     private String lastName;
 
     public Teacher() {
-
     }
 
     public Teacher(Builder builder) {
