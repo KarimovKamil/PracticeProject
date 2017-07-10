@@ -47,7 +47,7 @@ public class TeacherDaoImpl implements TeacherDao {
         params.put("name", teacher.getFirstName());
         params.put("lastName", teacher.getLastName());
         params.put("middleName", teacher.getMiddleName());
-        return namedParameterJdbcTemplate.update(SQL_INSERT, params);
+        namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
 
     public void update(Teacher teacher, long id) {
