@@ -14,7 +14,10 @@ public class Elective {
     }
 
     public Elective(Builder builder) {
-
+        this.id = builder.id;
+        this.name = builder.name;
+        this.teacher = builder.teacher;
+        this.course = builder.course;
     }
 
     public long getId() {
@@ -60,23 +63,23 @@ public class Elective {
             return this;
         }
 
-        public Builder firstName(String arg) {
-            this.firstName = arg;
+        public Builder name(String arg) {
+            this.name = arg;
             return this;
         }
 
-        public Builder middleName(String arg) {
-            this.middleName = arg;
+        public Builder teacher(Teacher arg) {
+            this.teacher = arg;
             return this;
         }
 
-        public Builder lastName(String arg) {
-            this.lastName = arg;
+        public Builder course(int arg) {
+            this.course = arg;
             return this;
         }
 
-        public Teacher build() {
-            return new Teacher(this);
+        public Elective build() {
+            return new Elective(this);
         }
     }
 }
