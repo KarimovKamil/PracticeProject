@@ -62,6 +62,7 @@ CREATE TABLE request (
   res_message VARCHAR(255),
   req_date DATE,
   student_id BIGINT NOT NULL,
+  req_type VARCHAR(20) NOT NULL,
   attribute_id BIGINT NOT NULL,
   req_status VARCHAR(20) DEFAULT 'ACTIVE',
   PRIMARY KEY (req_id)
