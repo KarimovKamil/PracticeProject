@@ -11,7 +11,7 @@ public interface TeacherDao {
 
     List<Teacher> findAll();
 
-    void findById(long id);
+    Teacher findById(long id);
 
     void insert(Teacher teacher);
 
