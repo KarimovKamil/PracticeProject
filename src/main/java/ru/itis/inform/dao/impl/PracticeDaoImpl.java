@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.itis.inform.dao.interfaces.PracticeDao;
+import ru.itis.inform.model.Practice;
+
+import java.util.List;
 
 /**
  * Created by Kamil Karimov on 10.07.2017.

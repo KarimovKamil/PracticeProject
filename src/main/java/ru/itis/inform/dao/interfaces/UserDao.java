@@ -1,5 +1,9 @@
 package ru.itis.inform.dao.interfaces;
 
+import ru.itis.inform.model.User;
+
+import java.util.List;
+
 /**
  * Created by Kamil Karimov on 10.07.2017.
  */
