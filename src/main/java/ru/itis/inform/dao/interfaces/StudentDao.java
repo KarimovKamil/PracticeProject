@@ -13,9 +13,9 @@ public interface StudentDao {
 
     Student findById(long id);
 
-    Student insert(Student Student);
+    void insert(Student student);
 
-    Student update(Student Student, long id);
+    void update(Student student, long id);
 
     void delete(long id);
 

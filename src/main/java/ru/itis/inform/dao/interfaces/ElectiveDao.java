@@ -13,9 +13,9 @@ public interface ElectiveDao {
 
     Elective findById(long id);
 
-    Elective insert(Elective elective);
+    void insert(Elective elective);
 
-    Elective update(Elective elective, long id);
+    void update(Elective elective, long id);
 
     void delete(long id);
 

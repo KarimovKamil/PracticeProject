@@ -24,10 +24,12 @@ public class TeacherDaoImpl implements TeacherDao {
             "SELECT * FROM teacher WHERE t_id = :id;";
 
     private static final String SQL_INSERT =
-            "INSERT INTO teacher (t_first_name, t_last_name, t_middle_name) VALUES (:firstName, :lastName, :middleName);";
+            "INSERT INTO teacher (t_first_name, t_last_name, t_middle_name) " +
+                    "VALUES (:firstName, :lastName, :middleName);";
 
     private static final String SQL_UPDATE =
-            "UPDATE teacher SET (t_first_name, t_last_name, t_middle_name) = (:firstName, :lastName, :middleName) WHERE t_id = :id;";
+            "UPDATE teacher SET (t_first_name, t_last_name, t_middle_name) = " +
+                    "(:firstName, :lastName, :middleName) WHERE t_id = :id;";
 
     private static final String SQL_DELETE =
             "DELETE FROM teacher WHERE t_id = :id;";

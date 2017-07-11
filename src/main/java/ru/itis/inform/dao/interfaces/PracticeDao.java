@@ -13,9 +13,9 @@ public interface PracticeDao {
 
     Practice findById(long id);
 
-    Practice insert(Practice Practice);
+    void insert(Practice practice);
 
-    Practice update(Practice Practice, long id);
+    void update(Practice practice, long id);
 
     void delete(long id);
 
