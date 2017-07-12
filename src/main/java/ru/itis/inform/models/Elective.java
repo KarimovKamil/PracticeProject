@@ -1,4 +1,4 @@
-package ru.itis.inform.model;
+package ru.itis.inform.models;
 
 /**
  * Created by artur on 10.07.2017.

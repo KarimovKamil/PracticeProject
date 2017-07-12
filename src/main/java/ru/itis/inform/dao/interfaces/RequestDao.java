@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.Request;
+import ru.itis.inform.models.Request;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface RequestDao {
 
     Request findById(long id);
 
-    Request insert(Request Request);
+    void insert(Request request);
 
-    Request update(Request Request, long id);
+    void update(Request request, long id);
 
     void delete(long id);
 

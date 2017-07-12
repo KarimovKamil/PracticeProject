@@ -1,6 +1,6 @@
-package ru.itis.inform.model;
+package ru.itis.inform.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by artur on 10.07.2017.

@@ -3,6 +3,13 @@ package ru.itis.inform.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dao.interfaces.ElectiveDao;
+import ru.itis.inform.dao.interfaces.PracticeDao;
+import ru.itis.inform.dao.interfaces.StudentDao;
+import ru.itis.inform.model.Practice;
+import ru.itis.inform.model.Student;
+
+import java.util.Date;
 
 /**
  * Created by artur on 10.07.2017.
@@ -53,6 +60,15 @@ public class Validation {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    StudentDao studentDao;
+
+    @Autowired
+    PracticeDao practiceDao;
+
+    @Autowired
+    ElectiveDao electiveDao;
+
     public boolean userExistenceById(long id) {
         return jdbcTemplate.queryForObject(USER_BY_ID, Boolean.class, id);
     }
@@ -83,5 +99,21 @@ public class Validation {
 
     public boolean teacherExistenceById(long id) {
         return jdbcTemplate.queryForObject(TEACHER_BY_ID, Boolean.class, id);
+    }
+
+    public boolean practiceRequestCheck(long studentId, long practiceId) {
+        Student student = studentDao.findById(studentId);
+        Practice practice = practiceDao.findById(practiceId);
+        Date date = new Date();
+        if (student.getCourse() == practice.getCourse() &&
+                ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean electiveRequestCheck() {
+        return
     }
 }

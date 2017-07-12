@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.Elective;
+import ru.itis.inform.models.Elective;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface ElectiveDao {
 
     Elective findById(long id);
 
-    Elective insert(Elective elective);
+    void insert(Elective elective);
 
-    Elective update(Elective elective, long id);
+    void update(Elective elective, long id);
 
     void delete(long id);
 

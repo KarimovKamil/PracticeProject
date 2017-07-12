@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dao.mappers.LabMapper;
-import ru.itis.inform.model.Lab;
+import ru.itis.inform.models.Lab;
 
 import java.util.HashMap;
 import java.util.List;

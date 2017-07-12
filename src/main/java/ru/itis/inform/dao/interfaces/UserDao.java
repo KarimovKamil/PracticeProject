@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.User;
+import ru.itis.inform.models.User;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface UserDao {
 
     User findById(long id);
 
-    User insert(User User);
+    void insert(User user);
 
-    User update(User User, long id);
+    void update(User user, long id);
 
     void delete(long id);
 
