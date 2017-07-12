@@ -5,11 +5,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.itis.inform.dao.interfaces.ElectiveDao;
 import ru.itis.inform.dao.interfaces.PracticeDao;
+import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
-import ru.itis.inform.model.Practice;
-import ru.itis.inform.model.Student;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by artur on 10.07.2017.
@@ -57,6 +57,25 @@ public class Validation {
                     "(SELECT t_id FROM teacher WHERE t_id = ?) " +
                     "THEN TRUE ELSE FALSE END;";
 
+    private static final String REQUEST_STUDENT_BELONG =
+            "SELECT CASE WHEN EXISTS " +
+                    "(SELECT req_id FROM request WHERE req_id = :reqestId " +
+                    "AND student_id = :studentId) " +
+                    "THEN TRUE ELSE FALSE END;";
+
+    private static final String PRACTICE_REQUEST_CHECK =
+            "SELECT CASE WHEN EXISTS " +
+                    "(SELECT * FROM practice, student_info WHERE practice_id = :practiceId " +
+                    "AND student_info.course = practice.course AND student_info.st_id = :studentId " +
+                    "AND practice.start_date > now() + 14 * INTERVAL '1 day') " +
+                    "THEN TRUE ELSE FALSE END;";
+
+    private static final String ELECTIVE_REQUEST_CHECK =
+            "SELECT CASE WHEN EXISTS " +
+                    "(SELECT * FROM elective, student_info WHERE elective_id = :electiveId " +
+                    "AND student_info.course = elective.course AND student_info.st_id = :studentId ) " +
+                    "THEN TRUE ELSE FALSE END;";
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -68,6 +87,9 @@ public class Validation {
 
     @Autowired
     ElectiveDao electiveDao;
+
+    @Autowired
+    RequestDao requestDao;
 
     public boolean userExistenceById(long id) {
         return jdbcTemplate.queryForObject(USER_BY_ID, Boolean.class, id);
@@ -102,18 +124,23 @@ public class Validation {
     }
 
     public boolean practiceRequestCheck(long studentId, long practiceId) {
-        Student student = studentDao.findById(studentId);
-        Practice practice = practiceDao.findById(practiceId);
-        Date date = new Date();
-        if (student.getCourse() == practice.getCourse() &&
-                ) {
-            return true;
-        } else {
-            return false;
-        }
+        Map<String, Object> params = new HashMap<>();
+        params.put("practiceId", practiceId);
+        params.put("studentId", studentId);
+        return jdbcTemplate.queryForObject(PRACTICE_REQUEST_CHECK, Boolean.class, params);
     }
 
-    public boolean electiveRequestCheck() {
-        return
+    public boolean electiveRequestCheck(long studentId, long electiveId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("electiveId", electiveId);
+        params.put("studentId", studentId);
+        return jdbcTemplate.queryForObject(ELECTIVE_REQUEST_CHECK, Boolean.class, params);
+    }
+
+    public boolean requestCheck(long requestId, long studentId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("requestId", requestId);
+        params.put("studentId", studentId);
+        return jdbcTemplate.queryForObject(REQUEST_STUDENT_BELONG, Boolean.class, params);
     }
 }

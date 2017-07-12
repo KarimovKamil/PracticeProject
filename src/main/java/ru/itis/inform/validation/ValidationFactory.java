@@ -60,4 +60,22 @@ public class ValidationFactory {
             throw new IncorrectDataException("Incorrect teacher");
         }
     }
+
+    public void practiceRequestCheck(long studentId, long practiceId) {
+        if (!validation.practiceRequestCheck(studentId, practiceId)) {
+            throw new IncorrectDataException("Incorrect request");
+        }
+    }
+
+    public void electiveRequestCheck(long studentId, long electiveId) {
+        if (!validation.electiveRequestCheck(studentId, electiveId)) {
+            throw new IncorrectDataException("Incorrect request");
+        }
+    }
+
+    public void checkIfRequestBelongToStudent(long requestId, long studentId) {
+        if (!validation.requestCheck(requestId, studentId)) {
+            throw new IncorrectDataException("Request doesn't belong to student");
+        }
+    }
 }
