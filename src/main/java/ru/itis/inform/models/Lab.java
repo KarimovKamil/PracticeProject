@@ -1,4 +1,4 @@
-package ru.itis.inform.model;
+package ru.itis.inform.models;
 
 /**
  * Created by The silly end on 7/10/2017.

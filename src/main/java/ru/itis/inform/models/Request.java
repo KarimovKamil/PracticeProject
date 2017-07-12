@@ -1,4 +1,4 @@
-package ru.itis.inform.model;
+package ru.itis.inform.models;
 
 import java.sql.Date;
 

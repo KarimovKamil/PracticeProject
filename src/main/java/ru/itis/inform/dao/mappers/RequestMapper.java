@@ -1,10 +1,9 @@
 package ru.itis.inform.dao.mappers;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.itis.inform.model.Request;
-import ru.itis.inform.model.Student;
-import ru.itis.inform.model.Teacher;
-import ru.itis.inform.model.User;
+import ru.itis.inform.models.Request;
+import ru.itis.inform.models.Student;
+import ru.itis.inform.models.Teacher;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

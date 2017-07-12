@@ -1,20 +1,26 @@
-package ru.itis.inform.model;
+package ru.itis.inform.models;
+
+import java.sql.Date;
 
 /**
- * Created by artur on 10.07.2017.
+ * Created by The silly end on 7/10/2017.
  */
-public class Elective {
+public class Practice {
     private long id;
     private String name;
+    private Date startDate;
+    private Date endDate;
     private Teacher teacher;
     private int course;
 
-    public Elective() {
+    public Practice() {
     }
 
-    public Elective(Builder builder) {
+    public Practice(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
         this.teacher = builder.teacher;
         this.course = builder.course;
     }
@@ -33,6 +39,22 @@ public class Elective {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Teacher getTeacher() {
@@ -54,6 +76,8 @@ public class Elective {
     public static class Builder {
         private long id;
         private String name;
+        private Date startDate;
+        private Date endDate;
         private Teacher teacher;
         private int course;
 
@@ -67,6 +91,16 @@ public class Elective {
             return this;
         }
 
+        public Builder startDate(Date arg) {
+            this.startDate = arg;
+            return this;
+        }
+
+        public Builder endDate(Date arg) {
+            this.endDate = arg;
+            return this;
+        }
+
         public Builder teacher(Teacher arg) {
             this.teacher = arg;
             return this;
@@ -77,8 +111,8 @@ public class Elective {
             return this;
         }
 
-        public Elective build() {
-            return new Elective(this);
+        public Practice build() {
+            return new Practice(this);
         }
     }
 }

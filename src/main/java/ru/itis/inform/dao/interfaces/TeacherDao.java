@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.Teacher;
+import ru.itis.inform.models.Teacher;
 
 import java.util.List;
 

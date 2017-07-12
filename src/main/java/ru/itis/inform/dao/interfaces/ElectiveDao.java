@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.Elective;
+import ru.itis.inform.models.Elective;
 
 import java.util.List;
 

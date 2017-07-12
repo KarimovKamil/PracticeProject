@@ -1,6 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
-import ru.itis.inform.model.Request;
+import ru.itis.inform.models.Request;
 
 import java.util.List;
 
