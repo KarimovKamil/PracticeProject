@@ -18,19 +18,19 @@ import java.util.Map;
 public class RequestDaoImpl implements RequestDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM request INNER JOIN student_info ON (request.student_id = student_info.st_id);";
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id);";
 
     private static final String SQL_FIND_BY_ID =
-            "SELECT * FROM request INNER JOIN student_info ON (request.student_id = student_info.st_id)" +
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id)" +
                     " WHERE req_id = :id;";
 
     private static final String SQL_INSERT =
-            "INSERT INTO request (req_message, res_message, req_date, student_id, req_type, attribute_id, req_status) " +
-                    "VALUES (:reqMessage, :resMessage, :reqDate, :studentId, :reqType, :attributeId, :reqStatus);";
+            "INSERT INTO request (req_message, req_date, student_id, req_type, attribute_id) " +
+                    "VALUES (:reqMessage, :reqDate, :studentId, :reqType, :attributeId);";
 
     private static final String SQL_UPDATE =
-            "UPDATE request SET (req_message, res_message, req_date, student_id, req_type, attribute_id, req_status) " +
-                    "= (:reqMessage, :resMessage, :reqDate, :studentId, :reqType, :attributeId, :reqStatus) WHERE req_id = :id;";
+            "UPDATE request SET (req_message, res_message, req_status) " +
+                    "= (:reqMessage, :resMessage, :reqStatus) WHERE req_id = :id;";
 
     private static final String SQL_DELETE =
             "DELETE FROM request WHERE req_id = :id;";
@@ -50,12 +50,10 @@ public class RequestDaoImpl implements RequestDao {
     public void insert(Request request) {
         Map<String, Object> params = new HashMap<>();
         params.put("reqMessage", request.getReqMessage());
-        params.put("resMessage", request.getResMessage());
         params.put("reqDate", request.getDate());
         params.put("studentId", request.getStudent().getuId());
         params.put("reqType", request.getType());
         params.put("attributeId", request.getAttributeId());
-        params.put("reqStatus", request.getStatus());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
 
@@ -64,10 +62,6 @@ public class RequestDaoImpl implements RequestDao {
         params.put("id", id);
         params.put("reqMessage", request.getReqMessage());
         params.put("resMessage", request.getResMessage());
-        params.put("reqDate", request.getDate());
-        params.put("studentId", request.getStudent().getuId());
-        params.put("reqType", request.getType());
-        params.put("attributeId", request.getAttributeId());
         params.put("reqStatus", request.getStatus());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }

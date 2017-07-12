@@ -18,15 +18,21 @@ import java.util.Map;
 public class StudentDaoImpl implements StudentDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM student_info student INNER JOIN u_user ON (student.user_id = u_user.u_id) " +
-                    "INNER JOIN teacher ON (student.leader_id = teacher.t_id) INNER JOIN lab ON (student.lab_id = lab.lab_id)" +
-                    "INNER JOIN elective ON (student.elective_id = elective.el_id) INNER JOIN practice ON (student.practice_id = practice.pr_id);";
+            "SELECT * FROM student_info s " +
+                    "INNER JOIN u_user u ON (s.user_id = u.u_id) " +
+                    "INNER JOIN teacher t ON (s.leader_id = t.t_id) " +
+                    "INNER JOIN lab l ON (s.lab_id = l.lab_id)" +
+                    "INNER JOIN elective e ON (s.elective_id = e.el_id) " +
+                    "INNER JOIN practice p ON (s.practice_id = p.pr_id);";
 
     private static final String SQL_FIND_BY_ID =
-            "SELECT * FROM student_info student INNER JOIN u_user ON (student.user_id = u_user.u_id) " +
-                    "INNER JOIN teacher ON (student.leader_id = teacher.t_id) INNER JOIN lab ON (student.lab_id = lab.lab_id)" +
-                    "INNER JOIN elective ON (student.elective_id = elective.el_id) INNER JOIN practice ON (student.practice_id = practice.pr_id)" +
-                    " WHERE student.st_id = :id;";
+            "SELECT * FROM student_info s " +
+                    "INNER JOIN u_user u ON (s.user_id = u.u_id) " +
+                    "INNER JOIN teacher t ON (s.leader_id = t.t_id) " +
+                    "INNER JOIN lab l ON (s.lab_id = l.lab_id)" +
+                    "INNER JOIN elective e ON (s.elective_id = e.el_id) " +
+                    "INNER JOIN practice p ON (s.practice_id = p.pr_id)" +
+                    "WHERE s.st_id = :id;";
 
     private static final String SQL_INSERT =
             "INSERT INTO student_info (s_group, course, lab_id, elective_id, practice_id, leader_id, user_id) " +
@@ -36,9 +42,6 @@ public class StudentDaoImpl implements StudentDao {
     private static final String SQL_UPDATE =
             "UPDATE student_info SET s_group = :group, course = :course, lab_id = query.lab_id, " +
                     "elective_id = query.el_id, practice_id = query.pr_id, leader_id = :leaderId, user_id = :userId " +
-                    "FROM (SELECT lab.lab_id, elective.el_id, practice.pr_id FROM " +
-                    "lab, elective, practice WHERE lab.lab_name = :labName AND elective.el_name = :electiveName " +
-                    "AND practice.pr_name = :practiceName) AS query " +
                     "WHERE st_id = :id;";
 
     private static final String SQL_DELETE =
@@ -75,10 +78,6 @@ public class StudentDaoImpl implements StudentDao {
         params.put("id", id);
         params.put("group", student.getGroup());
         params.put("course", student.getCourse());
-        params.put("labName", student.getLab());
-        params.put("electiveName", student.getElective());
-        params.put("practiceName", student.getPractice());
-        params.put("leaderId", student.getTeacher().getId());
         params.put("userId", student.getuId());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }

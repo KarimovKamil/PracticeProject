@@ -18,10 +18,10 @@ import java.util.Map;
 public class PracticeDaoImpl implements PracticeDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM practice INNER JOIN teacher ON (practice.leader_id = teacher.t_id);";
+            "SELECT * FROM practice p INNER JOIN teacher t ON (p.leader_id = t.t_id);";
 
     private static final String SQL_FIND_BY_ID =
-            "SELECT * FROM practice INNER JOIN teacher ON (practice.leader_id = teacher.t_id) WHERE pr_id = :id;";
+            "SELECT * FROM practice p INNER JOIN teacher t ON (p.leader_id = t.t_id) WHERE pr_id = :id;";
 
     private static final String SQL_INSERT =
             "INSERT INTO practice (pr_name, start_date, end_date, leader_id, course) " +
