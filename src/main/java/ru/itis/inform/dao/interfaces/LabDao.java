@@ -13,9 +13,9 @@ public interface LabDao {
 
     Lab findById(long id);
 
-    Lab insert(Lab Lab);
+    void insert(Lab lab);
 
-    Lab update(Lab Lab, long id);
+    void update(Lab lab, long id);
 
     void delete(long id);
 

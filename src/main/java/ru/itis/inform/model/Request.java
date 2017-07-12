@@ -11,6 +11,7 @@ public class Request {
     private String resMessage;
     private Date date;
     private Student student;
+    private String type;
     private long attributeId;
     private String status;
 
@@ -23,6 +24,7 @@ public class Request {
         this.resMessage = builder.resMessage;
         this.date = builder.date;
         this.student = builder.student;
+        this.type = builder.type;
         this.attributeId = builder.attributeId;
         this.status = builder.status;
     }
@@ -83,12 +85,21 @@ public class Request {
         this.status = status;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public static class Builder {
         private long id;
         private String reqMessage;
         private String resMessage;
         private Date date;
         private Student student;
+        private String type;
         private long attributeId;
         private String status;
 
@@ -114,6 +125,11 @@ public class Request {
 
         public Builder student(Student arg) {
             this.student = arg;
+            return this;
+        }
+
+        public Builder type(String arg) {
+            this.type = arg;
             return this;
         }
 
