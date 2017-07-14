@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface AdminLabService {
 
-    List<Lab> getAllLabs(String token);
+    List<Lab> getAllLabs();
 
-    Lab getLabById(String token, long id);
+    Lab getLabById(long id);
 
-    void addLab(String token, Lab lab);
+    void addLab(Lab lab);
 
-    void updateLab(String token, Lab lab);
+    void updateLab(Lab lab);
 
-    void deleteLab(String token, long id);
+    void deleteLab(long id);
 
 }

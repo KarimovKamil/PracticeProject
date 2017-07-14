@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface AdminStudentService {
 
-    List<Student> getAllStudents(String token);
+    List<Student> getAllStudents();
 
-    Student getStudentById(String token, long id);
+    Student getStudentById(long id);
 
-    void addStudent(String token, Student student);
+    void addStudent(Student student);
 
-    void updateStudent(String token, Student student);
+    void updateStudent(Student student);
 
-    void deleteStudent(String token, long id);
+    void deleteStudent(long id);
 
 }

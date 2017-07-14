@@ -24,47 +24,47 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Request> getAllRequests(String token) {
+    public List<Request> getAllRequests() {
         return null;
     }
 
     @Override
-    public List<Request> getActiveRequests(String token) {
+    public List<Request> getActiveRequests() {
         return null;
     }
 
     @Override
-    public List<Request> getLabRequests(String token) {
+    public List<Request> getLabRequests() {
         return null;
     }
 
     @Override
-    public List<Request> getPracticeRequests(String token) {
+    public List<Request> getPracticeRequests() {
         return null;
     }
 
     @Override
-    public List<Request> getElectiveRequests(String token) {
+    public List<Request> getElectiveRequests() {
         return null;
     }
 
     @Override
-    public List<Request> getLeaderRequests(String token) {
+    public List<Request> getLeaderRequests() {
         return null;
     }
 
     @Override
-    public Request getRequestById(String token, long id) {
+    public Request getRequestById(long id) {
         return null;
     }
 
     @Override
-    public void acceptRequest(String token, long id, String resMessage) {
+    public void acceptRequest(long id, String resMessage) {
 
     }
 
     @Override
-    public void declineRequest(String token, long id, String resMessage) {
+    public void declineRequest(long id, String resMessage) {
 
     }
 }

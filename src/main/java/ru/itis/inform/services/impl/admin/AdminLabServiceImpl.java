@@ -13,27 +13,27 @@ import java.util.List;
 public class AdminLabServiceImpl implements AdminLabService {
 
     @Override
-    public List<Lab> getAllLabs(String token) {
+    public List<Lab> getAllLabs() {
         return null;
     }
 
     @Override
-    public Lab getLabById(String token, long id) {
+    public Lab getLabById(long id) {
         return null;
     }
 
     @Override
-    public void addLab(String token, Lab lab) {
+    public void addLab(Lab lab) {
 
     }
 
     @Override
-    public void updateLab(String token, Lab lab) {
+    public void updateLab(Lab lab) {
 
     }
 
     @Override
-    public void deleteLab(String token, long id) {
+    public void deleteLab(long id) {
 
     }
 }

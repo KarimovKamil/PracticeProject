@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface AdminPracticeService {
 
-    List<Practice> getAllPractices(String token);
+    List<Practice> getAllPractices();
 
-    Practice getPracticeById(String token, long id);
+    Practice getPracticeById(long id);
 
-    void addPractice(String token, Practice practice);
+    void addPractice(Practice practice);
 
-    void updatePractice(String token, Practice practice);
+    void updatePractice(Practice practice);
 
-    void deletePractice(String token, long id);
+    void deletePractice(long id);
 
 }

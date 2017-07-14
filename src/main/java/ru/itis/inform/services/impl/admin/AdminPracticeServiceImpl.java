@@ -13,27 +13,27 @@ import java.util.List;
 public class AdminPracticeServiceImpl implements AdminPracticeService {
 
     @Override
-    public List<Practice> getAllPractices(String token) {
+    public List<Practice> getAllPractices() {
         return null;
     }
 
     @Override
-    public Practice getPracticeById(String token, long id) {
+    public Practice getPracticeById(long id) {
         return null;
     }
 
     @Override
-    public void addPractice(String token, Practice practice) {
+    public void addPractice(Practice practice) {
 
     }
 
     @Override
-    public void updatePractice(String token, Practice practice) {
+    public void updatePractice(Practice practice) {
 
     }
 
     @Override
-    public void deletePractice(String token, long id) {
+    public void deletePractice(long id) {
 
     }
 }

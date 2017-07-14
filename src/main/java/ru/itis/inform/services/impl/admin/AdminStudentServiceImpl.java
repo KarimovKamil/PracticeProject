@@ -13,27 +13,27 @@ import java.util.List;
 public class AdminStudentServiceImpl implements AdminStudentService {
 
     @Override
-    public List<Student> getAllStudents(String token) {
+    public List<Student> getAllStudents() {
         return null;
     }
 
     @Override
-    public Student getStudentById(String token, long id) {
+    public Student getStudentById(long id) {
         return null;
     }
 
     @Override
-    public void addStudent(String token, Student student) {
+    public void addStudent(Student student) {
 
     }
 
     @Override
-    public void updateStudent(String token, Student student) {
+    public void updateStudent(Student student) {
 
     }
 
     @Override
-    public void deleteStudent(String token, long id) {
+    public void deleteStudent(long id) {
 
     }
 }

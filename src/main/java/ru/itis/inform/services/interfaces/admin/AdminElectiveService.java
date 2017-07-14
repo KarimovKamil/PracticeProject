@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface AdminElectiveService {
 
-    List<Elective> getAllElectives(String token);
+    List<Elective> getAllElectives();
 
-    Elective getElectiveById(String token, long id);
+    Elective getElectiveById(long id);
 
-    void addElective(String token, Elective elective);
+    void addElective(Elective elective);
 
-    void updateElective(String token, Elective elective);
+    void updateElective(Elective elective);
 
-    void deleteElective(String token, long id);
+    void deleteElective(long id);
 
 }

@@ -13,22 +13,22 @@ public interface AdminService {
 
     User profile(String token);
 
-    List<Request> getAllRequests(String token);
+    List<Request> getAllRequests();
 
-    List<Request> getActiveRequests(String token);
+    List<Request> getActiveRequests();
 
-    List<Request> getLabRequests(String token);
+    List<Request> getLabRequests();
 
-    List<Request> getPracticeRequests(String token);
+    List<Request> getPracticeRequests();
 
-    List<Request> getElectiveRequests(String token);
+    List<Request> getElectiveRequests();
 
-    List<Request> getLeaderRequests(String token);
+    List<Request> getLeaderRequests();
 
-    Request getRequestById(String token, long id);
+    Request getRequestById(long id);
 
-    void acceptRequest(String token, long id, String resMessage);
+    void acceptRequest(long id, String resMessage);
 
-    void declineRequest(String token, long id, String resMessage);
+    void declineRequest(long id, String resMessage);
 
 }

@@ -13,27 +13,27 @@ import java.util.List;
 public class AdminElectiveServiceImpl implements AdminElectiveService {
 
     @Override
-    public List<Elective> getAllElectives(String token) {
+    public List<Elective> getAllElectives() {
         return null;
     }
 
     @Override
-    public Elective getElectiveById(String token, long id) {
+    public Elective getElectiveById(long id) {
         return null;
     }
 
     @Override
-    public void addElective(String token, Elective elective) {
+    public void addElective(Elective elective) {
 
     }
 
     @Override
-    public void updateElective(String token, Elective elective) {
+    public void updateElective(Elective elective) {
 
     }
 
     @Override
-    public void deleteElective(String token, long id) {
+    public void deleteElective(long id) {
 
     }
 }
