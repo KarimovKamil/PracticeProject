@@ -1,4 +1,4 @@
-package ru.itis.inform.conversion.dto.personalinfo;
+package ru.itis.inform.conversion;
 
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.models.Student;

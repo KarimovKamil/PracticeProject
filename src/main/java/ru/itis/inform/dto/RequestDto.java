@@ -6,7 +6,7 @@ import ru.itis.inform.models.Student;
  * Created by artur on 14.07.2017.
  */
 public class RequestDto implements Data {
-    private Student student;
+    private long studentId;
     private String type;
     private long attributeId;
 
@@ -14,13 +14,13 @@ public class RequestDto implements Data {
     }
 
     public RequestDto(Builder builder) {
-        this.student = builder.student;
+        this.studentId = builder.studentId;
         this.type = builder.type;
         this.attributeId = builder.attributeId;
     }
 
-    public Student getStudent() {
-        return student;
+    public long getStudentId() {
+        return studentId;
     }
 
     public String getType() {
@@ -32,12 +32,12 @@ public class RequestDto implements Data {
     }
 
     public static class Builder {
-        private Student student;
+        private long studentId;
         private String type;
         private long attributeId;
 
-        public Builder student(Student arg) {
-            this.student = arg;
+        public Builder studentId(long arg) {
+            this.studentId = arg;
             return this;
         }
 
