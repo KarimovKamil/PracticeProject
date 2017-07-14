@@ -1,8 +1,6 @@
 package ru.itis.inform.conversion;
 
 import org.springframework.stereotype.Component;
-import ru.itis.inform.conversion.dto.personalinfo.StudentToProfileConverter;
-import ru.itis.inform.conversion.dto.request.RequestToRequestDtoConverter;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.models.Request;
@@ -22,9 +20,9 @@ public class ConversionResultFactory {
         return builder.build();
     }
 
-    public RequestDto requestToRequestDto(Request request) {
-        RequestDto.Builder builder = new RequestDto.Builder();
-        builder = RequestToRequestDtoConverter.getInstance().convert(request, builder);
+    public Request requestDtoToRequest(RequestDto requestDto) {
+        Request.Builder builder = new Request.Builder();
+        builder = RequestDtoToRequestConverter.getInstance().convert(requestDto, builder);
         return builder.build();
     }
 }
