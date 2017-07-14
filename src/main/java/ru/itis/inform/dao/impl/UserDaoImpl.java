@@ -23,6 +23,9 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM u_user WHERE u_id = :id;";
 
+    private static final String SQL_FIND_BY_TOKEN =
+            "SELECT * FROM u_user WHERE token = :token;";
+
     private static final String SQL_INSERT =
             "INSERT INTO u_user (login, hash_password, token, first_name, last_name, middle_name, role) " +
                     "VALUES (:login, :hashPassword, :token, :firstName, :lastName, :middleName, :role);";
@@ -45,6 +48,12 @@ public class UserDaoImpl implements UserDao {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return (User) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new UserMapper());
+    }
+
+    public User findByToken(String token) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("token", token);
+        return (User) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_TOKEN, params, new UserMapper());
     }
 
     public void insert(User user) {
