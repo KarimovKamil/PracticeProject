@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * Created by Kamil Karimov on 10.07.2017.
  */
 @Configuration
-@PropertySource("/properties/config.properties")
+@PropertySource("classpath:properties/config.properties")
 //@ComponentScan(basePackages = "")
 public class DataConfig {
 
