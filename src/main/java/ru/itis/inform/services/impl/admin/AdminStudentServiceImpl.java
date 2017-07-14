@@ -1,6 +1,7 @@
 package ru.itis.inform.services.impl.admin;
 
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dto.StudentDto;
 import ru.itis.inform.models.Student;
 import ru.itis.inform.services.interfaces.admin.AdminStudentService;
 
@@ -23,12 +24,12 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     }
 
     @Override
-    public void addStudent(Student student) {
+    public void addStudent(StudentDto studentDto) {
 
     }
 
     @Override
-    public void updateStudent(Student student) {
+    public void updateStudent(StudentDto studentDto, long id) {
 
     }
 

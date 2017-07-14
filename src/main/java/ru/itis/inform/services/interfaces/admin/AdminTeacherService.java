@@ -1,5 +1,6 @@
 package ru.itis.inform.services.interfaces.admin;
 
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.models.Teacher;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface AdminTeacherService {
 
     Teacher getTeachersById(long id);
 
-    void addTeacher(Teacher teacher);
+    void addTeacher(TeacherDto teacherDto);
 
-    void updateTeacher(Teacher teacher);
+    void updateTeacher(TeacherDto teacherDto, long id);
 
     void deleteTeacher(long id);
 

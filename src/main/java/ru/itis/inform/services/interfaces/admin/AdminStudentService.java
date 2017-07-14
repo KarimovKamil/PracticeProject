@@ -1,5 +1,6 @@
 package ru.itis.inform.services.interfaces.admin;
 
+import ru.itis.inform.dto.StudentDto;
 import ru.itis.inform.models.Student;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface AdminStudentService {
 
     Student getStudentById(long id);
 
-    void addStudent(Student student);
+    void addStudent(StudentDto studentDto);
 
-    void updateStudent(Student student);
+    void updateStudent(StudentDto studentDto, long id);
 
     void deleteStudent(long id);
 

@@ -1,6 +1,7 @@
 package ru.itis.inform.services.impl.admin;
 
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dto.PracticeDto;
 import ru.itis.inform.models.Practice;
 import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
 
@@ -23,12 +24,12 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     }
 
     @Override
-    public void addPractice(Practice practice) {
+    public void addPractice(PracticeDto practiceDto) {
 
     }
 
     @Override
-    public void updatePractice(Practice practice) {
+    public void updatePractice(PracticeDto practiceDto, long id) {
 
     }
 

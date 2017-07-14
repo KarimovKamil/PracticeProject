@@ -1,6 +1,7 @@
 package ru.itis.inform.services.impl.admin;
 
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
 
@@ -23,12 +24,12 @@ public class AdminLabServiceImpl implements AdminLabService {
     }
 
     @Override
-    public void addLab(Lab lab) {
+    public void addLab(LabDto labDto) {
 
     }
 
     @Override
-    public void updateLab(Lab lab) {
+    public void updateLab(LabDto labDto, long id) {
 
     }
 

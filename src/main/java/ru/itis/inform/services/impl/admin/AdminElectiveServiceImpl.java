@@ -1,6 +1,7 @@
 package ru.itis.inform.services.impl.admin;
 
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dto.ElectiveDto;
 import ru.itis.inform.models.Elective;
 import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
 
@@ -23,12 +24,12 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
     }
 
     @Override
-    public void addElective(Elective elective) {
+    public void addElective(ElectiveDto electiveDto) {
 
     }
 
     @Override
-    public void updateElective(Elective elective) {
+    public void updateElective(ElectiveDto electiveDto, long id) {
 
     }
 
