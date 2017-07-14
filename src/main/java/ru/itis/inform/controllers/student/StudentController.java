@@ -1,4 +1,4 @@
-package ru.itis.inform.controllers;
+package ru.itis.inform.controllers.student;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
