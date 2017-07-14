@@ -1,11 +1,9 @@
 package ru.itis.inform.models;
 
-import ru.itis.inform.dto.Data;
-
 /**
  * Created by The silly end on 7/10/2017.
  */
-public class Lab implements Data {
+public class Lab {
     private long id;
     private String name;
     private Teacher teacher;

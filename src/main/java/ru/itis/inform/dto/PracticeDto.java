@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Kamil Karimov on 14.07.2017.
  */
-public class PracticeDto {
+public class PracticeDto implements Data {
     private String name;
     private Date startDate;
     private Date endDate;
