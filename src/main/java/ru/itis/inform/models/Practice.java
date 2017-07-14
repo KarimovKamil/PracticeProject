@@ -1,11 +1,13 @@
 package ru.itis.inform.models;
 
-import java.sql.Date;
+import ru.itis.inform.dto.Data;
+
+import java.util.Date;
 
 /**
  * Created by The silly end on 7/10/2017.
  */
-public class Practice {
+public class Practice implements Data {
     private long id;
     private String name;
     private Date startDate;

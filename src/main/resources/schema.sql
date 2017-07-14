@@ -48,8 +48,8 @@ CREATE TABLE elective (
 CREATE TABLE practice (
   pr_id BIGSERIAL NOT NULL,
   pr_name VARCHAR(100) NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
+  start_date TIMESTAMP NOT NULL,
+  end_date TIMESTAMP NOT NULL,
   leader_id BIGINT,
   course INT NOT NULL,
   PRIMARY KEY (pr_id)
@@ -59,7 +59,7 @@ CREATE TABLE request (
   req_id BIGSERIAL NOT NULL,
   req_message VARCHAR(255),
   res_message VARCHAR(255),
-  req_date DATE,
+  req_date TIMESTAMP,
   student_id BIGINT NOT NULL,
   req_type VARCHAR(20) NOT NULL,
   attribute_id BIGINT NOT NULL,
