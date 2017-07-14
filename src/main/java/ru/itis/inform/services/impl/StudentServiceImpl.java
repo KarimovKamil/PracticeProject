@@ -2,6 +2,7 @@ package ru.itis.inform.services.impl;
 
 import org.springframework.stereotype.Component;
 import ru.itis.inform.dto.ProfileDto;
+import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.services.interfaces.StudentService;
 

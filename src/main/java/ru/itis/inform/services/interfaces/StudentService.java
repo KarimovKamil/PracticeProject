@@ -1,6 +1,7 @@
 package ru.itis.inform.services.interfaces;
 
 import ru.itis.inform.dto.ProfileDto;
+import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.models.Request;
 
 import java.util.List;
