@@ -1,36 +1,26 @@
-package ru.itis.inform.models;
+package ru.itis.inform.dto;
 
 import java.util.Date;
 
 /**
- * Created by The silly end on 7/10/2017.
+ * Created by Kamil Karimov on 14.07.2017.
  */
-public class Practice {
-    private long id;
+public class PracticeDto implements Data {
     private String name;
     private Date startDate;
     private Date endDate;
-    private Teacher teacher;
+    private long teacherId;
     private int course;
 
-    public Practice() {
+    public PracticeDto() {
     }
 
-    public Practice(Builder builder) {
-        this.id = builder.id;
+    public PracticeDto(Builder builder) {
         this.name = builder.name;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
-        this.teacher = builder.teacher;
+        this.teacherId = builder.teacherId;
         this.course = builder.course;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -57,12 +47,12 @@ public class Practice {
         this.endDate = endDate;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public long getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(long id) {
+        this.teacherId = id;
     }
 
     public int getCourse() {
@@ -74,17 +64,11 @@ public class Practice {
     }
 
     public static class Builder {
-        private long id;
         private String name;
         private Date startDate;
         private Date endDate;
-        private Teacher teacher;
+        private long teacherId;
         private int course;
-
-        public Builder id(long arg) {
-            this.id = arg;
-            return this;
-        }
 
         public Builder name(String arg) {
             this.name = arg;
@@ -101,8 +85,8 @@ public class Practice {
             return this;
         }
 
-        public Builder teacher(Teacher arg) {
-            this.teacher = arg;
+        public Builder teacher(long arg) {
+            this.teacherId = arg;
             return this;
         }
 
@@ -111,8 +95,8 @@ public class Practice {
             return this;
         }
 
-        public Practice build() {
-            return new Practice(this);
+        public PracticeDto build() {
+            return new PracticeDto(this);
         }
     }
 }
