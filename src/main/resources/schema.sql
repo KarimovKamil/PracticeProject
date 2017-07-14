@@ -34,7 +34,6 @@ CREATE TABLE lab (
   lab_id BIGSERIAL NOT NULL,
   lab_name VARCHAR(100) NOT NULL,
   leader_id BIGINT,
-  course INT NOT NULL,
   PRIMARY KEY (lab_id)
 );
 

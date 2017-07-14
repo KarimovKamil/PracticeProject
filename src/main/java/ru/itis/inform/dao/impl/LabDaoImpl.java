@@ -24,10 +24,10 @@ public class LabDaoImpl implements LabDao {
             "SELECT * FROM lab l INNER JOIN teacher t ON l.leader_id = t.t_id WHERE l.lab_id = :id;";
 
     private final static String SQL_INSERT =
-            "INSERT INTO lab (lab_name, leader_id, course) VALUES (:labName, :leaderId, :course);";
+            "INSERT INTO lab (lab_name, leader_id) VALUES (:labName, :leaderId);";
 
     private final static String SQL_UPDATE =
-            "UPDATE lab l SET (lab_name, leader_id, course) = (:labName, :leaderId, :course) " +
+            "UPDATE lab l SET (lab_name, leader_id) = (:labName, :leaderId) " +
                     "WHERE l.lab_id = :id;";
 
     private final static String SQL_DELETE =
@@ -49,7 +49,6 @@ public class LabDaoImpl implements LabDao {
     public void insert(Lab lab) {
         Map<String, Object> params = new HashMap<>();
         params.put("labName", lab.getName());
-        params.put("course", lab.getCourse());
         params.put("leaderId", lab.getTeacher().getId());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
@@ -57,7 +56,6 @@ public class LabDaoImpl implements LabDao {
     public void update(Lab lab, long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("labName", lab.getName());
-        params.put("course", lab.getCourse());
         params.put("leaderId", lab.getTeacher().getId());
         params.put("id", lab.getId());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);

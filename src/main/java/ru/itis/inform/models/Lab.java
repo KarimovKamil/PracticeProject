@@ -7,7 +7,6 @@ public class Lab {
     private long id;
     private String name;
     private Teacher teacher;
-    private int course;
 
     public Lab() {
     }
@@ -16,7 +15,6 @@ public class Lab {
         this.id = builder.id;
         this.name = builder.name;
         this.teacher = builder.teacher;
-        this.course = builder.course;
     }
 
     public long getId() {
@@ -43,19 +41,10 @@ public class Lab {
         this.teacher = teacher;
     }
 
-    public int getCourse() {
-        return course;
-    }
-
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
     public static class Builder {
         private long id;
         private String name;
         private Teacher teacher;
-        private int course;
 
         public Builder id(long arg) {
             this.id = arg;
@@ -69,11 +58,6 @@ public class Lab {
 
         public Builder teacher(Teacher arg) {
             this.teacher = arg;
-            return this;
-        }
-
-        public Builder course(int arg) {
-            this.course = arg;
             return this;
         }
 

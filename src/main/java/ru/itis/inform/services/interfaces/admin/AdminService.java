@@ -1,7 +1,6 @@
-package ru.itis.inform.services;
+package ru.itis.inform.services.interfaces.admin;
 
-import ru.itis.inform.models.Request;
-import ru.itis.inform.models.User;
+import ru.itis.inform.models.*;
 
 import java.util.List;
 
@@ -31,4 +30,5 @@ public interface AdminService {
     void acceptRequest(String token, long id, String resMessage);
 
     void declineRequest(String token, long id, String resMessage);
+
 }
