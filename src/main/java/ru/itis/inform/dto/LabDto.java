@@ -23,11 +23,11 @@ public class LabDto implements Data {
         this.name = name;
     }
 
-    public long getTeacher() {
+    public long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacher(long id) {
+    public void setTeacherId(long id) {
         this.teacherId = id;
     }
 

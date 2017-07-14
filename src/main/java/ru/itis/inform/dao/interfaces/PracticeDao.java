@@ -1,5 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
+import ru.itis.inform.dto.PracticeDto;
 import ru.itis.inform.models.Practice;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface PracticeDao {
 
     Practice findById(long id);
 
-    void insert(Practice practice);
+    void insert(PracticeDto practiceDto);
 
-    void update(Practice practice, long id);
+    void update(PracticeDto practiceDto, long id);
 
     void delete(long id);
 

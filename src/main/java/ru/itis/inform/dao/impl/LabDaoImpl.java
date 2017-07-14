@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dao.mappers.LabMapper;
+import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.models.Lab;
 
 import java.util.HashMap;
@@ -46,18 +47,18 @@ public class LabDaoImpl implements LabDao {
         return (Lab) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new LabMapper());
     }
 
-    public void insert(Lab lab) {
+    public void insert(LabDto labDto) {
         Map<String, Object> params = new HashMap<>();
-        params.put("labName", lab.getName());
-        params.put("leaderId", lab.getTeacher().getId());
+        params.put("labName", labDto.getName());
+        params.put("leaderId", labDto.getTeacherId());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
 
-    public void update(Lab lab, long id) {
+    public void update(LabDto labDto, long id) {
         Map<String, Object> params = new HashMap<>();
-        params.put("labName", lab.getName());
-        params.put("leaderId", lab.getTeacher().getId());
-        params.put("id", lab.getId());
+        params.put("labName", labDto.getName());
+        params.put("leaderId", labDto.getTeacherId());
+        params.put("id", id);
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }
 

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.itis.inform.dao.interfaces.ElectiveDao;
 import ru.itis.inform.dao.mappers.ElectiveMapper;
+import ru.itis.inform.dto.ElectiveDto;
 import ru.itis.inform.models.Elective;
 
 import java.util.HashMap;
@@ -46,20 +47,20 @@ public class ElectiveDaoImpl implements ElectiveDao {
         params.put("id", id);
         return (Elective) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new ElectiveMapper());    }
 
-    public void insert(Elective elective) {
+    public void insert(ElectiveDto electiveDto) {
         Map<String, Object> params = new HashMap<>();
-        params.put("elName", elective.getName());
-        params.put("leaderId", elective.getTeacher().getId());
-        params.put("course", elective.getCourse());
+        params.put("elName", electiveDto.getName());
+        params.put("leaderId", electiveDto.getTeacherId());
+        params.put("course", electiveDto.getCourse());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
 
-    public void update(Elective elective, long id) {
+    public void update(ElectiveDto electiveDto, long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        params.put("elName", elective.getName());
-        params.put("leaderId", elective.getTeacher().getId());
-        params.put("course", elective.getCourse());
+        params.put("elName", electiveDto.getName());
+        params.put("leaderId", electiveDto.getTeacherId());
+        params.put("course", electiveDto.getCourse());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }
 

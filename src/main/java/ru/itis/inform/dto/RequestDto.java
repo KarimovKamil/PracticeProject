@@ -1,7 +1,5 @@
 package ru.itis.inform.dto;
 
-import ru.itis.inform.models.Student;
-
 /**
  * Created by artur on 14.07.2017.
  */

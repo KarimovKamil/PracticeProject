@@ -1,5 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
+import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.models.Lab;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface LabDao {
 
     Lab findById(long id);
 
-    void insert(Lab lab);
+    void insert(LabDto labDto);
 
-    void update(Lab lab, long id);
+    void update(LabDto labDto, long id);
 
     void delete(long id);
 
