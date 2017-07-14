@@ -1,11 +1,13 @@
 package ru.itis.inform.models;
 
+import ru.itis.inform.dto.Data;
+
 import java.util.Date;
 
 /**
  * Created by artur on 10.07.2017.
  */
-public class Request {
+public class Request implements Data {
     private long id;
     private String reqMessage;
     private String resMessage;

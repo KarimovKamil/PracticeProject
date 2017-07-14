@@ -1,9 +1,11 @@
 package ru.itis.inform.models;
 
+import ru.itis.inform.dto.Data;
+
 /**
  * Created by artur on 10.07.2017.
  */
-public class Elective {
+public class Elective implements Data {
     private long id;
     private String name;
     private Teacher teacher;
