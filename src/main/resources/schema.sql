@@ -2,7 +2,7 @@ CREATE TABLE u_user (
   u_id BIGSERIAL NOT NULL,
   login VARCHAR(30) NOT NULL,
   hash_password VARCHAR(60) NOT NULL,
-  token VARCHAR(60) NOT NULL,
+  token VARCHAR(60) NOT NULL UNIQUE,
   first_name VARCHAR(30),
   middle_name VARCHAR(30),
   last_name VARCHAR(30),

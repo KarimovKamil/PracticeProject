@@ -8,8 +8,11 @@ public class Student extends User {
     private String group;
     private int course;
     private String lab;
+    private long labId;
     private String elective;
+    private long electiveId;
     private String practice;
+    private long practiceId;
     private Teacher teacher;
 
     public Student() {
@@ -25,8 +28,11 @@ public class Student extends User {
         this.group = builder.group;
         this.course = builder.course;
         this.lab = builder.lab;
+        this.labId = builder.labId;
         this.elective = builder.elective;
+        this.electiveId = builder.electiveId;
         this.practice = builder.practice;
+        this.practiceId = builder.practiceId;
         this.teacher = builder.teacher;
     }
 
@@ -88,13 +94,48 @@ public class Student extends User {
         this.teacher = teacher;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getLabId() {
+        return labId;
+    }
+
+    public void setLabId(long labId) {
+        this.labId = labId;
+    }
+
+    public long getElectiveId() {
+        return electiveId;
+    }
+
+    public void setElectiveId(long electiveId) {
+        this.electiveId = electiveId;
+    }
+
+    public long getPracticeId() {
+        return practiceId;
+    }
+
+    public void setPracticeId(long practiceId) {
+        this.practiceId = practiceId;
+    }
+
     public static class Builder extends User.Builder {
         private long id;
         private String group;
         private int course;
         private String lab;
+        private long labId;
         private String elective;
+        private long electiveId;
         private String practice;
+        private long practiceId;
         private Teacher teacher;
 
         public Builder id(long arg) {
@@ -117,13 +158,28 @@ public class Student extends User {
             return this;
         }
 
+        public Builder labId(long arg) {
+            labId = arg;
+            return this;
+        }
+
         public Builder elective(String arg) {
             elective = arg;
             return this;
         }
 
+        public Builder electiveId(long arg) {
+            electiveId = arg;
+            return this;
+        }
+
         public Builder practice(String arg) {
             practice = arg;
+            return this;
+        }
+
+        public Builder practiceId(long arg) {
+            practiceId = arg;
             return this;
         }
 

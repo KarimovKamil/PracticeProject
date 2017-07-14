@@ -34,14 +34,17 @@ public class StudentDaoImpl implements StudentDao {
                     "INNER JOIN practice p ON (s.practice_id = p.pr_id)" +
                     "WHERE s.st_id = :id;";
 
+    private static final String SQL_FIND_BY_TOKEN =
+            "SELECT * FROM student_info s INNER JOIN u_user u ON " +
+                    "(s.user_id = u.u_id) WHERE u.token = :token;";
+
     private static final String SQL_INSERT =
             "INSERT INTO student_info (s_group, course, lab_id, elective_id, practice_id, leader_id, user_id) " +
-                    "SELECT :group, :course, lab_id, el_id, pr_id, :leaderId, :userId FROM lab, elective, practice " +
-                    "WHERE (lab.lab_name = :labName AND elective.el_name = :electiveName AND practice.pr_name = :practiceName);";
+                    "VALUES (:group, :course, :labId, :elId, :prId, :leaderId, :userId);";
 
     private static final String SQL_UPDATE =
-            "UPDATE student_info SET s_group = :group, course = :course, lab_id = query.lab_id, " +
-                    "elective_id = query.el_id, practice_id = query.pr_id, leader_id = :leaderId, user_id = :userId " +
+            "UPDATE student_info SET (s_group, course, lab_id, elective_id, practice_id, leader_id)" +
+                    " = (:group, :course, :labId, :elId, :prId, :leaderId) " +
                     "WHERE st_id = :id;";
 
     private static final String SQL_DELETE =
@@ -60,15 +63,21 @@ public class StudentDaoImpl implements StudentDao {
         return (Student) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new StudentMapper());
     }
 
+    public Student findByToken(String token) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("token", token);
+        return (Student) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_TOKEN, params, new StudentMapper());
+    }
+
     public void insert(Student student) {
         Map<String, Object> params = new HashMap<>();
         params.put("group", student.getGroup());
         params.put("course", student.getCourse());
-        params.put("labName", student.getLab());
-        params.put("electiveName", student.getElective());
-        params.put("practiceName", student.getPractice());
         params.put("leaderId", student.getTeacher().getId());
         params.put("userId", student.getuId());
+        params.put("labId", student.getLabId());
+        params.put("elId", student.getElectiveId());
+        params.put("prId", student.getPracticeId());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
 
     }
@@ -78,7 +87,10 @@ public class StudentDaoImpl implements StudentDao {
         params.put("id", id);
         params.put("group", student.getGroup());
         params.put("course", student.getCourse());
-        params.put("userId", student.getuId());
+        params.put("leaderId", student.getTeacher().getId());
+        params.put("labId", student.getLabId());
+        params.put("elId", student.getElectiveId());
+        params.put("prId", student.getPracticeId());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }
 
