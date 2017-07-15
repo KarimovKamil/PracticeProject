@@ -21,6 +21,8 @@ public interface RequestDao {
 
     List<Request> findAllLeaderReq();
 
+    List<Request> findAllStudentReq(String token);
+
     Request findById(long id);
 
     void insert(Request request);

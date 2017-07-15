@@ -35,8 +35,13 @@ public class StudentDaoImpl implements StudentDao {
                     "WHERE s.st_id = :id;";
 
     private static final String SQL_FIND_BY_TOKEN =
-            "SELECT * FROM student_info s INNER JOIN u_user u ON " +
-                    "(s.user_id = u.u_id) WHERE u.token = :token;";
+            "SELECT * FROM student_info s " +
+                    "INNER JOIN u_user u ON (s.user_id = u.u_id) " +
+                    "INNER JOIN teacher t ON (s.leader_id = t.t_id) " +
+                    "INNER JOIN lab l ON (s.lab_id = l.lab_id)" +
+                    "INNER JOIN elective e ON (s.elective_id = e.el_id) " +
+                    "INNER JOIN practice p ON (s.practice_id = p.pr_id) " +
+                    "WHERE u.token = :token;";
 
     private static final String SQL_INSERT =
             "INSERT INTO student_info (s_group, course, lab_id, elective_id, practice_id, leader_id, user_id) " +

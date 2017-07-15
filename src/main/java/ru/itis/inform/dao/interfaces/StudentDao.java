@@ -13,6 +13,8 @@ public interface StudentDao {
 
     Student findById(long id);
 
+    Student findByToken(String token);
+
     void insert(Student student);
 
     void update(Student student, long id);

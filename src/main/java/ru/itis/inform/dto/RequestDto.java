@@ -29,6 +29,18 @@ public class RequestDto implements Data {
         return attributeId;
     }
 
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAttributeId(long attributeId) {
+        this.attributeId = attributeId;
+    }
+
     public static class Builder {
         private long studentId;
         private String type;
