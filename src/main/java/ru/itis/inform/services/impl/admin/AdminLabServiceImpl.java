@@ -42,6 +42,9 @@ public class AdminLabServiceImpl implements AdminLabService {
     public void addLab(LabDto labDto) {
         validationFactory.teacherExistenceById(labDto.getTeacherId());
         validationFactory.verifyName(labDto.getName());
+        if (labDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(labDto.getTeacherId());
+        }
         labDao.insert(labDto);
     }
 
@@ -50,6 +53,9 @@ public class AdminLabServiceImpl implements AdminLabService {
         validationFactory.labExistenceById(id);
         validationFactory.teacherExistenceById(labDto.getTeacherId());
         validationFactory.verifyName(labDto.getName());
+        if (labDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(labDto.getTeacherId());
+        }
         labDao.update(labDto, id);
     }
 

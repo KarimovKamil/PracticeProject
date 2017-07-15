@@ -42,6 +42,9 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
     public void addElective(ElectiveDto electiveDto) {
         validationFactory.verifyCourse(electiveDto.getCourse());
         validationFactory.verifyName(electiveDto.getName());
+        if (electiveDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(electiveDto.getTeacherId());
+        }
         electiveDao.insert(electiveDto);
     }
 
@@ -50,6 +53,9 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
         validationFactory.electiveExistenceById(id);
         validationFactory.verifyCourse(electiveDto.getCourse());
         validationFactory.verifyName(electiveDto.getName());
+        if (electiveDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(electiveDto.getTeacherId());
+        }
         electiveDao.update(electiveDto, id);
     }
 

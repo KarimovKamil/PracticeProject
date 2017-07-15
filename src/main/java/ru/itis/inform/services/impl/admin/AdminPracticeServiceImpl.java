@@ -44,6 +44,9 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
         validationFactory.verifyCourse(practiceDto.getCourse());
         validationFactory.verifyName(practiceDto.getName());
         validationFactory.verifyDate(practiceDto.getStartDate(), practiceDto.getEndDate());
+        if (practiceDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(practiceDto.getTeacherId());
+        }
         practiceDao.insert(practiceDto);
     }
 
@@ -54,6 +57,9 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
         validationFactory.verifyCourse(practiceDto.getCourse());
         validationFactory.verifyName(practiceDto.getName());
         validationFactory.verifyDate(practiceDto.getStartDate(), practiceDto.getEndDate());
+        if (practiceDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(practiceDto.getTeacherId());
+        }
         practiceDao.insert(practiceDto);
     }
 
