@@ -2,9 +2,12 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dto.LabDto;
+import ru.itis.inform.dto.lists.LabListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
+import ru.itis.inform.models.Elective;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
 import ru.itis.inform.validation.ValidationFactory;
@@ -21,10 +24,14 @@ public class AdminLabServiceImpl implements AdminLabService {
     LabDao labDao;
     @Autowired
     ValidationFactory validationFactory;
+    @Autowired
+    ConversionListResultFactory conversionListResultFactory;
 
     @Override
-    public List<Lab> getAllLabs() {
-        return labDao.findAll();
+    public LabListDto getAllLabs() {
+        List<Lab> labList = labDao.findAll();
+        LabListDto labListDto = conversionListResultFactory.labsToLabListDto(labList);
+        return labListDto;
     }
 
     @Override

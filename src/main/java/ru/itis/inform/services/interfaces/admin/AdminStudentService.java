@@ -1,6 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
 import ru.itis.inform.dto.StudentDto;
+import ru.itis.inform.dto.lists.StudentListDto;
 import ru.itis.inform.models.Student;
 
 import java.util.List;
@@ -10,9 +11,7 @@ import java.util.List;
  */
 public interface AdminStudentService {
 
-    //TODO: сделать генерацию паролей и логинов
-
-    List<Student> getAllStudents();
+    StudentListDto getAllStudents();
 
     Student getStudentById(long id);
 

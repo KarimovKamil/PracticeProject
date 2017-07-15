@@ -1,6 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
 import ru.itis.inform.dto.TeacherDto;
+import ru.itis.inform.dto.lists.TeacherListDto;
 import ru.itis.inform.models.Teacher;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface AdminTeacherService {
 
-    List<Teacher> getAllTeachers();
+    TeacherListDto getAllTeachers();
 
     Teacher getTeachersById(long id);
 

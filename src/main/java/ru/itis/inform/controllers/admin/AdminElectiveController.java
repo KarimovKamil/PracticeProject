@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.inform.dto.Data;
+import ru.itis.inform.dto.ElectiveDto;
+import ru.itis.inform.dto.lists.ElectiveListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Elective;
 import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
@@ -27,11 +29,10 @@ public class AdminElectiveController {
     @Autowired
     AdminElectiveService service;
 
-    //TODO: DTO для ЛИСТА ЭЛЕКТИВОВ
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> getAllElectives() {
-        List<Elective> electiveList = service.getAllElectives();
-        return buildResponseGetAndDelete(null);
+        ElectiveListDto electiveListDto = service.getAllElectives();
+        return buildResponseGetAndDelete(electiveListDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -41,17 +42,16 @@ public class AdminElectiveController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addElective(@RequestBody Elective elective) {
-        service.addElective(elective);
-        return buildResponsePostAndPut(elective);
+    public ResponseEntity<QueryResultDto> addElective(@RequestBody ElectiveDto electiveDto) {
+        service.addElective(electiveDto);
+        return buildResponsePostAndPut(electiveDto);
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<QueryResultDto> updateElectiveById(@RequestBody Elective elective,
+    public ResponseEntity<QueryResultDto> updateElectiveById(@RequestBody ElectiveDto electiveDto,
                                                              @PathVariable(value = "id") long id) {
-        elective.setId(id);
-        service.updateElective(elective);
-        return buildResponsePostAndPut(elective);
+        service.updateElective(electiveDto, id);
+        return buildResponsePostAndPut(electiveDto);
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)

@@ -2,6 +2,7 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.stereotype.Component;
 import ru.itis.inform.dto.StudentDto;
+import ru.itis.inform.dto.lists.StudentListDto;
 import ru.itis.inform.models.Student;
 import ru.itis.inform.services.interfaces.admin.AdminStudentService;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class AdminStudentServiceImpl implements AdminStudentService {
 
     @Override
-    public List<Student> getAllStudents() {
+    public StudentListDto getAllStudents() {
         return null;
     }
 

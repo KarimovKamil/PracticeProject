@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.inform.dto.Data;
+import ru.itis.inform.dto.LabDto;
+import ru.itis.inform.dto.lists.LabListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
@@ -27,11 +29,10 @@ public class AdminLabController {
     @Autowired
     AdminLabService service;
 
-    //TODO: DTO для ЛИСТА ЛАБ
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> getAllLabs() {
-        List<Lab> labList = service.getAllLabs();
-        return buildResponseGetAndDelete(null);
+        LabListDto labListDto = service.getAllLabs();
+        return buildResponseGetAndDelete(labListDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -41,17 +42,16 @@ public class AdminLabController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addLab(@RequestBody Lab lab) {
-        service.addLab(lab);
-        return buildResponsePostAndPut(lab);
+    public ResponseEntity<QueryResultDto> addLab(@RequestBody LabDto labDto) {
+        service.addLab(labDto);
+        return buildResponsePostAndPut(labDto);
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<QueryResultDto> updateLabById(@RequestBody Lab lab,
+    public ResponseEntity<QueryResultDto> updateLabById(@RequestBody LabDto labDto,
                                                              @PathVariable(value = "id") long id) {
-        lab.setId(id);
-        service.updateLab(lab);
-        return buildResponsePostAndPut(lab);
+        service.updateLab(labDto, id);
+        return buildResponsePostAndPut(labDto);
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
