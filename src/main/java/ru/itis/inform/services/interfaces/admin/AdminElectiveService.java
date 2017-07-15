@@ -1,6 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
 import ru.itis.inform.dto.ElectiveDto;
+import ru.itis.inform.dto.lists.ElectiveListDto;
 import ru.itis.inform.models.Elective;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface AdminElectiveService {
 
-    List<Elective> getAllElectives();
+    ElectiveListDto getAllElectives();
 
     Elective getElectiveById(long id);
 

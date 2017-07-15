@@ -2,8 +2,10 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.PracticeDao;
 import ru.itis.inform.dto.PracticeDto;
+import ru.itis.inform.dto.lists.PracticeListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.Practice;
 import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
@@ -22,10 +24,14 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     PracticeDao practiceDao;
     @Autowired
     ValidationFactory validationFactory;
+    @Autowired
+    ConversionListResultFactory conversionListResultFactory;
 
     @Override
-    public List<Practice> getAllPractices() {
-        return practiceDao.findAll();
+    public PracticeListDto getAllPractices() {
+        List<Practice> practiceList = practiceDao.findAll();
+        PracticeListDto practiceListDto = conversionListResultFactory.practicesToPracticeListDto(practiceList);
+        return practiceListDto;
     }
 
     @Override

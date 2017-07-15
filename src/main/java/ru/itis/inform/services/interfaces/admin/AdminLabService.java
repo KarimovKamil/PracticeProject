@@ -1,6 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
 import ru.itis.inform.dto.LabDto;
+import ru.itis.inform.dto.lists.LabListDto;
 import ru.itis.inform.models.Lab;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface AdminLabService {
 
-    List<Lab> getAllLabs();
+    LabListDto getAllLabs();
 
     Lab getLabById(long id);
 

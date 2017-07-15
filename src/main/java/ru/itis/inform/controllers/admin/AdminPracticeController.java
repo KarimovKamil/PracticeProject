@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.inform.dto.Data;
+import ru.itis.inform.dto.PracticeDto;
+import ru.itis.inform.dto.lists.PracticeListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Practice;
 import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
@@ -27,11 +29,10 @@ public class AdminPracticeController {
     @Autowired
     AdminPracticeService service;
 
-    //TODO: DTO для ЛИСТА ПРАКТИК
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> getAllPractices() {
-        List<Practice> practiceList = service.getAllPractices();
-        return buildResponseGetAndDelete(null);
+        PracticeListDto practiceListDto = service.getAllPractices();
+        return buildResponseGetAndDelete(practiceListDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -41,17 +42,16 @@ public class AdminPracticeController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addPractice(@RequestBody Practice practice) {
-        service.addPractice(practice);
-        return buildResponsePostAndPut(practice);
+    public ResponseEntity<QueryResultDto> addPractice(@RequestBody PracticeDto practiceDto) {
+        service.addPractice(practiceDto);
+        return buildResponsePostAndPut(practiceDto);
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<QueryResultDto> updatePracticeById(@RequestBody Practice practice,
+    public ResponseEntity<QueryResultDto> updatePracticeById(@RequestBody PracticeDto practiceDto,
                                                              @PathVariable(value = "id") long id) {
-        practice.setId(id);
-        service.updatePractice(practice);
-        return buildResponsePostAndPut(practice);
+        service.updatePractice(practiceDto, id);
+        return buildResponsePostAndPut(practiceDto);
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
