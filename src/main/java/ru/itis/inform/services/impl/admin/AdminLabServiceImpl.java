@@ -6,8 +6,6 @@ import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.dto.lists.LabListDto;
-import ru.itis.inform.exceptions.IncorrectDataException;
-import ru.itis.inform.models.Elective;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
 import ru.itis.inform.validation.ValidationFactory;
@@ -43,9 +41,7 @@ public class AdminLabServiceImpl implements AdminLabService {
     @Override
     public void addLab(LabDto labDto) {
         validationFactory.teacherExistenceById(labDto.getTeacherId());
-        if (labDto.getName() == null || labDto.getName().isEmpty()) {
-            throw new IncorrectDataException("Incorrect name");
-        }
+        validationFactory.verifyName(labDto.getName());
         labDao.insert(labDto);
     }
 
@@ -53,9 +49,7 @@ public class AdminLabServiceImpl implements AdminLabService {
     public void updateLab(LabDto labDto, long id) {
         validationFactory.labExistenceById(id);
         validationFactory.teacherExistenceById(labDto.getTeacherId());
-        if (labDto.getName() == null || labDto.getName().isEmpty()) {
-            throw new IncorrectDataException("Incorrect name");
-        }
+        validationFactory.verifyName(labDto.getName());
         labDao.update(labDto, id);
     }
 
