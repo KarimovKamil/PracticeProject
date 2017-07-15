@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface AdminStudentService {
 
+    //TODO: сделать генерацию паролей и логинов
+
     List<Student> getAllStudents();
 
     Student getStudentById(long id);

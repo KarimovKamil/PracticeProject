@@ -13,6 +13,10 @@ public interface UserDao {
 
     User findById(long id);
 
+    User findByLogin(String login);
+
+    User findByToken(String token);
+
     void insert(User user);
 
     void update(User user, long id);

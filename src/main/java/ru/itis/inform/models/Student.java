@@ -66,24 +66,12 @@ public class Student extends User {
         return lab;
     }
 
-    public void setLab(String lab) {
-        this.lab = lab;
-    }
-
     public String getElective() {
         return elective;
     }
 
-    public void setElective(String elective) {
-        this.elective = elective;
-    }
-
     public String getPractice() {
         return practice;
-    }
-
-    public void setPractice(String practice) {
-        this.practice = practice;
     }
 
     public Teacher getTeacher() {

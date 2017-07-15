@@ -23,6 +23,9 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM u_user WHERE u_id = :id;";
 
+    private static final String SQL_FIND_BY_LOGIN =
+            "SELECT * FROM u_user WHERE login = :login;";
+
     private static final String SQL_FIND_BY_TOKEN =
             "SELECT * FROM u_user WHERE token = :token;";
 
@@ -48,6 +51,12 @@ public class UserDaoImpl implements UserDao {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return (User) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new UserMapper());
+    }
+
+    public User findByLogin(String login) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("login", login);
+        return (User) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_LOGIN, params, new UserMapper());
     }
 
     public User findByToken(String token) {

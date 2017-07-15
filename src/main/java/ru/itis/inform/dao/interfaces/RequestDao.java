@@ -11,6 +11,16 @@ public interface RequestDao {
 
     List<Request> findAll();
 
+    List<Request> findAllActive();
+
+    List<Request> findAllLabReq();
+
+    List<Request> findAllElectiveReq();
+
+    List<Request> findAllPracticeReq();
+
+    List<Request> findAllLeaderReq();
+
     Request findById(long id);
 
     void insert(Request request);

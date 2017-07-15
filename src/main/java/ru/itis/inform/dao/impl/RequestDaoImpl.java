@@ -20,6 +20,26 @@ public class RequestDaoImpl implements RequestDao {
     private static final String SQL_FIND_ALL =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id);";
 
+    private static final String SQL_FIND_ALL_ACTIVE =
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "WHERE r.req_status = 'ACTIVE';";
+
+    private static final String SQL_FIND_ALL_LAB_REQ =
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "WHERE r.req_type = 'LAB';";
+
+    private static final String SQL_FIND_ALL_ELECTIVE_REQ =
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "WHERE r.req_type = 'ELECTIVE';";
+
+    private static final String SQL_FIND_ALL_PRACTICE_REQ =
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "WHERE r.req_type = 'PRACTICE';";
+
+    private static final String SQL_FIND_ALL_LEADER_REQ =
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "WHERE r.req_type = 'LEADER';";
+
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id)" +
                     " WHERE req_id = :id;";
@@ -40,6 +60,26 @@ public class RequestDaoImpl implements RequestDao {
 
     public List<Request> findAll() {
         return namedParameterJdbcTemplate.query(SQL_FIND_ALL, new RequestMapper());
+    }
+
+    public List<Request> findAllActive() {
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_ACTIVE, new RequestMapper());
+    }
+
+    public List<Request> findAllLabReq() {
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_LAB_REQ, new RequestMapper());
+    }
+
+    public List<Request> findAllElectiveReq() {
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_ELECTIVE_REQ, new RequestMapper());
+    }
+
+    public List<Request> findAllPracticeReq() {
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_PRACTICE_REQ, new RequestMapper());
+    }
+
+    public List<Request> findAllLeaderReq() {
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_LEADER_REQ, new RequestMapper());
     }
 
     public Request findById(long id) {
