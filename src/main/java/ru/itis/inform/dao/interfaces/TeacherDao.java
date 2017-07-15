@@ -1,5 +1,6 @@
 package ru.itis.inform.dao.interfaces;
 
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.models.Teacher;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface TeacherDao {
 
     Teacher findById(long id);
 
-    void insert(Teacher teacher);
+    void insert(TeacherDto teacher);
 
-    void update(Teacher teacher, long id);
+    void update(TeacherDto teacher, long id);
 
     void delete(long id);
 

@@ -28,7 +28,8 @@ public class UserDaoImpl implements UserDao {
 
     private static final String SQL_INSERT =
             "INSERT INTO u_user (login, hash_password, token, first_name, last_name, middle_name, role) " +
-                    "VALUES (:login, :hashPassword, :token, :firstName, :lastName, :middleName, :role);";
+                    "VALUES (:login, :hashPassword, :token, :firstName, :lastName, :middleName, :role) " +
+                    "RETURNING u_user.u_id;";
 
     private static final String SQL_UPDATE =
             "UPDATE u_user SET (login, hash_password, token, first_name, last_name, middle_name, role) " +
@@ -56,7 +57,7 @@ public class UserDaoImpl implements UserDao {
         return (User) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_TOKEN, params, new UserMapper());
     }
 
-    public void insert(User user) {
+    public long insert(User user) {
         Map<String, Object> params = new HashMap<>();
         params.put("login", user.getLogin());
         params.put("hashPassword", user.getHashPassword());
@@ -65,7 +66,7 @@ public class UserDaoImpl implements UserDao {
         params.put("lastName", user.getLastName());
         params.put("middleName", user.getMiddleName());
         params.put("role", user.getRole());
-        namedParameterJdbcTemplate.update(SQL_INSERT, params);
+        return namedParameterJdbcTemplate.queryForObject(SQL_INSERT, params, long.class);
     }
 
     public void update(User user, long id) {
