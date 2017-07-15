@@ -8,13 +8,10 @@ import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.dto.StudentDto;
 import ru.itis.inform.dto.lists.StudentListDto;
-import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.Student;
-import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.admin.AdminStudentService;
 import ru.itis.inform.utils.HashGenerator;
 import ru.itis.inform.utils.LoginAndPasswordGenerator;
-import ru.itis.inform.utils.TokenGenerator;
 import ru.itis.inform.validation.StudentDtoValidation;
 import ru.itis.inform.validation.ValidationFactory;
 
@@ -42,8 +39,6 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     HashGenerator hashGenerator;
     @Autowired
     LoginAndPasswordGenerator loginAndPasswordGenerator;
-    @Autowired
-    TokenGenerator tokenGenerator;
 
     @Override
     public StudentListDto getAllStudents() {
@@ -62,11 +57,9 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     public void addStudent(StudentDto studentDto) {
         studentDtoValidation.verifyStudentDto(studentDto);
         Student student = conversionResultFactory.studentDtoToStudent(studentDto);
-        String token = tokenGenerator.generateToken();
         String login = loginAndPasswordGenerator.generateLogin();
         String password = loginAndPasswordGenerator.generatePassword();
         String hash = hashGenerator.encode(password);
-        student.setToken(token);
         student.setLogin(login);
         student.setHashPassword(hash);
         student.setRole("STUDENT");
