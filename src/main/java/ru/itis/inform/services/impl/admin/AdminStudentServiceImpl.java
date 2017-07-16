@@ -57,17 +57,19 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     public void addStudent(StudentDto studentDto) {
         studentDtoValidation.verifyStudentDto(studentDto);
         Student student = conversionResultFactory.studentDtoToStudent(studentDto);
-        String login = loginAndPasswordGenerator.generateLogin();
-        String password = loginAndPasswordGenerator.generatePassword();
+        student.setRole("STUDENT");
+        long uId = userDao.insert(student);
+        String login = loginAndPasswordGenerator.generateLogin(uId);
+        String password = loginAndPasswordGenerator.generatePassword(uId);
         String hash = hashGenerator.encode(password);
         student.setLogin(login);
         student.setHashPassword(hash);
-        student.setRole("STUDENT");
-        long uId = userDao.insert(student);
         student.setuId(uId);
+        userDao.update(student, uId);
         studentDao.insert(student);
     }
 
+    //TODO: добавить проверку на корректность логина и пароля
     @Override
     public void updateStudent(StudentDto studentDto, long id) {
         validationFactory.studentExistenceById(id);
