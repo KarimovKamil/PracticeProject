@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.inform.dto.Data;
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
@@ -41,6 +42,12 @@ public class AdminController {
     @RequestMapping(value = "/request/all", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> getAllRequests() {
         RequestListDto requestListDto = service.getAllRequests();
+        return buildResponseGetAndDelete(requestListDto);
+    }
+
+    @RequestMapping(value = "/request/active", method = RequestMethod.GET)
+    public ResponseEntity<QueryResultDto> getActiveRequests() {
+        RequestListDto requestListDto = service.getActiveRequests();
         return buildResponseGetAndDelete(requestListDto);
     }
 
@@ -85,6 +92,13 @@ public class AdminController {
     public ResponseEntity<QueryResultDto> declineRequest(@PathVariable(value = "id") long id,
                                                          @RequestParam("message") String message) {
         service.declineRequest(id, message);
+        return buildResponsePostAndPut(Data.EMPTY_DTO());
+    }
+
+    //TODO: инфа об админах нужна!
+    @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+    public ResponseEntity<QueryResultDto> addNewAdmin(@RequestBody TeacherDto teacherDto) {
+        service.addNewAdmin(teacherDto);
         return buildResponsePostAndPut(Data.EMPTY_DTO());
     }
 

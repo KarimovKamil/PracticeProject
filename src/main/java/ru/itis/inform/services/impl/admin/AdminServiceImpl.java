@@ -6,6 +6,7 @@ import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
@@ -14,6 +15,7 @@ import ru.itis.inform.models.Student;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.admin.AdminService;
 import ru.itis.inform.utils.HashGenerator;
+import ru.itis.inform.utils.LoginAndPasswordGenerator;
 import ru.itis.inform.utils.TokenGenerator;
 import ru.itis.inform.validation.ValidationFactory;
 
@@ -39,6 +41,8 @@ public class AdminServiceImpl implements AdminService {
     TokenGenerator tokenGenerator;
     @Autowired
     ConversionListResultFactory conversionListResultFactory;
+    @Autowired
+    LoginAndPasswordGenerator loginAndPasswordGenerator;
 
     @Override
     public UserDto login(String login, String password) {
@@ -134,5 +138,16 @@ public class AdminServiceImpl implements AdminService {
         request.setResMessage(resMessage);
         request.setStatus("DENIED");
         requestDao.update(request, id);
+    }
+
+    //TODO: ZAKONCHIT~
+    @Override
+    public void addNewAdmin(TeacherDto teacherDto) {
+        User user = new User.Builder()
+                .firstName(teacherDto.getFirstName())
+                .lastName(teacherDto.getLastName())
+                .middleName(teacherDto.getMiddleName())
+                .role("ADMIN")
+                .build();
     }
 }

@@ -53,6 +53,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         return studentDao.findById(id);
     }
 
+    //TODO: изменить генерацию пароля и логина
     @Override
     public void addStudent(StudentDto studentDto) {
         studentDtoValidation.verifyStudentDto(studentDto);

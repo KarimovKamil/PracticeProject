@@ -1,5 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
+import ru.itis.inform.dao.interfaces.TeacherDao;
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.models.*;
@@ -32,5 +34,7 @@ public interface AdminService {
     void acceptRequest(long id, String resMessage);
 
     void declineRequest(long id, String resMessage);
+
+    void addNewAdmin(TeacherDto teacherDto);
 
 }
