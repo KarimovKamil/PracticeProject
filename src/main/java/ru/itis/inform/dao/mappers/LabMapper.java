@@ -23,7 +23,6 @@ public class LabMapper implements RowMapper {
                 .id(resultSet.getLong("lab_id"))
                 .name(resultSet.getString("lab_name"))
                 .teacher(teacher)
-                .course(resultSet.getInt("course"))
                 .build();
     }
 }
