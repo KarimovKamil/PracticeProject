@@ -63,7 +63,11 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
                 }
                 filterChain.doFilter(request, response);
             } else {
-                ((HttpServletResponse) servletResponse).sendRedirect("/login");
+                if (isAdminMethod(request)) {
+                    ((HttpServletResponse) servletResponse).sendRedirect("/admin/login");
+                } else {
+                    ((HttpServletResponse) servletResponse).sendRedirect("/login");
+                }
             }
         }
     }
@@ -75,6 +79,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
     }
 
     private boolean isAdminMethod(HttpServletRequest request) {
-        return (request.getRequestURI().contains("/admin"));
+        return (request.getRequestURI().contains("/admin")) &&
+                !(request.getRequestURL().equals("/admin/login"));
     }
 }
