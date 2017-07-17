@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.itis.inform.dao.interfaces.TeacherDao;
 import ru.itis.inform.dao.mappers.TeacherMapper;
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.models.Teacher;
 
 import java.util.HashMap;
@@ -47,20 +48,20 @@ public class TeacherDaoImpl implements TeacherDao {
         return (Teacher) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new TeacherMapper());
     }
 
-    public void insert(Teacher teacher) {
+    public void insert(TeacherDto teacherDto) {
         Map<String, Object> params = new HashMap<>();
-        params.put("firstName", teacher.getFirstName());
-        params.put("lastName", teacher.getLastName());
-        params.put("middleName", teacher.getMiddleName());
+        params.put("firstName", teacherDto.getFirstName());
+        params.put("lastName", teacherDto.getLastName());
+        params.put("middleName", teacherDto.getMiddleName());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);
     }
 
-    public void update(Teacher teacher, long id) {
+    public void update(TeacherDto teacherDto, long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        params.put("firstName", teacher.getFirstName());
-        params.put("lastName", teacher.getLastName());
-        params.put("middleName", teacher.getMiddleName());
+        params.put("firstName", teacherDto.getFirstName());
+        params.put("lastName", teacherDto.getLastName());
+        params.put("middleName", teacherDto .getMiddleName());
         namedParameterJdbcTemplate.update(SQL_UPDATE, params);
     }
 

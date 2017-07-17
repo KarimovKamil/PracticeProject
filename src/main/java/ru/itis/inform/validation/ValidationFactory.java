@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.itis.inform.exceptions.IncorrectDataException;
 
+import java.util.Date;
+
 /**
  * Created by artur on 12.07.2017.
  */
@@ -12,6 +14,8 @@ public class ValidationFactory {
 
     @Autowired
     Validation validation;
+    @Autowired
+    DataValidation dataValidation;
 
     public void userExistenceById(long id) {
         if (!validation.userExistenceById(id)) {
@@ -28,6 +32,12 @@ public class ValidationFactory {
     public void userExistenceByLogin(String login) {
         if (!validation.userExistenceByLogin(login)) {
             throw new IncorrectDataException("Incorrect user");
+        }
+    }
+
+    public void studentExistenceById(long id) {
+        if (!validation.studentExistenceById(id)) {
+            throw new IncorrectDataException("Incorrect student");
         }
     }
 
@@ -76,6 +86,24 @@ public class ValidationFactory {
     public void checkIfRequestBelongToStudent(long requestId, long studentId) {
         if (!validation.requestCheck(requestId, studentId)) {
             throw new IncorrectDataException("Request doesn't belong to student");
+        }
+    }
+
+    public void verifyCourse(int course) {
+        if (!dataValidation.verifyCourse(course)) {
+            throw new IncorrectDataException("Incorrect course");
+        }
+    }
+
+    public void verifyName(String name) {
+        if (!dataValidation.verifyName(name)) {
+            throw new IncorrectDataException("Incorrect name");
+        }
+    }
+
+    public void verifyDate(Date startDate, Date endDate) {
+        if (!dataValidation.verifyDate(startDate, endDate)) {
+            throw new IncorrectDataException("Incorrect date");
         }
     }
 }

@@ -17,7 +17,7 @@ public interface UserDao {
 
     User findByToken(String token);
 
-    void insert(User user);
+    long insert(User user);
 
     void update(User user, long id);
 

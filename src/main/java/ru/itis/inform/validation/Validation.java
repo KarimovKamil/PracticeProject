@@ -32,6 +32,11 @@ public class Validation {
                     "(SELECT login FROM u_user WHERE login = ?) " +
                     "THEN TRUE ELSE FALSE END;";
 
+    private static final String STUDENT_BY_ID =
+            "SELECT CASE WHEN EXISTS " +
+                    "(SELECT st_id FROM student_info WHERE st_id = ?) " +
+                    "THEN TRUE ELSE FALSE END;";
+
     private static final String ELECTIVE_BY_ID =
             "SELECT CASE WHEN EXISTS " +
                     "(SELECT el_id FROM elective WHERE el_id = ?) " +
@@ -101,6 +106,10 @@ public class Validation {
 
     public boolean userExistenceByLogin(String login) {
         return jdbcTemplate.queryForObject(USER_BY_LOGIN, Boolean.class, login);
+    }
+
+    public boolean studentExistenceById(long id) {
+        return jdbcTemplate.queryForObject(STUDENT_BY_ID, Boolean.class, id);
     }
 
     public boolean electiveExistenceById(long id) {

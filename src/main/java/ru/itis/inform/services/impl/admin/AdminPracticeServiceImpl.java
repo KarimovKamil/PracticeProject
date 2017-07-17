@@ -6,12 +6,10 @@ import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.PracticeDao;
 import ru.itis.inform.dto.PracticeDto;
 import ru.itis.inform.dto.lists.PracticeListDto;
-import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.Practice;
 import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
 import ru.itis.inform.validation.ValidationFactory;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,11 +41,11 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     @Override
     public void addPractice(PracticeDto practiceDto) {
         validationFactory.teacherExistenceById(practiceDto.getTeacherId());
-        if (practiceDto.getName() == null || practiceDto.getName().isEmpty() ||
-                practiceDto.getCourse() < 0 || practiceDto.getCourse() > 6 ||
-                practiceDto.getStartDate().after(practiceDto.getEndDate()) ||
-                practiceDto.getStartDate().before(new Date())) {
-            throw new IncorrectDataException("Incorrect data");
+        validationFactory.verifyCourse(practiceDto.getCourse());
+        validationFactory.verifyName(practiceDto.getName());
+        validationFactory.verifyDate(practiceDto.getStartDate(), practiceDto.getEndDate());
+        if (practiceDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(practiceDto.getTeacherId());
         }
         practiceDao.insert(practiceDto);
     }
@@ -56,11 +54,11 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     public void updatePractice(PracticeDto practiceDto, long id) {
         validationFactory.practiceExistenceById(id);
         validationFactory.teacherExistenceById(practiceDto.getTeacherId());
-        if (practiceDto.getName() == null || practiceDto.getName().isEmpty() ||
-                practiceDto.getCourse() < 0 || practiceDto.getCourse() > 6 ||
-                practiceDto.getStartDate().after(practiceDto.getEndDate()) ||
-                practiceDto.getStartDate().before(new Date())) {
-            throw new IncorrectDataException("Incorrect data");
+        validationFactory.verifyCourse(practiceDto.getCourse());
+        validationFactory.verifyName(practiceDto.getName());
+        validationFactory.verifyDate(practiceDto.getStartDate(), practiceDto.getEndDate());
+        if (practiceDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(practiceDto.getTeacherId());
         }
         practiceDao.insert(practiceDto);
     }

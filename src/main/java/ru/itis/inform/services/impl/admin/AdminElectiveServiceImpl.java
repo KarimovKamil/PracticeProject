@@ -6,7 +6,6 @@ import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.ElectiveDao;
 import ru.itis.inform.dto.ElectiveDto;
 import ru.itis.inform.dto.lists.ElectiveListDto;
-import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.Elective;
 import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
 import ru.itis.inform.validation.ValidationFactory;
@@ -39,12 +38,12 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
         return electiveDao.findById(id);
     }
 
-    //TODO: уточнить количество курсов
     @Override
     public void addElective(ElectiveDto electiveDto) {
-        if (electiveDto.getName() == null || electiveDto.getName().isEmpty() ||
-                electiveDto.getCourse() < 0 || electiveDto.getCourse() > 6) {
-            throw new IncorrectDataException("Incorrect data");
+        validationFactory.verifyCourse(electiveDto.getCourse());
+        validationFactory.verifyName(electiveDto.getName());
+        if (electiveDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(electiveDto.getTeacherId());
         }
         electiveDao.insert(electiveDto);
     }
@@ -52,9 +51,10 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
     @Override
     public void updateElective(ElectiveDto electiveDto, long id) {
         validationFactory.electiveExistenceById(id);
-        if (electiveDto.getName() == null || electiveDto.getName().isEmpty() ||
-                electiveDto.getCourse() < 0 || electiveDto.getCourse() > 6) {
-            throw new IncorrectDataException("Incorrect data");
+        validationFactory.verifyCourse(electiveDto.getCourse());
+        validationFactory.verifyName(electiveDto.getName());
+        if (electiveDto.getTeacherId() != 0) {
+            validationFactory.teacherExistenceById(electiveDto.getTeacherId());
         }
         electiveDao.update(electiveDto, id);
     }
