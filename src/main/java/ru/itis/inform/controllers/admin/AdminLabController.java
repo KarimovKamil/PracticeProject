@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.LabDto;
-import ru.itis.inform.dto.lists.LabListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
-
-import java.util.List;
 
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
@@ -29,11 +26,11 @@ public class AdminLabController {
     @Autowired
     AdminLabService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getAllLabs() {
-        LabListDto labListDto = service.getAllLabs();
-        return buildResponseGetAndDelete(labListDto);
-    }
+//    @RequestMapping(value = "/all", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getAllLabs() {
+//        LabListDto labListDto = service.getAllLabs();
+//        return buildResponseGetAndDelete(labListDto);
+//    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> getLabById(@PathVariable(value = "id") long id) {

@@ -1,25 +1,18 @@
 package ru.itis.inform.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.inform.dto.ElectiveDto;
-import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Elective;
-import ru.itis.inform.models.Teacher;
 import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
 import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
 
 /**
  * Created by The silly end on 7/14/2017.
@@ -51,39 +44,54 @@ public class AdminElectiveController {
         return modelAndView;
     }
 
+//    @RequestMapping(value = "/add", method = RequestMethod.GET)
+//    public ModelAndView addElective() {
+//        ModelAndView modelAndView = new ModelAndView("addelective");
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("teachers", adminTeacherService.getAllTeachers());
+//        params.put("electiveDto", new ElectiveDto());
+//        modelAndView.addAllObjects(params);
+//        return modelAndView;
+//    }
+//
+//    @RequestMapping(value = "/add", method = RequestMethod.POST)
+//    public ModelAndView addElective(@ModelAttribute("electiveDto") ElectiveDto electiveDto) {
+//        service.addElective(electiveDto);
+//        return new ModelAndView("redirect:/admin/elective/all");
+//    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addElective() {
-        return new ModelAndView("addelective");
+    public String addElective(Model model) {
+        model.addAttribute("electiveDto", new ElectiveDto());
+        model.addAttribute("teachers", adminTeacherService.getAllTeachers());
+        return "addelective";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addElective(@RequestBody ElectiveDto electiveDto) {
-        ModelAndView modelAndView = new ModelAndView("addelective");
-        Map<String, List<Teacher>> params = new HashMap<>();
-        params.put("teachers", adminTeacherService.getAllTeachers());
-        modelAndView.addAllObjects(params);
+    public String addElective1(@ModelAttribute("electiveDto") ElectiveDto electiveDto,
+                              Model model) {
         service.addElective(electiveDto);
-        return new ModelAndView("redirect:/admin/elective/all");
+        return "redirect:/admin/elective/all";
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
-    public ModelAndView updateElectiveById() {
-        return new ModelAndView("updateelective");
-    }
-
-    @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<QueryResultDto> updateElectiveById(@RequestBody ElectiveDto electiveDto,
-                                                             @PathVariable(value = "id") long id) {
+    public ModelAndView updateElectiveById(@PathVariable(value = "id") long id) {
         ModelAndView modelAndView = new ModelAndView("updateelective");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
         params.put("elective", service.getElectiveById(id));
         modelAndView.addAllObjects(params);
-        service.updateElective(electiveDto, id);
-        return buildResponsePostAndPut(electiveDto);
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+    public ModelAndView updateElectiveById(@ModelAttribute ElectiveDto electiveDto,
+                                           @PathVariable(value = "id") long id) {
+        service.updateElective(electiveDto, id);
+        return new ModelAndView("redirect:/admin/elective/" + id);
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public ModelAndView deleteElectiveById(@PathVariable(value = "id") long id) {
         service.deleteElective(id);
         return new ModelAndView("redirect:/admin/elective/all");

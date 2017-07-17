@@ -84,3 +84,6 @@ ALTER TABLE elective ADD CONSTRAINT elective_fk1 FOREIGN KEY (leader_id) REFEREN
 ALTER TABLE practice ADD CONSTRAINT practice_fk1 FOREIGN KEY (leader_id) REFERENCES teacher(t_id);
 
 ALTER TABLE request ADD CONSTRAINT request_fk1 FOREIGN KEY (student_id) REFERENCES student_info(st_id);
+
+INSERT INTO u_user (login, hash_password, role) VALUES
+  ('user1', '$2a$10$Xrdw8XE7GpQ0NnVHXBZ0VeUhtzvJklJlpDE5MdLTylxdLoJYGbZua', 'ADMIN');

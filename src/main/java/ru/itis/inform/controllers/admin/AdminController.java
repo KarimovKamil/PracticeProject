@@ -5,9 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.inform.dto.Data;
-import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.models.User;
@@ -39,41 +37,41 @@ public class AdminController {
         return buildResponseGetAndDelete(user);
     }
 
-    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getAllRequests() {
-        RequestListDto requestListDto = service.getAllRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
-
-    @RequestMapping(value = "/request/active", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getActiveRequests() {
-        RequestListDto requestListDto = service.getActiveRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
-
-    @RequestMapping(value = "/request/lab", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getLabRequests() {
-        RequestListDto requestListDto = service.getLabRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
-
-    @RequestMapping(value = "/request/practice", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getPracticeRequests() {
-        RequestListDto requestListDto = service.getPracticeRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
-
-    @RequestMapping(value = "/request/elective", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getElectiveRequests() {
-        RequestListDto requestListDto = service.getElectiveRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
-
-    @RequestMapping(value = "/request/leader", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getLeaderRequests() {
-        RequestListDto requestListDto = service.getLeaderRequests();
-        return buildResponseGetAndDelete(requestListDto);
-    }
+//    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getAllRequests() {
+//        RequestListDto requestListDto = service.getAllRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
+//
+//    @RequestMapping(value = "/request/active", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getActiveRequests() {
+//        RequestListDto requestListDto = service.getActiveRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
+//
+//    @RequestMapping(value = "/request/lab", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getLabRequests() {
+//        RequestListDto requestListDto = service.getLabRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
+//
+//    @RequestMapping(value = "/request/practice", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getPracticeRequests() {
+//        RequestListDto requestListDto = service.getPracticeRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
+//
+//    @RequestMapping(value = "/request/elective", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getElectiveRequests() {
+//        RequestListDto requestListDto = service.getElectiveRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
+//
+//    @RequestMapping(value = "/request/leader", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getLeaderRequests() {
+//        RequestListDto requestListDto = service.getLeaderRequests();
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
 
     @RequestMapping(value = "/request/{id}", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> requestById(@PathVariable(value = "id") long id) {
@@ -95,10 +93,10 @@ public class AdminController {
         return buildResponsePostAndPut(Data.EMPTY_DTO());
     }
 
-    @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addNewAdmin(@RequestBody TeacherDto teacherDto) {
-        service.addNewAdmin(teacherDto);
-        return buildResponsePostAndPut(Data.EMPTY_DTO());
-    }
+//    @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+//    public ResponseEntity<QueryResultDto> addNewAdmin(@RequestBody TeacherDto teacherDto) {
+//        service.addNewAdmin(teacherDto);
+//        return buildResponsePostAndPut(Data.EMPTY_DTO());
+//    }
 
 }

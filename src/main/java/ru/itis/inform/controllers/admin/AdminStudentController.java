@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.StudentDto;
-import ru.itis.inform.dto.lists.StudentListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Student;
 import ru.itis.inform.services.interfaces.admin.AdminStudentService;
-
-import java.util.List;
 
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
@@ -29,11 +26,11 @@ public class AdminStudentController {
     @Autowired
     AdminStudentService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getAllStudents() {
-        StudentListDto studentListDto = service.getAllStudents();
-        return buildResponseGetAndDelete(studentListDto);
-    }
+//    @RequestMapping(value = "/all", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getAllStudents() {
+//        StudentListDto studentListDto = service.getAllStudents();
+//        return buildResponseGetAndDelete(studentListDto);
+//    }
 
     //TODO: DTO DLYA STUDENTA
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

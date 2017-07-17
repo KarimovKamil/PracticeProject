@@ -12,7 +12,7 @@ public class DataValidation {
 
     //TODO: уточнить количество курсов
     public boolean verifyCourse(int course) {
-        return (course > 0 && course < 6);
+        return (course > 0 && course < 7);
     }
 
     public boolean verifyName(String name) {

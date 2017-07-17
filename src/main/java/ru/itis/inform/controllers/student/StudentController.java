@@ -9,7 +9,6 @@ import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.services.interfaces.StudentService;
@@ -44,11 +43,11 @@ public class StudentController {
         return buildResponseGetAndDelete(profileDto);
     }
 
-    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getAllRequests(@RequestHeader("Auth-Token") String token) {
-        RequestListDto requestListDto = service.getMyRequests(token);
-        return buildResponseGetAndDelete(requestListDto);
-    }
+//    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
+//    public ResponseEntity<QueryResultDto> getAllRequests(@RequestHeader("Auth-Token") String token) {
+//        RequestListDto requestListDto = service.getMyRequests(token);
+//        return buildResponseGetAndDelete(requestListDto);
+//    }
 
     @RequestMapping(value = "/request/{id}", method = RequestMethod.GET)
     public ResponseEntity<QueryResultDto> requestById(@RequestHeader("Auth-Token") String token,
