@@ -3,7 +3,6 @@ package ru.itis.inform.services.interfaces;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.models.Request;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public interface StudentService {
 
     ProfileDto getProfile(String token);
 
-    RequestListDto getMyRequests(String token);
+    List<Request> getMyRequests(String token);
 
     Request getRequestById(String token, long id);
 

@@ -1,11 +1,9 @@
 package ru.itis.inform.services.interfaces.admin;
 
-import ru.itis.inform.dao.interfaces.TeacherDao;
 import ru.itis.inform.dto.AdminDto;
-import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
-import ru.itis.inform.models.*;
+import ru.itis.inform.models.Request;
+import ru.itis.inform.models.User;
 
 import java.util.List;
 
@@ -18,17 +16,17 @@ public interface AdminService {
 
     User profile(String token);
 
-    RequestListDto getAllRequests();
+    List<Request> getAllRequests();
 
-    RequestListDto getActiveRequests();
+    List<Request> getActiveRequests();
 
-    RequestListDto getLabRequests();
+    List<Request> getLabRequests();
 
-    RequestListDto getPracticeRequests();
+    List<Request> getPracticeRequests();
 
-    RequestListDto getElectiveRequests();
+    List<Request> getElectiveRequests();
 
-    RequestListDto getLeaderRequests();
+    List<Request> getLeaderRequests();
 
     Request getRequestById(long id);
 

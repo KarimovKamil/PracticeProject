@@ -6,18 +6,17 @@ import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.dto.AdminDto;
-import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.models.Student;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.admin.AdminService;
 import ru.itis.inform.utils.HashGenerator;
-import ru.itis.inform.utils.LoginAndPasswordGenerator;
 import ru.itis.inform.utils.TokenGenerator;
 import ru.itis.inform.validation.ValidationFactory;
+
+import java.util.List;
 
 /**
  * Created by Kamil Karimov on 14.07.2017.
@@ -37,10 +36,6 @@ public class AdminServiceImpl implements AdminService {
     HashGenerator hashGenerator;
     @Autowired
     TokenGenerator tokenGenerator;
-    @Autowired
-    ConversionListResultFactory conversionListResultFactory;
-    @Autowired
-    LoginAndPasswordGenerator loginAndPasswordGenerator;
 
     @Override
     public UserDto login(String login, String password) {
@@ -63,39 +58,33 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public RequestListDto getAllRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAll());
-        return requestListDto;
+    public List<Request> getAllRequests() {
+        return requestDao.findAll();
     }
 
     @Override
-    public RequestListDto getActiveRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllActive());
-        return requestListDto;
+    public List<Request> getActiveRequests() {
+        return requestDao.findAllActive();
     }
 
     @Override
-    public RequestListDto getLabRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllLabReq());
-        return requestListDto;
+    public List<Request> getLabRequests() {
+        return requestDao.findAllLabReq();
     }
 
     @Override
-    public RequestListDto getPracticeRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllPracticeReq());
-        return requestListDto;
+    public List<Request> getPracticeRequests() {
+        return requestDao.findAllPracticeReq();
     }
 
     @Override
-    public RequestListDto getElectiveRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllElectiveReq());
-        return requestListDto;
+    public List<Request> getElectiveRequests() {
+        return requestDao.findAllElectiveReq();
     }
 
     @Override
-    public RequestListDto getLeaderRequests() {
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllLeaderReq());
-        return requestListDto;
+    public List<Request> getLeaderRequests() {
+        return requestDao.findAllLeaderReq();
     }
 
     @Override

@@ -8,6 +8,8 @@ public class StudentDto implements Data {
     private String middleName;
     private String lastName;
     private String group;
+    private String login;
+    private String password;
     private int course;
     private long labId;
     private long electiveId;
@@ -23,8 +25,10 @@ public class StudentDto implements Data {
         this.lastName = builder.lastName;
         this.group = builder.group;
         this.course = builder.course;
+        this.login = builder.login;
+        this.password = builder.password;
         this.labId = builder.labId;
-        this.electiveId = builder.practiceId;
+        this.electiveId = builder.electiveId;
         this.practiceId = builder.practiceId;
         this.teacherId = builder.teacherId;
     }
@@ -65,11 +69,45 @@ public class StudentDto implements Data {
         return teacherId;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setLabId(long labId) {
+        this.labId = labId;
+    }
+
+    public void setElectiveId(long electiveId) {
+        this.electiveId = electiveId;
+    }
+
+    public void setPracticeId(long practiceId) {
+        this.practiceId = practiceId;
+    }
+
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
+    }
+
     public static class Builder {
         private String firstName;
         private String middleName;
         private String lastName;
         private String group;
+        private String login;
+        private String password;
         private int course;
         private long labId;
         private long electiveId;
@@ -91,33 +129,43 @@ public class StudentDto implements Data {
             return this;
         }
 
+        public Builder login(String arg) {
+            this.login = arg;
+            return this;
+        }
+
+        public Builder password(String arg) {
+            this.password = arg;
+            return this;
+        }
+
         public Builder group(String arg) {
             group = arg;
             return this;
         }
 
         public Builder course(int arg) {
-            course = arg;
+            this.course = arg;
             return this;
         }
 
         public Builder labId(long arg) {
-            labId = arg;
+            this.labId = arg;
             return this;
         }
 
         public Builder electiveId(long arg) {
-            electiveId = arg;
+            this.electiveId = arg;
             return this;
         }
 
         public Builder practiceId(long arg) {
-            practiceId = arg;
+            this.practiceId = arg;
             return this;
         }
 
         public Builder teacherId(long arg) {
-            teacherId = arg;
+            this.teacherId = arg;
             return this;
         }
 

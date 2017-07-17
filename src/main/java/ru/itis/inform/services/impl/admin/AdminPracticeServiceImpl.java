@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.itis.inform.dao.interfaces.PracticeDao;
 import ru.itis.inform.dto.PracticeDto;
-import ru.itis.inform.dto.lists.PracticeListDto;
 import ru.itis.inform.models.Practice;
 import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
 import ru.itis.inform.validation.ValidationFactory;
@@ -23,10 +22,8 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     ValidationFactory validationFactory;
 
     @Override
-    public PracticeListDto getAllPractices() {
-        List<Practice> practiceList = practiceDao.findAll();
-        PracticeListDto practiceListDto = conversionListResultFactory.practicesToPracticeListDto(practiceList);
-        return practiceListDto;
+    public List<Practice> getAllPractices() {
+        return practiceDao.findAll();
     }
 
     @Override

@@ -23,7 +23,7 @@ public class StudentDtoToStudentConverter {
         return localInstance;
     }
 
-    public Student.Builder convert(StudentDto studentDto, Student.Builder builder) {
+    public Student.Builder convert(StudentDto studentDto, Student.Builder builder, String hashPassword) {
         Teacher teacher = new Teacher.Builder()
                 .id(studentDto.getTeacherId())
                 .build();
@@ -36,6 +36,8 @@ public class StudentDtoToStudentConverter {
                 .teacher(teacher)
                 .firstName(studentDto.getFirstName())
                 .middleName(studentDto.getMiddleName())
-                .lastName(studentDto.getLastName());
+                .lastName(studentDto.getLastName())
+                .login(studentDto.getLogin())
+                .hashPassword(hashPassword);
     }
 }

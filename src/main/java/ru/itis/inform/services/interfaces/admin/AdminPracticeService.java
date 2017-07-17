@@ -1,7 +1,6 @@
 package ru.itis.inform.services.interfaces.admin;
 
 import ru.itis.inform.dto.PracticeDto;
-import ru.itis.inform.dto.lists.PracticeListDto;
 import ru.itis.inform.models.Practice;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public interface AdminPracticeService {
 
-    PracticeListDto getAllPractices();
+    List<Practice> getAllPractices();
 
     Practice getPracticeById(long id);
 

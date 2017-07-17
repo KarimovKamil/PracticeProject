@@ -34,9 +34,9 @@ public class ConversionResultFactory {
         return builder.build();
     }
 
-    public Student studentDtoToStudent(StudentDto studentDto) {
+    public Student studentDtoToStudent(StudentDto studentDto, String hashPassword) {
         Student.Builder builder = new Student.Builder();
-        builder = StudentDtoToStudentConverter.getInstance().convert(studentDto, builder);
+        builder = StudentDtoToStudentConverter.getInstance().convert(studentDto, builder, hashPassword);
         return builder.build();
     }
 }

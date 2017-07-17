@@ -6,11 +6,9 @@ import ru.itis.inform.conversion.ConversionResultFactory;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.dto.StudentDto;
-import ru.itis.inform.dto.lists.StudentListDto;
 import ru.itis.inform.models.Student;
 import ru.itis.inform.services.interfaces.admin.AdminStudentService;
 import ru.itis.inform.utils.HashGenerator;
-import ru.itis.inform.utils.LoginAndPasswordGenerator;
 import ru.itis.inform.validation.StudentDtoValidation;
 import ru.itis.inform.validation.ValidationFactory;
 
@@ -31,19 +29,13 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     @Autowired
     ConversionResultFactory conversionResultFactory;
     @Autowired
-    ConversionListResultFactory conversionListResultFactory;
-    @Autowired
     StudentDtoValidation studentDtoValidation;
     @Autowired
     HashGenerator hashGenerator;
-    @Autowired
-    LoginAndPasswordGenerator loginAndPasswordGenerator;
 
     @Override
-    public StudentListDto getAllStudents() {
-        List<Student> studentList = studentDao.findAll();
-        StudentListDto studentListDto = conversionListResultFactory.studentsToStudentListDto(studentList);
-        return studentListDto;
+    public List<Student> getAllStudents() {
+        return studentDao.findAll();
     }
 
     @Override
@@ -52,20 +44,14 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         return studentDao.findById(id);
     }
 
-    //TODO: изменить генерацию пароля и логина
     @Override
     public void addStudent(StudentDto studentDto) {
         studentDtoValidation.verifyStudentDto(studentDto);
-        Student student = conversionResultFactory.studentDtoToStudent(studentDto);
+        String hashPassword = hashGenerator.encode(studentDto.getPassword());
+        Student student = conversionResultFactory.studentDtoToStudent(studentDto, hashPassword);
         student.setRole("STUDENT");
         long uId = userDao.insert(student);
-        String login = loginAndPasswordGenerator.generateLogin(uId);
-        String password = loginAndPasswordGenerator.generatePassword(uId);
-        String hash = hashGenerator.encode(password);
-        student.setLogin(login);
-        student.setHashPassword(hash);
         student.setuId(uId);
-        userDao.update(student, uId);
         studentDao.insert(student);
     }
 
@@ -74,7 +60,8 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     public void updateStudent(StudentDto studentDto, long id) {
         validationFactory.studentExistenceById(id);
         studentDtoValidation.verifyStudentDto(studentDto);
-        Student student = conversionResultFactory.studentDtoToStudent(studentDto);
+        String hashPassword = hashGenerator.encode(studentDto.getPassword());
+        Student student = conversionResultFactory.studentDtoToStudent(studentDto, hashPassword);
         long uId = studentDao.findById(id).getuId();
         userDao.update(student, uId);
         studentDao.update(student, id);

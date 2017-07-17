@@ -7,13 +7,14 @@ import ru.itis.inform.dao.interfaces.*;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.*;
 import ru.itis.inform.services.interfaces.StudentService;
 import ru.itis.inform.utils.HashGenerator;
 import ru.itis.inform.utils.TokenGenerator;
 import ru.itis.inform.validation.ValidationFactory;
+
+import java.util.List;
 
 /**
  * Created by Kamil Karimov on 14.07.2017.
@@ -43,8 +44,6 @@ public class StudentServiceImpl implements StudentService {
     HashGenerator hashGenerator;
     @Autowired
     TokenGenerator tokenGenerator;
-    @Autowired
-    ConversionListResultFactory conversionListResultFactory;
 
     @Override
     public UserDto login(String login, String password) {
@@ -67,10 +66,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public RequestListDto getMyRequests(String token) {
+    public List<Request> getMyRequests(String token) {
         validationFactory.userExistenceByToken(token);
-        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllStudentReq(token));
-        return requestListDto;
+        return requestDao.findAllStudentReq(token);
     }
 
     @Override
