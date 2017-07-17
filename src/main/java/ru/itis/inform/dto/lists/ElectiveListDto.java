@@ -2,6 +2,7 @@ package ru.itis.inform.dto.lists;
 
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.ElectiveDto;
+import ru.itis.inform.models.Elective;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,17 +12,17 @@ import java.util.Objects;
  */
 public class ElectiveListDto implements Data {
 
-    List<ElectiveDto> electiveDtoList;
+    List<Elective> electiveList;
 
     public ElectiveListDto() {
     }
 
-    public ElectiveListDto(List<ElectiveDto> electiveDtoList) {
-        this.electiveDtoList = electiveDtoList;
+    public ElectiveListDto(List<Elective> electiveList) {
+        this.electiveList = electiveList;
     }
 
-    public List<ElectiveDto> getElectiveDtoList() {
-        return electiveDtoList;
+    public List<Elective> getElectiveList() {
+        return electiveList;
     }
 
     @Override
@@ -29,6 +30,6 @@ public class ElectiveListDto implements Data {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ElectiveListDto that = (ElectiveListDto) o;
-        return Objects.equals(electiveDtoList, that.electiveDtoList);
+        return Objects.equals(electiveList, that.electiveList);
     }
 }

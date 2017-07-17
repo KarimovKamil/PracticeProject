@@ -1,7 +1,7 @@
 package ru.itis.inform.dto.lists;
 
 import ru.itis.inform.dto.Data;
-import ru.itis.inform.dto.TeacherDto;
+import ru.itis.inform.models.Teacher;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,17 +11,17 @@ import java.util.Objects;
  */
 public class TeacherListDto implements Data {
 
-    List<TeacherDto> teacherDtoList;
+    List<Teacher> teacherList;
 
     public TeacherListDto() {
     }
 
-    public TeacherListDto(List<TeacherDto> teacherDtoList) {
-        this.teacherDtoList = teacherDtoList;
+    public TeacherListDto(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
     }
 
-    public List<TeacherDto> getTeacherDtoList() {
-        return teacherDtoList;
+    public List<Teacher> getTeacherList() {
+        return teacherList;
     }
 
     @Override
@@ -29,6 +29,6 @@ public class TeacherListDto implements Data {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeacherListDto that = (TeacherListDto) o;
-        return Objects.equals(teacherDtoList, that.teacherDtoList);
+        return Objects.equals(teacherList, that.teacherList);
     }
 }

@@ -3,7 +3,6 @@ package ru.itis.inform.conversion.lists;
 import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.models.Request;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**

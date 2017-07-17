@@ -1,9 +1,8 @@
 package ru.itis.inform.conversion.lists;
 
-import ru.itis.inform.dto.PracticeDto;
+import ru.itis.inform.dto.lists.PracticeListDto;
 import ru.itis.inform.models.Practice;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,17 +25,7 @@ public class PracticesToPracticeListDto {
         return localInstance;
     }
 
-    public List<PracticeDto.Builder> convert(List<Practice> practices, List<PracticeDto.Builder> builders){
-        Iterator<Practice> iterator = practices.iterator();
-        builders.forEach(builder -> {
-            Practice practice = iterator.next();
-            builder = builder
-                    .name(practice.getName())
-                    .course(practice.getCourse())
-                    .startDate(practice.getStartDate())
-                    .endDate(practice.getEndDate())
-                    .teacher(practice.getTeacher().getId());
-        });
-        return builders;
+    public PracticeListDto convert(List<Practice> practices){
+        return new PracticeListDto(practices);
     }
 }

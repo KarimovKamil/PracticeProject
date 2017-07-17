@@ -1,9 +1,8 @@
 package ru.itis.inform.conversion.lists;
 
-import ru.itis.inform.dto.TeacherDto;
+import ru.itis.inform.dto.lists.TeacherListDto;
 import ru.itis.inform.models.Teacher;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,15 +25,7 @@ public class TeachersToTeacherListDto {
         return localInstance;
     }
 
-    public List<TeacherDto.Builder> convert(List<Teacher> teachers, List<TeacherDto.Builder> builders){
-        Iterator<Teacher> iterator = teachers.iterator();
-        builders.forEach(builder -> {
-            Teacher teacher = iterator.next();
-            builder = builder
-                    .middleName(teacher.getMiddleName())
-                    .lastName(teacher.getLastName())
-                    .firstName(teacher.getFirstName());
-        });
-        return builders;
+    public TeacherListDto convert(List<Teacher> teachers){
+        return new TeacherListDto(teachers);
     }
 }

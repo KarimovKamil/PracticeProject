@@ -2,6 +2,7 @@ package ru.itis.inform.dto.lists;
 
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.LabDto;
+import ru.itis.inform.models.Lab;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,17 +12,17 @@ import java.util.Objects;
  */
 public class LabListDto implements Data {
 
-    List<LabDto> labDtoList;
+    List<Lab> labList;
 
     public LabListDto() {
     }
 
-    public LabListDto(List<LabDto> labDtoList) {
-        this.labDtoList = labDtoList;
+    public LabListDto(List<Lab> labList) {
+        this.labList = labList;
     }
 
-    public List<LabDto> getLabDtoList() {
-        return labDtoList;
+    public List<Lab> getLabList() {
+        return labList;
     }
 
     @Override
@@ -29,6 +30,6 @@ public class LabListDto implements Data {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LabListDto that = (LabListDto) o;
-        return Objects.equals(labDtoList, that.labDtoList);
+        return Objects.equals(labList, that.labList);
     }
 }

@@ -1,9 +1,8 @@
 package ru.itis.inform.conversion.lists;
 
-import ru.itis.inform.dto.LabDto;
+import ru.itis.inform.dto.lists.LabListDto;
 import ru.itis.inform.models.Lab;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,14 +25,7 @@ public class LabsToLabListDto {
         return localInstance;
     }
 
-    public List<LabDto.Builder> convert(List<Lab> labs, List<LabDto.Builder> builders){
-        Iterator<Lab> iterator = labs.iterator();
-        builders.forEach(builder -> {
-            Lab lab = iterator.next();
-            builder = builder
-                    .teacherId(lab.getTeacher().getId())
-                    .name(lab.getName());
-        });
-        return builders;
+    public LabListDto convert(List<Lab> labs){
+        return new LabListDto(labs);
     }
 }
