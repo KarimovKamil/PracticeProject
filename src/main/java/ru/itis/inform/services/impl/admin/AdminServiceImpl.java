@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
+import ru.itis.inform.dto.AdminDto;
 import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.lists.RequestListDto;
@@ -137,14 +138,17 @@ public class AdminServiceImpl implements AdminService {
         requestDao.update(request, id);
     }
 
-    //TODO: ZAKONCHIT~
+    //TODO: PROVERIT~ LOGIN I PASS NA KORR
     @Override
-    public void addNewAdmin(TeacherDto teacherDto) {
+    public void addNewAdmin(AdminDto adminDto) {
         User user = new User.Builder()
-                .firstName(teacherDto.getFirstName())
-                .lastName(teacherDto.getLastName())
-                .middleName(teacherDto.getMiddleName())
+                .firstName(adminDto.getFirstName())
+                .lastName(adminDto.getLastName())
+                .middleName(adminDto.getMiddleName())
                 .role("ADMIN")
+                .login(adminDto.getLogin())
+                .hashPassword(hashGenerator.encode(adminDto.getPassword()))
                 .build();
+        userDao.insert(user);
     }
 }
