@@ -2,6 +2,8 @@ package ru.itis.inform.services.interfaces;
 
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
+import ru.itis.inform.dto.UserDto;
+import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.models.Request;
 
 import java.util.List;
@@ -11,11 +13,11 @@ import java.util.List;
  */
 public interface StudentService {
 
-    String login(String login, String password);
+    UserDto login(String login, String password);
 
     ProfileDto getProfile(String token);
 
-    List<Request> getMyRequests(String token);
+    RequestListDto getMyRequests(String token);
 
     Request getRequestById(String token, long id);
 

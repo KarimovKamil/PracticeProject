@@ -80,4 +80,8 @@ public class ConversionListResultFactory {
         return new TeacherListDto(teacherDtoList);
     }
 
+    public RequestListDto requestsToRequestListDto(List<Request> requestList) {
+        return RequestsToRequestListDto.getInstance().convert(requestList);
+    }
+
 }

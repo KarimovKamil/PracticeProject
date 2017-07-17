@@ -1,5 +1,7 @@
 package ru.itis.inform.services.interfaces.admin;
 
+import ru.itis.inform.dto.UserDto;
+import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.models.*;
 
 import java.util.List;
@@ -9,21 +11,21 @@ import java.util.List;
  */
 public interface AdminService {
 
-    String login(String login, String password);
+    UserDto login(String login, String password);
 
     User profile(String token);
 
-    List<Request> getAllRequests();
+    RequestListDto getAllRequests();
 
-    List<Request> getActiveRequests();
+    RequestListDto getActiveRequests();
 
-    List<Request> getLabRequests();
+    RequestListDto getLabRequests();
 
-    List<Request> getPracticeRequests();
+    RequestListDto getPracticeRequests();
 
-    List<Request> getElectiveRequests();
+    RequestListDto getElectiveRequests();
 
-    List<Request> getLeaderRequests();
+    RequestListDto getLeaderRequests();
 
     Request getRequestById(long id);
 

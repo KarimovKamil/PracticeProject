@@ -1,9 +1,11 @@
 package ru.itis.inform.models;
 
+import ru.itis.inform.dto.Data;
+
 /**
  * Created by Kamil Karimov on 06.07.2017.
  */
-public class User {
+public class User implements Data {
     private long uId;
     private String login;
     private String hashPassword;

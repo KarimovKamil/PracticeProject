@@ -2,10 +2,13 @@ package ru.itis.inform.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.conversion.ConversionResultFactory;
 import ru.itis.inform.dao.interfaces.*;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
+import ru.itis.inform.dto.UserDto;
+import ru.itis.inform.dto.lists.RequestListDto;
 import ru.itis.inform.exceptions.IncorrectDataException;
 import ru.itis.inform.models.*;
 import ru.itis.inform.services.interfaces.StudentService;
@@ -43,15 +46,17 @@ public class StudentServiceImpl implements StudentService {
     HashGenerator hashGenerator;
     @Autowired
     TokenGenerator tokenGenerator;
+    @Autowired
+    ConversionListResultFactory conversionListResultFactory;
 
     @Override
-    public String login(String login, String password) {
+    public UserDto login(String login, String password) {
         validationFactory.userExistenceByLogin(login);
         User user = userDao.findByLogin(login);
         if (hashGenerator.match(password, user.getHashPassword())) {
             user.setToken(tokenGenerator.generateToken());
             userDao.update(user, user.getuId());
-            return user.getToken();
+            return new UserDto(user.getuId(), user.getToken());
         } else {
             throw new IncorrectDataException("Incorrect login or password");
         }
@@ -65,9 +70,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Request> getMyRequests(String token) {
+    public RequestListDto getMyRequests(String token) {
         validationFactory.userExistenceByToken(token);
-        return requestDao.findAllStudentReq(token);
+        RequestListDto requestListDto = conversionListResultFactory.requestsToRequestListDto(requestDao.findAllStudentReq(token));
+        return requestListDto;
     }
 
     @Override
