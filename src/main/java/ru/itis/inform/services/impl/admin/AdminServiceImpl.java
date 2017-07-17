@@ -2,7 +2,6 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
@@ -18,8 +17,6 @@ import ru.itis.inform.utils.HashGenerator;
 import ru.itis.inform.utils.LoginAndPasswordGenerator;
 import ru.itis.inform.utils.TokenGenerator;
 import ru.itis.inform.validation.ValidationFactory;
-
-import java.util.List;
 
 /**
  * Created by Kamil Karimov on 14.07.2017.

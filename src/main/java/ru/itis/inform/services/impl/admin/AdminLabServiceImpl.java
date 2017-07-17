@@ -2,7 +2,6 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.dto.lists.LabListDto;

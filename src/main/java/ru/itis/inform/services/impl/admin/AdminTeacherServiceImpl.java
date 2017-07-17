@@ -2,10 +2,8 @@ package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.itis.inform.conversion.ConversionListResultFactory;
 import ru.itis.inform.dao.interfaces.TeacherDao;
 import ru.itis.inform.dto.TeacherDto;
-import ru.itis.inform.dto.lists.TeacherListDto;
 import ru.itis.inform.models.Teacher;
 import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
 import ru.itis.inform.validation.ValidationFactory;
@@ -21,15 +19,11 @@ public class AdminTeacherServiceImpl implements AdminTeacherService {
     @Autowired
     TeacherDao teacherDao;
     @Autowired
-    ConversionListResultFactory conversionListResultFactory;
-    @Autowired
     ValidationFactory validationFactory;
 
     @Override
-    public TeacherListDto getAllTeachers() {
-        List<Teacher> teacherList = teacherDao.findAll();
-        TeacherListDto teacherListDto = conversionListResultFactory.teachersToTeacherListDto(teacherList);
-        return teacherListDto;
+    public List<Teacher> getAllTeachers() {
+        return teacherDao.findAll();
     }
 
     @Override

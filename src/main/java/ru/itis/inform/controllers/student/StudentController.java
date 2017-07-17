@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
@@ -30,6 +31,11 @@ public class StudentController {
                                                 @RequestParam("password") String password) {
         UserDto userDto = service.login(login, password);
         return buildResponsePostAndPut(userDto);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -63,11 +69,5 @@ public class StudentController {
                                                             @PathVariable(value = "id") long id) {
         service.deleteRequest(token, id);
         return buildResponseGetAndDelete(Data.EMPTY_DTO());
-    }
-
-    @ResponseBody
-    @RequestMapping("/hi")
-    public String gg() {
-        return "hi";
     }
 }
