@@ -75,8 +75,9 @@ public class AdminElectiveController {
     public ResponseEntity<QueryResultDto> updateElectiveById(@RequestBody ElectiveDto electiveDto,
                                                              @PathVariable(value = "id") long id) {
         ModelAndView modelAndView = new ModelAndView("updateelective");
-        Map<String, List<Teacher>> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
+        params.put("elective", service.getElectiveById(id));
         modelAndView.addAllObjects(params);
         service.updateElective(electiveDto, id);
         return buildResponsePostAndPut(electiveDto);
