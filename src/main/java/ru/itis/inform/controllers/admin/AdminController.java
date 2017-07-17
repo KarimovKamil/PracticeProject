@@ -95,7 +95,6 @@ public class AdminController {
         return buildResponsePostAndPut(Data.EMPTY_DTO());
     }
 
-    //TODO: инфа об админах нужна!
     @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
     public ResponseEntity<QueryResultDto> addNewAdmin(@RequestBody TeacherDto teacherDto) {
         service.addNewAdmin(teacherDto);
