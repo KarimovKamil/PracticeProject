@@ -16,6 +16,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Middle name</th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${teachers}" var="teacher">

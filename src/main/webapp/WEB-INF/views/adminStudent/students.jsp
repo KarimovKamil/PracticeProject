@@ -18,6 +18,7 @@
             <th>Middle name</th>
             <th>Course</th>
             <th>Group</th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${students}" var="student">

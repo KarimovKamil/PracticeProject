@@ -22,6 +22,7 @@
             <tr>
                 <td>${lab.name}</td>
                 <td>${lab.teacher.lastName} ${lab.teacher.firstName} ${lab.teacher.middleName}</td>
+
                 <td><a href="/admin/lab/${lab.id}">Details</a></td>
             </tr>
         </c:forEach>

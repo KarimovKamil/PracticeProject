@@ -9,21 +9,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="/admin/profile">Profile</a></li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/student/all">Students</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/teacher/all">Teachers</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/lab/all">Laboratories</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/practice/all">Practices</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/admin/elective/all">Electives</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/exit"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
             </ul>

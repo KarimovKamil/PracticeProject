@@ -4,12 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import ru.itis.inform.dto.AdminDto;
 import ru.itis.inform.dto.Data;
+import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.admin.AdminService;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
@@ -25,78 +34,119 @@ public class AdminController {
     AdminService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> login(@RequestParam("login") String login,
-                                                @RequestParam("password") String password) {
+    public ModelAndView login(@RequestParam("login") String login,
+                              @RequestParam("password") String password,
+                              HttpServletResponse response) {
         UserDto userDto = service.login(login, password);
-        return buildResponsePostAndPut(userDto);
+        Cookie cookie = new Cookie("Auth-Token", userDto.getToken());
+        response.addCookie(cookie);
+        return new ModelAndView("redirect:/admin/profile");
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        return new ModelAndView("admin/login");
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> profile(@RequestHeader("Auth-Token") String token) {
+    public ModelAndView profile(@CookieValue("Auth-Token") String token) {
         User user = service.profile(token);
-        return buildResponseGetAndDelete(user);
+        ModelAndView modelAndView = new ModelAndView("admin/profile");
+        Map<String, Object> params = new HashMap<>();
+        params.put("user", user);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
-//    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getAllRequests() {
-//        RequestListDto requestListDto = service.getAllRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
-//
-//    @RequestMapping(value = "/request/active", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getActiveRequests() {
-//        RequestListDto requestListDto = service.getActiveRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
-//
-//    @RequestMapping(value = "/request/lab", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getLabRequests() {
-//        RequestListDto requestListDto = service.getLabRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
-//
-//    @RequestMapping(value = "/request/practice", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getPracticeRequests() {
-//        RequestListDto requestListDto = service.getPracticeRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
-//
-//    @RequestMapping(value = "/request/elective", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getElectiveRequests() {
-//        RequestListDto requestListDto = service.getElectiveRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
-//
-//    @RequestMapping(value = "/request/leader", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getLeaderRequests() {
-//        RequestListDto requestListDto = service.getLeaderRequests();
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
+    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
+    public ModelAndView getAllRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getAllRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/active", method = RequestMethod.GET)
+    public ModelAndView getActiveRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getActiveRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/lab", method = RequestMethod.GET)
+    public ModelAndView getLabRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getLabRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/practice", method = RequestMethod.GET)
+    public ModelAndView getPracticeRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getPracticeRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/elective", method = RequestMethod.GET)
+    public ModelAndView getElectiveRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getElectiveRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/leader", method = RequestMethod.GET)
+    public ModelAndView getLeaderRequests() {
+        ModelAndView modelAndView = new ModelAndView("admin/requests");
+        Map<String, Object> params = new HashMap<>();
+        params.put("requests", service.getLeaderRequests());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/request/{id}", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> requestById(@PathVariable(value = "id") long id) {
-        Request request = service.getRequestById(id);
-        return buildResponseGetAndDelete(request);
+    public ModelAndView requestById(@PathVariable(value = "id") long id) {
+        ModelAndView modelAndView = new ModelAndView("admin/request");
+        Map<String, Object> params = new HashMap<>();
+        params.put("request", service.getRequestById(id));
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/request/{id}/accept", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> acceptRequest(@PathVariable(value = "id") long id,
-                                                        @RequestParam("message") String message) {
+    public ModelAndView acceptRequest(@PathVariable(value = "id") long id,
+                                      @RequestParam("message") String message) {
         service.acceptRequest(id, message);
-        return buildResponsePostAndPut(Data.EMPTY_DTO());
+        return new ModelAndView("redirect:/admin/request/active");
     }
 
     @RequestMapping(value = "/request/{id}/decline", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> declineRequest(@PathVariable(value = "id") long id,
-                                                         @RequestParam("message") String message) {
+    public ModelAndView declineRequest(@PathVariable(value = "id") long id,
+                                       @RequestParam("message") String message) {
         service.declineRequest(id, message);
-        return buildResponsePostAndPut(Data.EMPTY_DTO());
+        return new ModelAndView("redirect:/admin/request/active");
     }
 
-//    @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
-//    public ResponseEntity<QueryResultDto> addNewAdmin(@RequestBody TeacherDto teacherDto) {
-//        service.addNewAdmin(teacherDto);
-//        return buildResponsePostAndPut(Data.EMPTY_DTO());
-//    }
+    @RequestMapping(value = "/addAdmin", method = RequestMethod.GET)
+    public ModelAndView addNewAdmin() {
+        ModelAndView modelAndView = new ModelAndView("admin/addAdmin");
+        Map<String, Object> params = new HashMap<>();
+        params.put("adminDto", new AdminDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+    public ModelAndView addNewAdmin(@ModelAttribute AdminDto adminDto) {
+        service.addNewAdmin(adminDto);
+        return new ModelAndView("redirect:/admin/profile");
+    }
 }

@@ -99,7 +99,7 @@ public class AdminServiceImpl implements AdminService {
         Request request = requestDao.findById(id);
         request.setResMessage(resMessage);
         request.setStatus("ACCEPTED");
-        Student student = request.getStudent();
+        Student student = studentDao.findById(request.getStudent().getId());
         switch (request.getType()) {
             case "LAB":
                 student.setLabId(request.getAttributeId());

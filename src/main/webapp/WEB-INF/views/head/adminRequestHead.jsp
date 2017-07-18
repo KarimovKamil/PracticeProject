@@ -7,7 +7,10 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a href="/admin/profile/all">All requests</a></li>
+                <li><a href="/admin/profile">Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/admin/request/all">All requests</a></li>
             </ul>
             <ul class="nav navbar-nav">
                 <li><a href="/admin/request/active">Active requests</a></li>

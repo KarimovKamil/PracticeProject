@@ -4,15 +4,11 @@
 <html>
 <head>
     <title>Add elective</title>
-<<<<<<< Updated upstream:src/main/webapp/WEB-INF/views/adminElective/addElective.jsp
-    <jsp:include page="../head.jsp"/>
-=======
-    <jsp:include page="head/head.jsp"/>
->>>>>>> Stashed changes:src/main/webapp/WEB-INF/views/addelective.jsp
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
-    <form:form commandName="electivedto">
+    <form:form commandName="electiveDto">
         <div class="input-group input-group-lg">
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -25,7 +21,8 @@
                             placeholder="Enter course"></form:input>
             </div>
             <div class="form-group">
-                <form:select path="teacherId">
+                <label for="teacherId"></label>
+                <form:select path="teacherId" class="form-control">
                     <c:forEach var="item" items="${teachers}">
                         <option value="${item.id}">${item.firstName} ${item.middleName} ${item.lastName}</option>
                     </c:forEach>
