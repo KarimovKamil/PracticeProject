@@ -84,18 +84,6 @@ public class Validation {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    StudentDao studentDao;
-
-    @Autowired
-    PracticeDao practiceDao;
-
-    @Autowired
-    ElectiveDao electiveDao;
-
-    @Autowired
-    RequestDao requestDao;
-
     public boolean userExistenceById(long id) {
         return jdbcTemplate.queryForObject(USER_BY_ID, Boolean.class, id);
     }

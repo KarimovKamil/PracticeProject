@@ -21,12 +21,24 @@ public class ElectiveDto implements Data {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public long getTeacherId() {
         return teacherId;
     }
 
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
+    }
+
     public int getCourse() {
         return course;
+    }
+
+    public void setCourse(int course) {
+        this.course = course;
     }
 
     public static class Builder {

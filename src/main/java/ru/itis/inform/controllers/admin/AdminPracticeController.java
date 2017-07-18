@@ -66,7 +66,7 @@ public class AdminPracticeController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updatePracticeGet(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("adminPractice/updateElective");
+        ModelAndView modelAndView = new ModelAndView("adminPractice/updatePractice");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", teacherService.getAllTeachers());
         Practice practice = service.getPracticeById(id);

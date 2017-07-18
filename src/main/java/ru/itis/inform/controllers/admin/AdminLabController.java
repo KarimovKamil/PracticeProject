@@ -3,15 +3,19 @@ package ru.itis.inform.controllers.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import ru.itis.inform.dao.interfaces.LabDao;
 import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.LabDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Lab;
 import ru.itis.inform.services.interfaces.admin.AdminLabService;
+import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
@@ -25,36 +29,71 @@ public class AdminLabController {
 
     @Autowired
     AdminLabService service;
+    @Autowired
+    AdminTeacherService adminTeacherService;
 
-//    @RequestMapping(value = "/all", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getAllLabs() {
-//        LabListDto labListDto = service.getAllLabs();
-//        return buildResponseGetAndDelete(labListDto);
-//    }
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ModelAndView getAllLabs() {
+        List<Lab> labList = service.getAllLabs();
+        ModelAndView modelAndView = new ModelAndView("adminLab/labs");
+        Map<String, List<Lab>> params = new HashMap<>();
+        params.put("labs", labList);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> getLabById(@PathVariable(value = "id") long id) {
+    public ModelAndView getLabById(@PathVariable(value = "id") long id) {
         Lab lab = service.getLabById(id);
-        return buildResponseGetAndDelete(lab);
+        ModelAndView modelAndView = new ModelAndView("adminLab/lab");
+        Map<String, Lab> params = new HashMap<>();
+        params.put("lab", lab);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView addLabGet() {
+        ModelAndView modelAndView = new ModelAndView("adminLab/addLab");
+        Map<String, Object> params = new HashMap<>();
+        params.put("teachers", adminTeacherService.getAllTeachers());
+        params.put("labDto", new LabDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addLab(@RequestBody LabDto labDto) {
+    public ModelAndView addLabPost(@ModelAttribute LabDto labDto) {
         service.addLab(labDto);
-        return buildResponsePostAndPut(labDto);
+        return new ModelAndView("redirect:/admin/lab/all");
     }
 
-    @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
-    public ResponseEntity<QueryResultDto> updateLabById(@RequestBody LabDto labDto,
-                                                             @PathVariable(value = "id") long id) {
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
+    public ModelAndView updateLabGet(@PathVariable(value = "id") long id) {
+        ModelAndView modelAndView = new ModelAndView("adminLab/updateLab");
+        Map<String, Object> params = new HashMap<>();
+        Lab lab = service.getLabById(id);
+        LabDto labDto = new LabDto.Builder()
+                .name(lab.getName())
+                .teacherId(lab.getTeacher().getId())
+                .build();
+        params.put("teachers", adminTeacherService.getAllTeachers());
+        params.put("labDto", labDto);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+    public ModelAndView updateLabPost(@ModelAttribute LabDto labDto,
+                                      @PathVariable(value = "id") long id) {
         service.updateLab(labDto, id);
-        return buildResponsePostAndPut(labDto);
+        return new ModelAndView("redirect:/admin/lab/" + id);
     }
 
-    @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<QueryResultDto> deleteLabById(@PathVariable(value = "id") long id) {
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+    public ModelAndView deleteLabById(@PathVariable(value = "id") long id) {
         service.deleteLab(id);
-        return buildResponseGetAndDelete(Data.EMPTY_DTO());
+        return new ModelAndView("redirect:/admin/lab/all");
     }
 
 }

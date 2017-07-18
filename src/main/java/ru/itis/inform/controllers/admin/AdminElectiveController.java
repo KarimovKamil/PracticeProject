@@ -44,16 +44,11 @@ public class AdminElectiveController {
         return modelAndView;
     }
 
-    @ModelAttribute("electivedto")
-    public ElectiveDto createFormModelAttribute(HttpServletRequest request) {
-        return new ElectiveDto();
-    }
-
-
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addElective() {
         ModelAndView modelAndView = new ModelAndView("adminElective/addElective");
         Map<String, Object> params = new HashMap<>();
+        params.put("electiveDto", new ElectiveDto());
         params.put("teachers", adminTeacherService.getAllTeachers());
         modelAndView.addAllObjects(params);
         return modelAndView;
