@@ -47,6 +47,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     @Override
     public void addStudent(StudentDto studentDto) {
         studentDtoValidation.verifyStudentDto(studentDto);
+        validationFactory.userLoginUnique(studentDto.getLogin());
         String hashPassword = hashGenerator.encode(studentDto.getPassword());
         Student student = conversionResultFactory.studentDtoToStudent(studentDto, hashPassword);
         student.setRole("STUDENT");
@@ -62,6 +63,9 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         validationFactory.studentExistenceById(id);
         studentDtoValidation.verifyStudentDto(studentDto);
         String hashPassword;
+        if (!studentFromDB.getLogin().equals(studentDto.getLogin())) {
+            validationFactory.userLoginUnique(studentDto.getLogin());
+        }
         if (!studentFromDB.getHashPassword().equals(studentDto.getPassword())) {
              hashPassword = hashGenerator.encode(studentDto.getPassword());
         } else {

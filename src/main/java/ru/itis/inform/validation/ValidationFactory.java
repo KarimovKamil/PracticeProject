@@ -35,6 +35,12 @@ public class ValidationFactory {
         }
     }
 
+    public void userLoginUnique(String login) {
+        if (validation.userExistenceByLogin(login)) {
+            throw new IncorrectDataException("Login already exists");
+        }
+    }
+
     public void studentExistenceById(long id) {
         if (!validation.studentExistenceById(id)) {
             throw new IncorrectDataException("Incorrect student");

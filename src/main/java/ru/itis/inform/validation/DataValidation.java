@@ -10,7 +10,6 @@ import java.util.Date;
 @Component
 public class DataValidation {
 
-    //TODO: уточнить количество курсов
     public boolean verifyCourse(int course) {
         return (course > 0 && course < 7);
     }

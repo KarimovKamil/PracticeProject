@@ -45,6 +45,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     TokenGenerator tokenGenerator;
 
+    //TODO: добавить изменение логина и пароля
     @Override
     public UserDto login(String login, String password) {
         validationFactory.userExistenceByLogin(login);
