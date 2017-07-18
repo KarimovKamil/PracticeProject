@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Add practice</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">

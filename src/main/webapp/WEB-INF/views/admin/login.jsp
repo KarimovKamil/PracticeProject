@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Sign in</title>
-    <jsp:include page="head/head.jsp"/>
+    <jsp:include page="../head/head.jsp"/>
 </head>
 <body>
 <div class="container">

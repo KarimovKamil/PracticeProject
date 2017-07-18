@@ -1,7 +1,11 @@
 <html>
 <head>
     <title>Elective</title>
+<<<<<<< Updated upstream:src/main/webapp/WEB-INF/views/adminElective/elective.jsp
     <jsp:include page="../head.jsp"/>
+=======
+    <jsp:include page="head/head.jsp"/>
+>>>>>>> Stashed changes:src/main/webapp/WEB-INF/views/elective.jsp
 </head>
 <body>
 <div class="container">
