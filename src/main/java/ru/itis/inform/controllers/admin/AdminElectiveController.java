@@ -2,7 +2,6 @@ package ru.itis.inform.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.inform.dto.ElectiveDto;
@@ -29,7 +28,7 @@ public class AdminElectiveController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllElectives() {
-        ModelAndView modelAndView = new ModelAndView("electives");
+        ModelAndView modelAndView = new ModelAndView("adminElective/electives");
         Map<String, List<Elective>> params = new HashMap<>();
         params.put("electives", service.getAllElectives());
         modelAndView.addAllObjects(params);
@@ -38,7 +37,7 @@ public class AdminElectiveController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView getElectiveById(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("elective");
+        ModelAndView modelAndView = new ModelAndView("adminElective/elective");
         Map<String, Elective> params = new HashMap<>();
         params.put("elective", service.getElectiveById(id));
         modelAndView.addAllObjects(params);
@@ -53,7 +52,7 @@ public class AdminElectiveController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addElective() {
-        ModelAndView modelAndView = new ModelAndView("addelective");
+        ModelAndView modelAndView = new ModelAndView("adminElective/addElective");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
         modelAndView.addAllObjects(params);
@@ -68,7 +67,7 @@ public class AdminElectiveController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updateElectiveById(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("updateelective");
+        ModelAndView modelAndView = new ModelAndView("adminElective/updateElective");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
         params.put("elective", service.getElectiveById(id));

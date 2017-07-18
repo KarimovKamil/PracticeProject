@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Add elective</title>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="../head.jsp"/>
 </head>
 <body>
 <div class="container">

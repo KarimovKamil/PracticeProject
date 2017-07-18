@@ -44,40 +44,40 @@
                             id="password"
                             placeholder="Enter password"/>
             </div>
-
             <div class="form-group">
                 <label for="course">Course:</label>
                 <form:input type="number" min="1" max="6" class="form-control" path="course" id="course"
                             placeholder="Enter course"/>
             </div>
             <div class="form-group">
-                <form:select path="teacherId">
+                <label for="teacherId">Teacher:</label>
+                <form:select path="teacherId" class="form-control">
                     <c:forEach var="item" items="${teachers}">
                         <option value="${item.id}">${item.firstName} ${item.lastName} ${item.middleName}</option>
                     </c:forEach>
                 </form:select>
             </div>
             <div class="form-group">
-                <form:select path="labId">
+                <label for="labId">Laboratory:</label>
+                <form:select path="labId" class="form-control">
                     <c:forEach var="item" items="${labs}">
                         <option value="${item.id}"> ${item.name}
-                            Teacher: ${item.teacher.firstName} ${item.teacher.lastName} ${item.teacher.middleName} </option>
                     </c:forEach>
                 </form:select>
             </div>
             <div class="form-group">
-                <form:select path="electiveId">
+                <label for="electiveId">Elective:</label>
+                <form:select path="electiveId" class="form-control">
                     <c:forEach var="item" items="${electives}">
                         <option value="${item.id}">${item.name} Course: ${item.course}
-                            Teacher: ${item.teacher.firstName} ${item.teacher.lastName} ${item.teacher.middleName}</option>
                     </c:forEach>
                 </form:select>
             </div>
             <div class="form-group">
-                <form:select path="practiceId">
+                <label for="practiceId">Practice:</label>
+                <form:select path="practiceId" class="form-control">
                     <c:forEach var="item" items="${practices}">
                         <option value="${item.id}">${item.name} Course: ${item.course}
-                            Teacher: ${item.teacher.firstName} ${item.teacher.lastName} ${item.teacher.middleName} ${item.startDate} ${item.endDate}</option>
                     </c:forEach>
                 </form:select>
             </div>

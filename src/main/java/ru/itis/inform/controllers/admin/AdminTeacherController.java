@@ -1,22 +1,16 @@
 package ru.itis.inform.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ru.itis.inform.dto.Data;
 import ru.itis.inform.dto.TeacherDto;
-import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Teacher;
 import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
 
 /**
  * Created by The silly end on 7/14/2017.
@@ -31,7 +25,7 @@ public class AdminTeacherController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllTeachers() {
         List<Teacher> teacherList = service.getAllTeachers();
-        ModelAndView modelAndView = new ModelAndView("adminTeacher/all");
+        ModelAndView modelAndView = new ModelAndView("adminTeacher/teachers");
         Map<String, List<Teacher>> params = new HashMap<>();
         params.put("teachers", teacherList);
         modelAndView.addAllObjects(params);
@@ -41,7 +35,7 @@ public class AdminTeacherController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView getTeacherById(@PathVariable(value = "id") long id) {
         Teacher teacher = service.getTeachersById(id);
-        ModelAndView modelAndView = new ModelAndView("adminTeacher/byId");
+        ModelAndView modelAndView = new ModelAndView("adminTeacher/teacher");
         Map<String, Teacher> params = new HashMap<>();
         params.put("teacher", teacher);
         modelAndView.addAllObjects(params);
@@ -50,7 +44,7 @@ public class AdminTeacherController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addTeacherGet() {
-        ModelAndView modelAndView = new ModelAndView("adminTeacher/add");
+        ModelAndView modelAndView = new ModelAndView("adminTeacher/addTeacher");
         Map<String, Object> params = new HashMap<>();
         params.put("teacherDto", new TeacherDto());
         modelAndView.addAllObjects(params);
@@ -65,7 +59,7 @@ public class AdminTeacherController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updateTeacherGet(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("adminTeacher/update");
+        ModelAndView modelAndView = new ModelAndView("adminTeacher/updateTeacher");
         Map<String, Object> params = new HashMap<>();
         Teacher teacher = service.getTeachersById(id);
         TeacherDto teacherDto = new TeacherDto.Builder()

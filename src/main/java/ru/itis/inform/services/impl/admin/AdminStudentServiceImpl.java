@@ -58,9 +58,15 @@ public class AdminStudentServiceImpl implements AdminStudentService {
     //TODO: добавить проверку на корректность логина и пароля
     @Override
     public void updateStudent(StudentDto studentDto, long id) {
+        Student studentFromDB = studentDao.findById(id);
         validationFactory.studentExistenceById(id);
         studentDtoValidation.verifyStudentDto(studentDto);
-        String hashPassword = hashGenerator.encode(studentDto.getPassword());
+        String hashPassword;
+        if (!studentFromDB.getHashPassword().equals(studentDto.getPassword())) {
+             hashPassword = hashGenerator.encode(studentDto.getPassword());
+        } else {
+            hashPassword = studentDto.getPassword();
+        }
         Student student = conversionResultFactory.studentDtoToStudent(studentDto, hashPassword);
         long uId = studentDao.findById(id).getuId();
         student.setRole("STUDENT");

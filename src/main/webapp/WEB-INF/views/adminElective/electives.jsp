@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Electives</title>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="../head.jsp"/>
 </head>
 <body>
 <div class="container">

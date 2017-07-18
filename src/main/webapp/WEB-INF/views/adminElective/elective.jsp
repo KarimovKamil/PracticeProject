@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Elective</title>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="../head.jsp"/>
 </head>
 <body>
 <div class="container">

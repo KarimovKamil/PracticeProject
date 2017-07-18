@@ -33,7 +33,7 @@ public class AdminStudentController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllStudents() {
         List<Student> studentList = service.getAllStudents();
-        ModelAndView modelAndView = new ModelAndView("adminStudent/all");
+        ModelAndView modelAndView = new ModelAndView("adminStudent/students");
         Map<String, List<Student>> params = new HashMap<>();
         params.put("students", studentList);
         modelAndView.addAllObjects(params);
@@ -43,7 +43,7 @@ public class AdminStudentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView getStudentById(@PathVariable(value = "id") long id) {
         Student student = service.getStudentById(id);
-        ModelAndView modelAndView = new ModelAndView("adminStudent/byId");
+        ModelAndView modelAndView = new ModelAndView("adminStudent/student");
         Map<String, Student> params = new HashMap<>();
         params.put("student", student);
         modelAndView.addAllObjects(params);
@@ -52,7 +52,7 @@ public class AdminStudentController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addStudentGet() {
-        ModelAndView modelAndView = new ModelAndView("adminStudent/add");
+        ModelAndView modelAndView = new ModelAndView("adminStudent/addStudent");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
         params.put("labs", adminLabService.getAllLabs());
@@ -71,7 +71,7 @@ public class AdminStudentController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updatePracticeGet(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("adminStudent/update");
+        ModelAndView modelAndView = new ModelAndView("adminStudent/updateStudent");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
         params.put("labs", adminLabService.getAllLabs());

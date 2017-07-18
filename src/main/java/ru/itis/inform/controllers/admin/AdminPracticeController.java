@@ -31,7 +31,7 @@ public class AdminPracticeController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllPractices() {
         List<Practice> practiceList = service.getAllPractices();
-        ModelAndView modelAndView = new ModelAndView("adminPractice/all");
+        ModelAndView modelAndView = new ModelAndView("adminPractice/practices");
         Map<String, List<Practice>> params = new HashMap<>();
         params.put("practices", practiceList);
         modelAndView.addAllObjects(params);
@@ -41,7 +41,7 @@ public class AdminPracticeController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView getPracticeById(@PathVariable(value = "id") long id) {
         Practice practice = service.getPracticeById(id);
-        ModelAndView modelAndView = new ModelAndView("adminPractice/byId");
+        ModelAndView modelAndView = new ModelAndView("adminPractice/practice");
         Map<String, Practice> params = new HashMap<>();
         params.put("practice", practice);
         modelAndView.addAllObjects(params);
@@ -50,7 +50,7 @@ public class AdminPracticeController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPracticeGet() {
-        ModelAndView modelAndView = new ModelAndView("adminPractice/add");
+        ModelAndView modelAndView = new ModelAndView("adminPractice/addPractice");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", teacherService.getAllTeachers());
         params.put("practiceDto", new PracticeDto());
@@ -66,7 +66,7 @@ public class AdminPracticeController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updatePracticeGet(@PathVariable(value = "id") long id) {
-        ModelAndView modelAndView = new ModelAndView("adminPractice/update");
+        ModelAndView modelAndView = new ModelAndView("adminPractice/updateElective");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", teacherService.getAllTeachers());
         Practice practice = service.getPracticeById(id);
