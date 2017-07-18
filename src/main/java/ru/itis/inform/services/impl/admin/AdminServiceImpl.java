@@ -130,6 +130,7 @@ public class AdminServiceImpl implements AdminService {
     //TODO: PROVERIT~ LOGIN I PASS NA KORR
     @Override
     public void addNewAdmin(AdminDto adminDto) {
+        validationFactory.userLoginUnique(adminDto.getLogin());
         User user = new User.Builder()
                 .firstName(adminDto.getFirstName())
                 .lastName(adminDto.getLastName())

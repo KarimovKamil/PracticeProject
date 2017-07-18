@@ -24,4 +24,6 @@ public interface StudentService {
 
     void deleteRequest(String token, long id);
 
+    void clearCookie(String token);
+
 }

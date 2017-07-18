@@ -1,27 +1,18 @@
 package ru.itis.inform.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.inform.dto.AdminDto;
-import ru.itis.inform.dto.Data;
-import ru.itis.inform.dto.TeacherDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.response.QueryResultDto;
-import ru.itis.inform.models.Request;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.admin.AdminService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
 
 /**
  * Created by The silly end on 7/14/2017.
