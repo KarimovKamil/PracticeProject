@@ -36,16 +36,6 @@ public class Student extends User {
         this.teacher = builder.teacher;
     }
 
-    @Override
-    public long getuId() {
-        return id;
-    }
-
-    @Override
-    public void setuId(long uId) {
-        this.id = uId;
-    }
-
     public String getGroup() {
         return group;
     }

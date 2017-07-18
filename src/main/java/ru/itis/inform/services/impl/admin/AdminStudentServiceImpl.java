@@ -63,6 +63,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
         String hashPassword = hashGenerator.encode(studentDto.getPassword());
         Student student = conversionResultFactory.studentDtoToStudent(studentDto, hashPassword);
         long uId = studentDao.findById(id).getuId();
+        student.setRole("STUDENT");
         userDao.update(student, uId);
         studentDao.update(student, id);
     }

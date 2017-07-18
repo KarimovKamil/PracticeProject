@@ -51,8 +51,8 @@ public class PracticeDto implements Data {
         return teacherId;
     }
 
-    public void setTeacherId(long id) {
-        this.teacherId = id;
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
     }
 
     public int getCourse() {

@@ -37,36 +37,32 @@ public class StudentDto implements Data {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getMiddleName() {
         return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getGroup() {
         return group;
     }
 
-    public int getCourse() {
-        return course;
-    }
-
-    public long getLabId() {
-        return labId;
-    }
-
-    public long getElectiveId() {
-        return electiveId;
-    }
-
-    public long getPracticeId() {
-        return practiceId;
-    }
-
-    public long getTeacherId() {
-        return teacherId;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
     public String getLogin() {
@@ -85,16 +81,40 @@ public class StudentDto implements Data {
         this.password = password;
     }
 
+    public int getCourse() {
+        return course;
+    }
+
+    public void setCourse(int course) {
+        this.course = course;
+    }
+
+    public long getLabId() {
+        return labId;
+    }
+
     public void setLabId(long labId) {
         this.labId = labId;
+    }
+
+    public long getElectiveId() {
+        return electiveId;
     }
 
     public void setElectiveId(long electiveId) {
         this.electiveId = electiveId;
     }
 
+    public long getPracticeId() {
+        return practiceId;
+    }
+
     public void setPracticeId(long practiceId) {
         this.practiceId = practiceId;
+    }
+
+    public long getTeacherId() {
+        return teacherId;
     }
 
     public void setTeacherId(long teacherId) {

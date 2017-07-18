@@ -66,7 +66,8 @@ public class StudentDaoImpl implements StudentDao {
     public Student findById(long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        return (Student) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new StudentMapper());
+        Student student = (Student) namedParameterJdbcTemplate.queryForObject(SQL_FIND_BY_ID, params, new StudentMapper());
+        return student;
     }
 
     public Student findByToken(String token) {
