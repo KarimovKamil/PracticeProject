@@ -2,7 +2,7 @@ package ru.itis.inform.models;
 
 import ru.itis.inform.dto.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by The silly end on 7/10/2017.

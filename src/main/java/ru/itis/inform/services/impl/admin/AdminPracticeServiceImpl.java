@@ -54,7 +54,7 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
         if (practiceDto.getTeacherId() != 0) {
             validationFactory.teacherExistenceById(practiceDto.getTeacherId());
         }
-        practiceDao.insert(practiceDto);
+        practiceDao.update(practiceDto, id);
     }
 
     @Override

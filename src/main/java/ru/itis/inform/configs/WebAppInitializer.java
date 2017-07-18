@@ -12,10 +12,10 @@ import javax.servlet.Filter;
 @Configuration
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{new TokenAuthenticationFilter()};
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        return new Filter[]{new TokenAuthenticationFilter()};
+//    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

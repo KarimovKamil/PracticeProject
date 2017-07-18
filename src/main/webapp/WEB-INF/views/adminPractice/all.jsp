@@ -15,9 +15,7 @@
         <tr align="center">
             <th>Name</th>
             <th>Course</th>
-            <th>First name</th>
-            <th>Middle name</th>
-            <th>Last name</th>
+            <th>Teacher</th>
             <th>Start date</th>
             <th>End date</th>
         </tr>
@@ -26,9 +24,7 @@
             <tr>
                 <td>${practice.name}</td>
                 <td>${practice.course}</td>
-                <td>${practice.teacher.firstName}</td>
-                <td>${practice.teacher.middleName}</td>
-                <td>${practice.teacher.lastName}</td>
+                <td>${practice.teacher.lastName} ${practice.teacher.firstName} ${practice.teacher.middleName}</td>
                 <td>${practice.startDate}</td>
                 <td>${practice.endDate}</td>
                 <td><a href="/admin/practice/${practice.id}">Details</a></td>

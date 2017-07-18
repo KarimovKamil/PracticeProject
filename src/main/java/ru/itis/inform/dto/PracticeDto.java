@@ -1,6 +1,6 @@
 package ru.itis.inform.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by Kamil Karimov on 14.07.2017.

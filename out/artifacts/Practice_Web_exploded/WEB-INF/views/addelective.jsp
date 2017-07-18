@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <form:form commandName="electiveDto">
+    <form:form commandName="electivedto">
         <div class="input-group input-group-lg">
             <div class="form-group">
                 <label for="name">Name:</label>

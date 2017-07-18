@@ -10,6 +10,7 @@ import ru.itis.inform.models.Elective;
 import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
 import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,34 +45,25 @@ public class AdminElectiveController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/add", method = RequestMethod.GET)
-//    public ModelAndView addElective() {
-//        ModelAndView modelAndView = new ModelAndView("addelective");
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("teachers", adminTeacherService.getAllTeachers());
-//        params.put("electiveDto", new ElectiveDto());
-//        modelAndView.addAllObjects(params);
-//        return modelAndView;
-//    }
-//
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public ModelAndView addElective(@ModelAttribute("electiveDto") ElectiveDto electiveDto) {
-//        service.addElective(electiveDto);
-//        return new ModelAndView("redirect:/admin/elective/all");
-//    }
+    @ModelAttribute("electivedto")
+    public ElectiveDto createFormModelAttribute(HttpServletRequest request) {
+        return new ElectiveDto();
+    }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addElective(Model model) {
-        model.addAttribute("electiveDto", new ElectiveDto());
-        model.addAttribute("teachers", adminTeacherService.getAllTeachers());
-        return "addelective";
+    public ModelAndView addElective() {
+        ModelAndView modelAndView = new ModelAndView("addelective");
+        Map<String, Object> params = new HashMap<>();
+        params.put("teachers", adminTeacherService.getAllTeachers());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addElective1(@ModelAttribute("electiveDto") ElectiveDto electiveDto,
-                              Model model) {
+    public ModelAndView addElective(@ModelAttribute("electivedto") ElectiveDto electiveDto) {
         service.addElective(electiveDto);
-        return "redirect:/admin/elective/all";
+        return new ModelAndView("redirect:/admin/elective/all");
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
