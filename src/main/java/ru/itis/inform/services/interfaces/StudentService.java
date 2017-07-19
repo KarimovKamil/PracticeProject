@@ -3,7 +3,7 @@ package ru.itis.inform.services.interfaces;
 import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.models.Request;
+import ru.itis.inform.models.*;
 
 import java.util.List;
 
@@ -24,6 +24,14 @@ public interface StudentService {
 
     void deleteRequest(String token, long id);
 
-    void clearCookie(String token);
+    void removeToken(String token);
+
+    List<Lab> getAllLabs();
+
+    List<Practice> getAllPractices();
+
+    List<Elective> getAllElectives();
+
+    List<Teacher> getAllTeachers();
 
 }

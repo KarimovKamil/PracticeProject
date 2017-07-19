@@ -64,7 +64,7 @@ public class Validation {
 
     private static final String REQUEST_STUDENT_BELONG =
             "SELECT CASE WHEN EXISTS " +
-                    "(SELECT req_id FROM request WHERE req_id = :reqestId " +
+                    "(SELECT req_id FROM request WHERE req_id = :requestId " +
                     "AND student_id = :studentId) " +
                     "THEN TRUE ELSE FALSE END;";
 
