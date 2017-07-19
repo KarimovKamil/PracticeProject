@@ -171,6 +171,7 @@ public class StudentController {
                 service.removeToken(cookie.getValue());
             }
             cookie.setMaxAge(0);
+            cookie.setValue(null);
             resp.addCookie(cookie);
         }
         return new ModelAndView("redirect:/login");
