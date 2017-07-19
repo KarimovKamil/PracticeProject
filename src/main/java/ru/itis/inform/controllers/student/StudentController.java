@@ -13,6 +13,12 @@ import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.services.interfaces.StudentService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
 import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
 
@@ -43,17 +49,27 @@ public class StudentController {
         return buildResponseGetAndDelete(profileDto);
     }
 
-//    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
-//    public ResponseEntity<QueryResultDto> getAllRequests(@RequestHeader("Auth-Token") String token) {
-//        RequestListDto requestListDto = service.getMyRequests(token);
-//        return buildResponseGetAndDelete(requestListDto);
-//    }
+    @RequestMapping(value = "/request/all", method = RequestMethod.GET)
+    public ModelAndView getAllRequests(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("student/requests");
+        String token = cookieGetter(request);
+        List<Request> requestList = service.getMyRequests(token);
+        Map<String, List<Request>> params = new HashMap<>();
+        params.put("requests", requestList);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/request/{id}", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> requestById(@RequestHeader("Auth-Token") String token,
-                                                      @PathVariable(value = "id") long id) {
+    public ModelAndView requestById(@PathVariable(value = "id") long id,
+                                    HttpServletRequest req) {
+        ModelAndView modelAndView = new ModelAndView("student/request");
+        String token = cookieGetter(req);
         Request request = service.getRequestById(token, id);
-        return buildResponseGetAndDelete(request);
+        Map<String, Request> params = new HashMap<>();
+        params.put("request", request);
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/request/new", method = RequestMethod.POST)
@@ -68,5 +84,16 @@ public class StudentController {
                                                             @PathVariable(value = "id") long id) {
         service.deleteRequest(token, id);
         return buildResponseGetAndDelete(Data.EMPTY_DTO());
+    }
+
+    public String cookieGetter(HttpServletRequest request) {
+        String token = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("Auth-Token".equals(cookie.getName())) {
+                token = cookie.getValue();
+            }
+        }
+        return token;
     }
 }
