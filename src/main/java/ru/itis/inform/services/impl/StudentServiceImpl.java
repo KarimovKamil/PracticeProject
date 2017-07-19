@@ -99,13 +99,11 @@ public class StudentServiceImpl implements StudentService {
                 break;
             case "ELECTIVE":
                 validationFactory.electiveExistenceById(aId);
-                validationFactory.electiveRequestCheck(student.getId(), aId);
                 Elective elective = electiveDao.findById(aId);
                 message += "курс по выбору на " + elective.getName();
                 break;
             case "PRACTICE":
                 validationFactory.practiceExistenceById(aId);
-                validationFactory.practiceRequestCheck(student.getId(), aId);
                 Practice practice = practiceDao.findById(aId);
                 message += "место проведения практики на " + practice.getName();
                 break;

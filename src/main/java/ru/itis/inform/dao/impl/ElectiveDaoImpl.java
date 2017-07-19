@@ -19,7 +19,7 @@ import java.util.Map;
 public class ElectiveDaoImpl implements ElectiveDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM elective e INNER JOIN teacher t ON (e.leader_id = t.t_id);";
+            "SELECT * FROM elective e INNER JOIN teacher t ON (e.leader_id = t.t_id) OFFSET 1;";
 
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM elective e INNER JOIN teacher t ON (e.leader_id = t.t_id) WHERE el_id = :id;";

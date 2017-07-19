@@ -19,7 +19,7 @@ import java.util.Map;
 public class TeacherDaoImpl implements TeacherDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM teacher;";
+            "SELECT * FROM teacher OFFSET 1;";
 
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM teacher WHERE t_id = :id;";

@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <form>
-        <h3>Lab name: ${lab.name}<br>
+        <h3>Name: ${lab.name}<br>
             Teacher: ${lab.teacher.lastName} ${lab.teacher.firstName} ${lab.teacher.middleName}<br>
         </h3>
         <button class="btn btn-primary" formaction="/admin/lab/${lab.id}/delete" formmethod="post">

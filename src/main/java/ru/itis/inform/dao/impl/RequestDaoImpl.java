@@ -19,37 +19,37 @@ public class RequestDaoImpl implements RequestDao {
 
     private static final String SQL_FIND_ALL =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
-                    "INNER JOIN u_user u ON (u.u_id = s.user_id);";
+                    "INNER JOIN u_user u ON (u.u_id = s.user_id) ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_ACTIVE =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE r.req_status = 'ACTIVE';";
+                    "WHERE r.req_status = 'ACTIVE' ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_LAB_REQ =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE r.req_type = 'LAB';";
+                    "WHERE r.req_type = 'LAB' ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_ELECTIVE_REQ =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE r.req_type = 'ELECTIVE';";
+                    "WHERE r.req_type = 'ELECTIVE' ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_PRACTICE_REQ =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE r.req_type = 'PRACTICE';";
+                    "WHERE r.req_type = 'PRACTICE' ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_LEADER_REQ =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE r.req_type = 'LEADER';";
+                    "WHERE r.req_type = 'LEADER' ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_ALL_STUDENT_REQ =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
                     "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
-                    "WHERE u.token = :token;";
+                    "WHERE u.token = :token ORDER BY r.req_date DESC;";
 
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
@@ -97,7 +97,7 @@ public class RequestDaoImpl implements RequestDao {
     public List<Request> findAllStudentReq(String token) {
         Map<String, Object> params = new HashMap<>();
         params.put("token", token);
-        return namedParameterJdbcTemplate.query(SQL_FIND_BY_ID, params, new RequestMapper());
+        return namedParameterJdbcTemplate.query(SQL_FIND_ALL_STUDENT_REQ, params, new RequestMapper());
     }
 
     public Request findById(long id) {
