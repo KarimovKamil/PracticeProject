@@ -11,7 +11,12 @@ import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
+import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.StudentService;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +37,13 @@ public class StudentController {
     StudentService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> login(@RequestParam("login") String login,
-                                                @RequestParam("password") String password) {
+    public ModelAndView login(@RequestParam("login") String login,
+                              @RequestParam("password") String password,
+                              HttpServletResponse response) {
         UserDto userDto = service.login(login, password);
-        return buildResponsePostAndPut(userDto);
+        Cookie cookie = new Cookie("Auth-Token", userDto.getToken());
+        response.addCookie(cookie);
+        return new ModelAndView("redirect:/profile");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -95,5 +103,19 @@ public class StudentController {
             }
         }
         return token;
+    }
+
+    @RequestMapping(value = "/exit", method = RequestMethod.GET)
+    public ModelAndView exit(HttpServletRequest req,
+                             HttpServletResponse resp) {
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("Auth-Token".equals(cookie.getName())) {
+                service.clearCookie(cookie.getValue());
+            }
+            cookie.setMaxAge(0);
+            resp.addCookie(cookie);
+        }
+        return new ModelAndView("redirect:/login");
     }
 }

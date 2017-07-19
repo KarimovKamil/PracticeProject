@@ -133,4 +133,12 @@ public class StudentServiceImpl implements StudentService {
         validationFactory.checkIfRequestBelongToStudent(id, student.getId());
         requestDao.delete(id);
     }
+
+    @Override
+    public void clearCookie(String token) {
+        validationFactory.userExistenceByToken(token);
+        User user = userDao.findByToken(token);
+        user.setToken(null);
+        userDao.update(user, user.getuId());
+    }
 }

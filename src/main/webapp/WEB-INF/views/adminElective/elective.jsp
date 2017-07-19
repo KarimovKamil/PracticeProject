@@ -1,19 +1,14 @@
 <html>
 <head>
     <title>Elective</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
-
-    <h2>#${elective.id} elective</h2>
-
     <form>
         <h3>Name: ${elective.name}<br>
             Course: ${elective.course}<br>
-            First name: ${elective.teacher.firstName}<br>
-            Middle name: ${elective.teacher.middleName}<br>
-            Last name: ${elective.teacher.lastName}<br>
+            Teacher: ${elective.teacher.lastName} ${elective.teacher.firstName} ${elective.teacher.middleName}<br>
         </h3>
         <button class="btn btn-primary" formaction="/admin/elective/${elective.id}/delete" formmethod="post">
             Delete

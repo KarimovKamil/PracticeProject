@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Add student</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -34,13 +34,13 @@
                             placeholder="Enter group"/>
                 <div class="form-group">
                     <label for="login">Login:</label>
-                    <form:input type="text" minlength="1" maxlength="30" class="form-control" path="login" id="login"
+                    <form:input type="text" minlength="6" maxlength="30" class="form-control" path="login" id="login"
                                 placeholder="Enter login"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <form:input type="password" minlength="1" maxlength="30" class="form-control" path="password" id="password"
+                <form:input type="password" minlength="6" maxlength="30" class="form-control" path="password" id="password"
                             placeholder="Enter password"/>
             </div>
 

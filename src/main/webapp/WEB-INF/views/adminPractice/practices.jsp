@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Practices</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -18,6 +18,7 @@
             <th>Teacher</th>
             <th>Start date</th>
             <th>End date</th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${practices}" var="practice">
@@ -27,6 +28,7 @@
                 <td>${practice.teacher.lastName} ${practice.teacher.firstName} ${practice.teacher.middleName}</td>
                 <td>${practice.startDate}</td>
                 <td>${practice.endDate}</td>
+
                 <td><a href="/admin/practice/${practice.id}">Details</a></td>
             </tr>
         </c:forEach>

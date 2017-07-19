@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Students</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -18,6 +18,7 @@
             <th>Middle name</th>
             <th>Course</th>
             <th>Group</th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${students}" var="student">

@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Student</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">

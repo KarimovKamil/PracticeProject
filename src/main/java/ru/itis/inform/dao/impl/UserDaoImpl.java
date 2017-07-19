@@ -30,8 +30,8 @@ public class UserDaoImpl implements UserDao {
             "SELECT * FROM u_user WHERE token = :token;";
 
     private static final String SQL_INSERT =
-            "INSERT INTO u_user (login, hash_password, token, first_name, last_name, middle_name, role) " +
-                    "VALUES (:login, :hashPassword, :token, :firstName, :lastName, :middleName, :role) " +
+            "INSERT INTO u_user (login, hash_password, first_name, last_name, middle_name, role) " +
+                    "VALUES (:login, :hashPassword, :firstName, :lastName, :middleName, :role) " +
                     "RETURNING u_user.u_id;";
 
     private static final String SQL_UPDATE =
@@ -70,7 +70,6 @@ public class UserDaoImpl implements UserDao {
         Map<String, Object> params = new HashMap<>();
         params.put("login", user.getLogin());
         params.put("hashPassword", user.getHashPassword());
-        params.put("token", user.getToken());
         params.put("firstName", user.getFirstName());
         params.put("lastName", user.getLastName());
         params.put("middleName", user.getMiddleName());

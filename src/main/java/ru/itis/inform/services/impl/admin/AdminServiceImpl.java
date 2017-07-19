@@ -99,7 +99,7 @@ public class AdminServiceImpl implements AdminService {
         Request request = requestDao.findById(id);
         request.setResMessage(resMessage);
         request.setStatus("ACCEPTED");
-        Student student = request.getStudent();
+        Student student = studentDao.findById(request.getStudent().getId());
         switch (request.getType()) {
             case "LAB":
                 student.setLabId(request.getAttributeId());
@@ -130,6 +130,7 @@ public class AdminServiceImpl implements AdminService {
     //TODO: PROVERIT~ LOGIN I PASS NA KORR
     @Override
     public void addNewAdmin(AdminDto adminDto) {
+        validationFactory.userLoginUnique(adminDto.getLogin());
         User user = new User.Builder()
                 .firstName(adminDto.getFirstName())
                 .lastName(adminDto.getLastName())

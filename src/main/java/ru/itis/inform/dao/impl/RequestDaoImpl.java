@@ -52,8 +52,9 @@ public class RequestDaoImpl implements RequestDao {
                     "WHERE u.token = :token;";
 
     private static final String SQL_FIND_BY_ID =
-            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id)" +
-                    " WHERE req_id = :id;";
+            "SELECT * FROM request r INNER JOIN student_info s ON (r.student_id = s.st_id) " +
+                    "INNER JOIN u_user u ON (u.u_id = s.user_id) " +
+                    "WHERE req_id = :id;";
 
     private static final String SQL_INSERT =
             "INSERT INTO request (req_message, req_date, student_id, req_type, attribute_id) " +

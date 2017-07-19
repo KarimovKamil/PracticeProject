@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Add elective</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="../head/adminTableHead.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -21,7 +21,8 @@
                             placeholder="Enter course"/>
             </div>
             <div class="form-group">
-                <form:select path="teacherId">
+                <label for="teacherId"></label>
+                <form:select path="teacherId" class="form-control">
                     <c:forEach var="item" items="${teachers}">
                         <option value="${item.id}">${item.firstName} ${item.middleName} ${item.lastName}</option>
                     </c:forEach>
