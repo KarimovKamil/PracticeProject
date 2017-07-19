@@ -10,7 +10,7 @@
             Type: ${request.type}<br>
             Status: ${request.status}<br>
             Request Message: ${request.reqMessage}<br>
-            Response Message: ${requst.resMessage}<br>
+            Response Message: ${request.resMessage}<br>
         </h3>
         <button class="btn btn-primary" formaction="/request/${request.id}/delete" formmethod="post">
             Delete
