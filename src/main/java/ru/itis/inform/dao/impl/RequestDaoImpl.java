@@ -7,6 +7,7 @@ import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.mappers.RequestMapper;
 import ru.itis.inform.models.Request;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,8 +110,8 @@ public class RequestDaoImpl implements RequestDao {
     public void insert(Request request) {
         Map<String, Object> params = new HashMap<>();
         params.put("reqMessage", request.getReqMessage());
-        params.put("reqDate", request.getDate());
-        params.put("studentId", request.getStudent().getuId());
+        params.put("reqDate", new Date());
+        params.put("studentId", request.getStudent().getId());
         params.put("reqType", request.getType());
         params.put("attributeId", request.getAttributeId());
         namedParameterJdbcTemplate.update(SQL_INSERT, params);

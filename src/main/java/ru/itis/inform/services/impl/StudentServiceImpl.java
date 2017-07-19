@@ -118,6 +118,7 @@ public class StudentServiceImpl implements StudentService {
             default:
                 throw new IncorrectDataException("Incorrect request type");
         }
+        requestDto.setStudentId(student.getId());
         Request request = conversionResultFactory.requestDtoToRequest(requestDto);
         request.setReqMessage(message);
         requestDao.insert(request);
@@ -133,10 +134,30 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void clearCookie(String token) {
+    public void removeToken(String token) {
         validationFactory.userExistenceByToken(token);
         User user = userDao.findByToken(token);
         user.setToken(null);
         userDao.update(user, user.getuId());
+    }
+
+    @Override
+    public List<Lab> getAllLabs() {
+        return labDao.findAll();
+    }
+
+    @Override
+    public List<Practice> getAllPractices() {
+        return practiceDao.findAll();
+    }
+
+    @Override
+    public List<Elective> getAllElectives() {
+        return electiveDao.findAll();
+    }
+
+    @Override
+    public List<Teacher> getAllTeachers() {
+        return teacherDao.findAll();
     }
 }

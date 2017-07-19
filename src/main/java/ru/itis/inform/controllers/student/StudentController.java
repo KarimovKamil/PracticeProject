@@ -1,31 +1,20 @@
 package ru.itis.inform.controllers.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ru.itis.inform.dto.Data;
-import ru.itis.inform.dto.ProfileDto;
 import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
-import ru.itis.inform.dto.response.QueryResultDto;
 import ru.itis.inform.models.Request;
-import ru.itis.inform.models.User;
 import ru.itis.inform.services.interfaces.StudentService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponseGetAndDelete;
-import static ru.itis.inform.controllers.utils.ResponseBuilder.buildResponsePostAndPut;
 
 /**
  * Created by Kamil Karimov on 06.07.2017.
@@ -48,13 +37,16 @@ public class StudentController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
-        return new ModelAndView("login");
+        return new ModelAndView("student/login");
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ResponseEntity<QueryResultDto> profile(@RequestHeader("Auth-Token") String token) {
-        ProfileDto profileDto = service.getProfile(token);
-        return buildResponseGetAndDelete(profileDto);
+    public ModelAndView profile(@CookieValue("Auth-Token") String token) {
+        ModelAndView modelAndView = new ModelAndView("student/profile");
+        Map<String, Object> params = new HashMap<>();
+        params.put("profileDto", service.getProfile(token));
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/request/all", method = RequestMethod.GET)
@@ -80,18 +72,83 @@ public class StudentController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/request/new", method = RequestMethod.POST)
-    public ResponseEntity<QueryResultDto> addRequest(@RequestHeader("Auth-Token") String token,
-                                                     @RequestBody RequestDto requestDto) {
-        service.addRequest(token, requestDto);
-        return buildResponsePostAndPut(Data.EMPTY_DTO());
+    @RequestMapping(value = "/request/lab", method = RequestMethod.GET)
+    public ModelAndView addLabRequest() {
+        ModelAndView modelAndView = new ModelAndView("student/changeLab");
+        Map<String, Object> params = new HashMap<>();
+        params.put("attributes", service.getAllLabs());
+        params.put("requestDto", new RequestDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/request/{id}/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<QueryResultDto> deleteRequestById(@RequestHeader("Auth-Token") String token,
-                                                            @PathVariable(value = "id") long id) {
+    @RequestMapping(value = "/request/lab", method = RequestMethod.POST)
+    public ModelAndView addLabRequest(@CookieValue("Auth-Token") String token,
+                                      @ModelAttribute RequestDto requestDto) {
+        requestDto.setType("LAB");
+        service.addRequest(token, requestDto);
+        return new ModelAndView("redirect:/request/all");
+    }
+
+    @RequestMapping(value = "/request/elective", method = RequestMethod.GET)
+    public ModelAndView addElectiveRequest() {
+        ModelAndView modelAndView = new ModelAndView("student/changeElective");
+        Map<String, Object> params = new HashMap<>();
+        params.put("attributes", service.getAllElectives());
+        params.put("requestDto", new RequestDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/elective", method = RequestMethod.POST)
+    public ModelAndView addElectiveRequest(@CookieValue("Auth-Token") String token,
+                                           @ModelAttribute RequestDto requestDto) {
+        requestDto.setType("ELECTIVE");
+        service.addRequest(token, requestDto);
+        return new ModelAndView("redirect:/request/all");
+    }
+
+    @RequestMapping(value = "/request/practice", method = RequestMethod.GET)
+    public ModelAndView addPracticeRequest() {
+        ModelAndView modelAndView = new ModelAndView("student/changePractice");
+        Map<String, Object> params = new HashMap<>();
+        params.put("attributes", service.getAllPractices());
+        params.put("requestDto", new RequestDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/practice", method = RequestMethod.POST)
+    public ModelAndView addPracticeRequest(@CookieValue("Auth-Token") String token,
+                                           @ModelAttribute RequestDto requestDto) {
+        requestDto.setType("PRACTICE");
+        service.addRequest(token, requestDto);
+        return new ModelAndView("redirect:/request/all");
+    }
+
+    @RequestMapping(value = "/request/teacher", method = RequestMethod.GET)
+    public ModelAndView addTeacherRequest() {
+        ModelAndView modelAndView = new ModelAndView("student/changeTeacher");
+        Map<String, Object> params = new HashMap<>();
+        params.put("attributes", service.getAllTeachers());
+        params.put("requestDto", new RequestDto());
+        modelAndView.addAllObjects(params);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/request/teacher", method = RequestMethod.POST)
+    public ModelAndView addTeacherRequest(@CookieValue("Auth-Token") String token,
+                                          @ModelAttribute RequestDto requestDto) {
+        requestDto.setType("TEACHER");
+        service.addRequest(token, requestDto);
+        return new ModelAndView("redirect:/request/all");
+    }
+
+    @RequestMapping(value = "/request/{id}/delete", method = RequestMethod.POST)
+    public ModelAndView deleteRequestById(@CookieValue("Auth-Token") String token,
+                                          @PathVariable(value = "id") long id) {
         service.deleteRequest(token, id);
-        return buildResponseGetAndDelete(Data.EMPTY_DTO());
+        return new ModelAndView("redirect:/request/all");
     }
 
     public String cookieGetter(HttpServletRequest request) {
@@ -111,7 +168,7 @@ public class StudentController {
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies) {
             if ("Auth-Token".equals(cookie.getName())) {
-                service.clearCookie(cookie.getValue());
+                service.removeToken(cookie.getValue());
             }
             cookie.setMaxAge(0);
             resp.addCookie(cookie);
