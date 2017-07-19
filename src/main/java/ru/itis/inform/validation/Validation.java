@@ -2,6 +2,7 @@ package ru.itis.inform.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.itis.inform.dao.interfaces.ElectiveDao;
 import ru.itis.inform.dao.interfaces.PracticeDao;
@@ -82,6 +83,8 @@ public class Validation {
                     "THEN TRUE ELSE FALSE END;";
 
     @Autowired
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     public boolean userExistenceById(long id) {
@@ -124,20 +127,20 @@ public class Validation {
         Map<String, Object> params = new HashMap<>();
         params.put("practiceId", practiceId);
         params.put("studentId", studentId);
-        return jdbcTemplate.queryForObject(PRACTICE_REQUEST_CHECK, Boolean.class, params);
+        return namedParameterJdbcTemplate.queryForObject(PRACTICE_REQUEST_CHECK, params, Boolean.class);
     }
 
     public boolean electiveRequestCheck(long studentId, long electiveId) {
         Map<String, Object> params = new HashMap<>();
         params.put("electiveId", electiveId);
         params.put("studentId", studentId);
-        return jdbcTemplate.queryForObject(ELECTIVE_REQUEST_CHECK, Boolean.class, params);
+        return namedParameterJdbcTemplate.queryForObject(ELECTIVE_REQUEST_CHECK, params, Boolean.class);
     }
 
     public boolean requestCheck(long requestId, long studentId) {
         Map<String, Object> params = new HashMap<>();
         params.put("requestId", requestId);
         params.put("studentId", studentId);
-        return jdbcTemplate.queryForObject(REQUEST_STUDENT_BELONG, Boolean.class, params);
+        return namedParameterJdbcTemplate.queryForObject(REQUEST_STUDENT_BELONG, params, Boolean.class);
     }
 }
