@@ -12,6 +12,8 @@ public interface AdminTeacherService {
 
     List<Teacher> getAllTeachers();
 
+    List<Teacher> getAllWithoutEmpty();
+
     Teacher getTeachersById(long id);
 
     void addTeacher(TeacherDto teacherDto);

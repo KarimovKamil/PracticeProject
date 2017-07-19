@@ -12,6 +12,8 @@ public interface AdminLabService {
 
     List<Lab> getAllLabs();
 
+    List<Lab> getAllWithoutEmpty();
+
     Lab getLabById(long id);
 
     void addLab(LabDto labDto);

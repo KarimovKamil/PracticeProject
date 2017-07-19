@@ -19,7 +19,7 @@ import java.util.Map;
 public class LabDaoImpl implements LabDao {
 
     private final static String SQL_FIND_ALL =
-            "SELECT * FROM lab l INNER JOIN teacher t ON l.leader_id = t.t_id OFFSET 1;";
+            "SELECT * FROM lab l INNER JOIN teacher t ON l.leader_id = t.t_id;";
 
     private final static String SQL_FIND_BY_ID =
             "SELECT * FROM lab l INNER JOIN teacher t ON l.leader_id = t.t_id WHERE l.lab_id = :id;";

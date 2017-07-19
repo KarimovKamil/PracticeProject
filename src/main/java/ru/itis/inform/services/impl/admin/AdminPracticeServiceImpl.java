@@ -27,6 +27,13 @@ public class AdminPracticeServiceImpl implements AdminPracticeService {
     }
 
     @Override
+    public List<Practice> getAllWithoutEmpty() {
+        List<Practice> electives = practiceDao.findAll();
+        electives.remove(0);
+        return electives;
+    }
+
+    @Override
     public Practice getPracticeById(long id) {
         validationFactory.practiceExistenceById(id);
         return practiceDao.findById(id);

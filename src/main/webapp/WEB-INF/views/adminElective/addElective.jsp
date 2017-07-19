@@ -21,7 +21,7 @@
                             placeholder="Enter course"/>
             </div>
             <div class="form-group">
-                <label for="teacherId"></label>
+                <label for="teacherId">Teacher:</label>
                 <form:select path="teacherId" class="form-control">
                     <c:forEach var="item" items="${teachers}">
                         <option value="${item.id}">${item.firstName} ${item.middleName} ${item.lastName}</option>

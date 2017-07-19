@@ -30,7 +30,7 @@ public class AdminElectiveController {
     public ModelAndView getAllElectives() {
         ModelAndView modelAndView = new ModelAndView("adminElective/electives");
         Map<String, List<Elective>> params = new HashMap<>();
-        params.put("electives", service.getAllElectives());
+        params.put("electives", service.getAllWithoutEmpty());
         modelAndView.addAllObjects(params);
         return modelAndView;
     }
@@ -55,7 +55,7 @@ public class AdminElectiveController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addElective(@ModelAttribute("electivedto") ElectiveDto electiveDto) {
+    public ModelAndView addElective(@ModelAttribute("electiveDto") ElectiveDto electiveDto) {
         service.addElective(electiveDto);
         return new ModelAndView("redirect:/admin/elective/all");
     }
@@ -65,7 +65,13 @@ public class AdminElectiveController {
         ModelAndView modelAndView = new ModelAndView("adminElective/updateElective");
         Map<String, Object> params = new HashMap<>();
         params.put("teachers", adminTeacherService.getAllTeachers());
-        params.put("elective", service.getElectiveById(id));
+        Elective elective = service.getElectiveById(id);
+        ElectiveDto electiveDto = new ElectiveDto.Builder()
+                .course(elective.getCourse())
+                .name(elective.getName())
+                .teacherId(elective.getTeacher().getId())
+                .build();
+        params.put("electiveDto", electiveDto);
         modelAndView.addAllObjects(params);
         return modelAndView;
     }

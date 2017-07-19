@@ -24,7 +24,7 @@ public class AdminTeacherController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllTeachers() {
-        List<Teacher> teacherList = service.getAllTeachers();
+        List<Teacher> teacherList = service.getAllWithoutEmpty();
         ModelAndView modelAndView = new ModelAndView("adminTeacher/teachers");
         Map<String, List<Teacher>> params = new HashMap<>();
         params.put("teachers", teacherList);

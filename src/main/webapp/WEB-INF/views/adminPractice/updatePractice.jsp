@@ -33,12 +33,12 @@
                 <label for="teacherId">Teacher:</label>
                 <form:select path="teacherId" class="form-control">
                     <c:forEach var="item" items="${teachers}">
-                        <option value="${item.id}">${item.firstName} ${item.middleName} ${item.lastName}</option>
+                        <option value="${item.id}">${item.lastName} ${item.firstName} ${item.middleName}</option>
                     </c:forEach>
                 </form:select>
             </div>
-            <button type="submit" formmethod="post" class="btn btn-primary">Submit</button>
         </div>
+        <button type="submit" formmethod="post" class="btn btn-primary">Submit</button>
     </form:form>
 </div>
 </body>

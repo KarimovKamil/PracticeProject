@@ -6,8 +6,6 @@
 <body>
 <div class="container">
 
-    <h2>#${student.id} student</h2>
-
     <form>
         <h3>First name: ${student.firstName}<br>
             Last Name: ${student.lastName}<br>

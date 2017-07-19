@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Error</title>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="head/head.jsp"/>
 </head>
 <body>
 <center>
