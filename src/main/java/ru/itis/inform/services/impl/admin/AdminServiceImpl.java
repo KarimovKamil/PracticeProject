@@ -1,7 +1,10 @@
 package ru.itis.inform.services.impl.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dao.config.DataConfig;
+import ru.itis.inform.dao.impl.UserDaoImpl;
 import ru.itis.inform.dao.interfaces.RequestDao;
 import ru.itis.inform.dao.interfaces.StudentDao;
 import ru.itis.inform.dao.interfaces.UserDao;
@@ -36,6 +39,11 @@ public class AdminServiceImpl implements AdminService {
     HashGenerator hashGenerator;
     @Autowired
     TokenGenerator tokenGenerator;
+
+    public AdminServiceImpl() {
+        this.userDao = new UserDaoImpl(new DataConfig().namedParameterJdbcTemplate());
+        this.validationFactory = new ValidationFactory();
+    }
 
     @Override
     public UserDto login(String login, String password) {

@@ -2,6 +2,7 @@ package ru.itis.inform.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.itis.inform.dao.config.DataConfig;
 import ru.itis.inform.exceptions.IncorrectDataException;
 
 import java.util.Date;
@@ -16,6 +17,10 @@ public class ValidationFactory {
     Validation validation;
     @Autowired
     DataValidation dataValidation;
+
+    public ValidationFactory() {
+        this.validation = new Validation(new DataConfig().jdbcTemplate());
+    }
 
     public void userExistenceById(long id) {
         if (!validation.userExistenceById(id)) {

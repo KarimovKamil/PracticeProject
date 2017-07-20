@@ -3,6 +3,7 @@ package ru.itis.inform.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.itis.inform.dao.config.DataConfig;
 import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.dao.mappers.UserMapper;
 import ru.itis.inform.models.User;
@@ -43,6 +44,10 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public UserDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public List<User> findAll() {
         return namedParameterJdbcTemplate.query(SQL_FIND_ALL, new UserMapper());
