@@ -14,10 +14,10 @@ import javax.servlet.Filter;
 @ComponentScan(value = "ru.itis.inform")
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-/*    @Override
+    @Override
     protected Filter[] getServletFilters() {
         return new Filter[]{new TokenAuthenticationFilter()};
-    }*/
+    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

@@ -48,8 +48,8 @@ CREATE TABLE elective (
 CREATE TABLE practice (
   pr_id BIGSERIAL NOT NULL,
   pr_name VARCHAR(100) NOT NULL,
-  start_date TIMESTAMP,
-  end_date TIMESTAMP,
+  start_date DATE,
+  end_date DATE,
   leader_id BIGINT DEFAULT 1,
   course INT NOT NULL,
   PRIMARY KEY (pr_id)
@@ -67,7 +67,7 @@ CREATE TABLE request (
   PRIMARY KEY (req_id)
 );
 
-ALTER TABLE student_info ADD CONSTRAINT student_fk1 FOREIGN KEY (user_id) REFERENCES u_user(u_id);
+ALTER TABLE student_info ADD CONSTRAINT student_fk1 FOREIGN KEY (user_id) REFERENCES u_user(u_id) ON DELETE CASCADE;
 
 ALTER TABLE student_info ADD CONSTRAINT student_fk2 FOREIGN KEY (lab_id) REFERENCES lab(lab_id) ON DELETE SET DEFAULT;
 

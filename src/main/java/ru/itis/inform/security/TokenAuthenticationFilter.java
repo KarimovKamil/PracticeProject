@@ -11,8 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
+import ru.itis.inform.dao.impl.UserDaoImpl;
 import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.models.User;
+import ru.itis.inform.services.impl.admin.AdminServiceImpl;
+import ru.itis.inform.services.interfaces.admin.AdminService;
 import ru.itis.inform.validation.Validation;
 
 import javax.servlet.FilterChain;
@@ -36,11 +39,10 @@ import java.util.List;
 public class TokenAuthenticationFilter extends GenericFilterBean {
 
     @Autowired
-    UserDao userDao;
-    @Autowired
-    private Validation validation;
+    AdminService adminService;
 
     public TokenAuthenticationFilter() {
+        this.adminService = new AdminServiceImpl();
     }
 
     @Override
@@ -74,8 +76,8 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
                     }
                 }
             } else {
-                if (!token.isEmpty() && !token.equals("") && validation.userExistenceByToken(token)) {
-                    User user = userDao.findByToken(token);
+                if (!token.isEmpty() && !token.equals("")) {
+                    User user = adminService.profile(token);
                     if (!isAdminMethod(request)) {
                         List<GrantedAuthority> grantedAuthorities = grantAuthorities(user);
                         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getHashPassword(), grantedAuthorities);

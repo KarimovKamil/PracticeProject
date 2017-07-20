@@ -7,6 +7,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import ru.itis.inform.controllers.admin.*;
 import ru.itis.inform.controllers.student.StudentController;
 import ru.itis.inform.exceptions.IncorrectDataException;
+import ru.itis.inform.exceptions.PermissionException;
+import ru.itis.inform.security.TokenAuthenticationFilter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,4 +32,8 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return modelAndView;
     }
 
+    @ExceptionHandler(PermissionException.class)
+    public ModelAndView permitError(Exception e) {
+        return incorrectData(e);
+    }
 }

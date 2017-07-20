@@ -15,17 +15,16 @@ import javax.sql.DataSource;
  */
 @Configuration
 @PropertySource("classpath:properties/config.properties")
-//@ComponentScan(basePackages = "")
 public class DataConfig {
 
     @Value("${postgres.username}")
-    private String username;
+    private String username = "postgres";
     @Value("${postgres.password}")
-    private String password;
+    private String password = "postgres";
     @Value("${postgres.url}")
-    private String url;
+    private String url = "jdbc:postgresql://localhost:5432/project";
     @Value("${postgres.driver}")
-    private String driver;
+    private String driver = "org.postgresql.Driver";
 
     private DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
