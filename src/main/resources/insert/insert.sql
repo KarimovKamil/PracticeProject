@@ -31,11 +31,11 @@ INSERT INTO u_user (login, hash_password, role, last_name, first_name, middle_na
   'Осипов', 'Денис', 'Алексеевич');
 
 INSERT INTO student_info (s_group, course, user_id) VALUES
-  (505, 2, 2);
+  ('11-505', 2, 2);
 INSERT INTO student_info (s_group, course, user_id) VALUES
-  (401, 3, 3);
+  ('11-401', 3, 3);
 INSERT INTO student_info (s_group, course, user_id) VALUES
-  (601, 1, 4);
+  ('11-601', 1, 4);
 
 INSERT INTO request (req_date, student_id, req_type, attribute_id) VALUES
   ('2017-01-17', 1, 'LAB', 2);
