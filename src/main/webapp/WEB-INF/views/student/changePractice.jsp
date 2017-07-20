@@ -14,7 +14,7 @@
                 <label for="attributeId"></label>
                 <form:select path="attributeId" class="form-control">
                     <c:forEach var="item" items="${attributes}">
-                        <option value="${item.id}">${item.name} Course: ${item.course}</option>
+                        <option value="${item.id}">${item.name}</option>
                     </c:forEach>
                 </form:select>
             </div>

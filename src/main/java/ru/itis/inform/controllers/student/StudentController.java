@@ -8,6 +8,10 @@ import ru.itis.inform.dto.RequestDto;
 import ru.itis.inform.dto.UserDto;
 import ru.itis.inform.models.Request;
 import ru.itis.inform.services.interfaces.StudentService;
+import ru.itis.inform.services.interfaces.admin.AdminElectiveService;
+import ru.itis.inform.services.interfaces.admin.AdminLabService;
+import ru.itis.inform.services.interfaces.admin.AdminPracticeService;
+import ru.itis.inform.services.interfaces.admin.AdminTeacherService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +28,14 @@ public class StudentController {
 
     @Autowired
     StudentService service;
+    @Autowired
+    AdminLabService adminLabService;
+    @Autowired
+    AdminPracticeService adminPracticeService;
+    @Autowired
+    AdminElectiveService adminElectiveService;
+    @Autowired
+    AdminTeacherService adminTeacherService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam("login") String login,
@@ -76,7 +88,7 @@ public class StudentController {
     public ModelAndView addLabRequest() {
         ModelAndView modelAndView = new ModelAndView("student/changeLab");
         Map<String, Object> params = new HashMap<>();
-        params.put("attributes", service.getAllLabs());
+        params.put("attributes", adminLabService.getAllWithoutEmpty());
         params.put("requestDto", new RequestDto());
         modelAndView.addAllObjects(params);
         return modelAndView;
@@ -94,7 +106,7 @@ public class StudentController {
     public ModelAndView addElectiveRequest() {
         ModelAndView modelAndView = new ModelAndView("student/changeElective");
         Map<String, Object> params = new HashMap<>();
-        params.put("attributes", service.getAllElectives());
+        params.put("attributes", adminElectiveService.getAllWithoutEmpty());
         params.put("requestDto", new RequestDto());
         modelAndView.addAllObjects(params);
         return modelAndView;
@@ -112,7 +124,7 @@ public class StudentController {
     public ModelAndView addPracticeRequest() {
         ModelAndView modelAndView = new ModelAndView("student/changePractice");
         Map<String, Object> params = new HashMap<>();
-        params.put("attributes", service.getAllPractices());
+        params.put("attributes", adminPracticeService.getAllWithoutEmpty());
         params.put("requestDto", new RequestDto());
         modelAndView.addAllObjects(params);
         return modelAndView;
@@ -130,7 +142,7 @@ public class StudentController {
     public ModelAndView addTeacherRequest() {
         ModelAndView modelAndView = new ModelAndView("student/changeTeacher");
         Map<String, Object> params = new HashMap<>();
-        params.put("attributes", service.getAllTeachers());
+        params.put("attributes", adminTeacherService.getAllWithoutEmpty());
         params.put("requestDto", new RequestDto());
         modelAndView.addAllObjects(params);
         return modelAndView;
