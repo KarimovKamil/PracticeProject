@@ -34,7 +34,7 @@ public class AdminLabController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllLabs() {
-        List<Lab> labList = service.getAllLabs();
+        List<Lab> labList = service.getAllWithoutEmpty();
         ModelAndView modelAndView = new ModelAndView("adminLab/labs");
         Map<String, List<Lab>> params = new HashMap<>();
         params.put("labs", labList);

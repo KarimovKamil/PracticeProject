@@ -45,12 +45,11 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     TokenGenerator tokenGenerator;
 
-    //TODO: добавить изменение логина и пароля
     @Override
     public UserDto login(String login, String password) {
         validationFactory.userExistenceByLogin(login);
         User user = userDao.findByLogin(login);
-        if (hashGenerator.match(password, user.getHashPassword())) {
+        if (hashGenerator.match(password, user.getHashPassword()) && "STUDENT".equals(user.getRole())) {
             user.setToken(tokenGenerator.generateToken());
             userDao.update(user, user.getuId());
             return new UserDto(user.getuId(), user.getToken());
@@ -128,6 +127,10 @@ public class StudentServiceImpl implements StudentService {
     public void deleteRequest(String token, long id) {
         validationFactory.userExistenceByToken(token);
         validationFactory.requestExistenceById(id);
+        Request request = requestDao.findById(id);
+        if (!"ACTIVE".equals(request.getStatus().toUpperCase())) {
+           throw new IncorrectDataException("Request is accepted/denied");
+        }
         Student student = studentDao.findByToken(token);
         validationFactory.checkIfRequestBelongToStudent(id, student.getId());
         requestDao.delete(id);

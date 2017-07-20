@@ -8,7 +8,12 @@
 <body>
 <div class="container">
 
-    <h2>Labs</h2>
+    <form>
+        <h2>Labs</h2>
+        <button class="btn btn-primary" formaction="/admin/lab/add" formmethod="get">
+            Add new
+        </button>
+    </form>
 
     <table class="table table-striped table-bordered">
         <thead>

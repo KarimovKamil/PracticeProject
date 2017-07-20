@@ -27,6 +27,13 @@ public class AdminElectiveServiceImpl implements AdminElectiveService {
     }
 
     @Override
+    public List<Elective> getAllWithoutEmpty() {
+        List<Elective> electives = electiveDao.findAll();
+        electives.remove(0);
+        return electives;
+    }
+
+    @Override
     public Elective getElectiveById(long id) {
         validationFactory.electiveExistenceById(id);
         return electiveDao.findById(id);

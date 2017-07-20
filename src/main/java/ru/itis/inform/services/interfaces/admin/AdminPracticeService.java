@@ -12,6 +12,8 @@ public interface AdminPracticeService {
 
     List<Practice> getAllPractices();
 
+    List<Practice> getAllWithoutEmpty();
+
     Practice getPracticeById(long id);
 
     void addPractice(PracticeDto practiceDto);

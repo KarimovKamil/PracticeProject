@@ -25,7 +25,7 @@
     </form>
     <form>
         <button class="btn btn-primary" formaction="/login" formmethod="get">
-            Login
+            Student login
         </button>
     </form>
 </div>

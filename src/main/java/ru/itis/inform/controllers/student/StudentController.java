@@ -151,7 +151,7 @@ public class StudentController {
     @RequestMapping(value = "/request/teacher", method = RequestMethod.POST)
     public ModelAndView addTeacherRequest(@CookieValue("Auth-Token") String token,
                                           @ModelAttribute RequestDto requestDto) {
-        requestDto.setType("TEACHER");
+        requestDto.setType("LEADER");
         service.addRequest(token, requestDto);
         return new ModelAndView("redirect:/request/all");
     }
@@ -183,6 +183,7 @@ public class StudentController {
                 service.removeToken(cookie.getValue());
             }
             cookie.setMaxAge(0);
+            cookie.setValue(null);
             resp.addCookie(cookie);
         }
         return new ModelAndView("redirect:/login");

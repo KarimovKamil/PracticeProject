@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Student</title>
@@ -5,8 +6,6 @@
 </head>
 <body>
 <div class="container">
-
-    <h2>#${student.id} student</h2>
 
     <form>
         <h3>First name: ${student.firstName}<br>

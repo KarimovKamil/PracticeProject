@@ -12,6 +12,8 @@ public interface AdminElectiveService {
 
     List<Elective> getAllElectives();
 
+    List<Elective> getAllWithoutEmpty();
+
     Elective getElectiveById(long id);
 
     void addElective(ElectiveDto electiveDto);

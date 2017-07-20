@@ -19,7 +19,7 @@ import java.util.Map;
 public class PracticeDaoImpl implements PracticeDao {
 
     private static final String SQL_FIND_ALL =
-            "SELECT * FROM practice p INNER JOIN teacher t ON (p.leader_id = t.t_id) OFFSET 1;";
+            "SELECT * FROM practice p INNER JOIN teacher t ON (p.leader_id = t.t_id);";
 
     private static final String SQL_FIND_BY_ID =
             "SELECT * FROM practice p INNER JOIN teacher t ON (p.leader_id = t.t_id) WHERE pr_id = :id;";

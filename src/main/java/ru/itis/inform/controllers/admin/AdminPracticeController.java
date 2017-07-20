@@ -30,7 +30,7 @@ public class AdminPracticeController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllPractices() {
-        List<Practice> practiceList = service.getAllPractices();
+        List<Practice> practiceList = service.getAllWithoutEmpty();
         ModelAndView modelAndView = new ModelAndView("adminPractice/practices");
         Map<String, List<Practice>> params = new HashMap<>();
         params.put("practices", practiceList);

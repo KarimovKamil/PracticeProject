@@ -25,7 +25,7 @@
     </form>
     <form>
         <button class="btn btn-primary" formaction="/admin/login" formmethod="get">
-            Admin Login
+            Admin login
         </button>
     </form>
 </div>

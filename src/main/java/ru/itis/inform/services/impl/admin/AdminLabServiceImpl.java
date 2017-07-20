@@ -27,6 +27,13 @@ public class AdminLabServiceImpl implements AdminLabService {
     }
 
     @Override
+    public List<Lab> getAllWithoutEmpty() {
+        List<Lab> electives = labDao.findAll();
+        electives.remove(0);
+        return electives;
+    }
+
+    @Override
     public Lab getLabById(long id) {
         validationFactory.labExistenceById(id);
         return labDao.findById(id);

@@ -27,6 +27,13 @@ public class AdminTeacherServiceImpl implements AdminTeacherService {
     }
 
     @Override
+    public List<Teacher> getAllWithoutEmpty() {
+        List<Teacher> electives = teacherDao.findAll();
+        electives.remove(0);
+        return electives;
+    }
+
+    @Override
     public Teacher getTeachersById(long id) {
         validationFactory.teacherExistenceById(id);
         return teacherDao.findById(id);
