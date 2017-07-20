@@ -69,7 +69,7 @@
                 <label for="electiveId">Elective:</label>
                 <form:select path="electiveId" class="form-control">
                     <c:forEach var="item" items="${electives}">
-                        <option value="${item.id}">${item.name} Course: ${item.course}
+                        <option value="${item.id}">${item.name}
                     </c:forEach>
                 </form:select>
             </div>
@@ -77,7 +77,7 @@
                 <label for="practiceId">Practice:</label>
                 <form:select path="practiceId" class="form-control">
                     <c:forEach var="item" items="${practices}">
-                        <option value="${item.id}">${item.name} Course: ${item.course}
+                        <option value="${item.id}">${item.name}
                     </c:forEach>
                 </form:select>
             </div>
